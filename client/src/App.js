@@ -1,0 +1,31 @@
+import React from "react";
+
+// React Router
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+// Components
+import Home from "./components/pages/Home/Home";
+import Login from "./components/pages/Login/Login";
+import Signup from "./components/pages/Signup/Signup";
+import AppAuth from "./components/layout/auth/AppAuth";
+
+function App() {
+  return (
+    <div id="App">
+      <BrowserRouter>
+        {/* App Auth */}
+        <AppAuth />
+
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+
+          {/* Auth */}
+          <Route exact path="/login" element={<Login />} />
+          <Route exact path="/signup" element={<Signup />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
+  );
+}
+
+export default App;
