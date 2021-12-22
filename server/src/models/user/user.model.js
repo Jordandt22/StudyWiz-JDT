@@ -4,10 +4,6 @@ const Schema = mongoose.Schema;
 // Term Schemas
 const TermSchema = new Schema(
   {
-    setId: {
-      type: String,
-      required: true,
-    },
     termId: {
       type: String,
       required: true,
@@ -20,6 +16,10 @@ const TermSchema = new Schema(
 const SetSchema = new Schema(
   {
     setId: {
+      type: String,
+      required: true,
+    },
+    creatorFbId: {
       type: String,
       required: true,
     },

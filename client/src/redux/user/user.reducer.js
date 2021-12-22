@@ -13,7 +13,7 @@ const UserState = {
   email: "",
   emailVerified: false,
   displayName: "",
-  profilePic: "",
+  photoURL: "",
   createdAt: new Date(),
   lastLoginAt: new Date(),
 };

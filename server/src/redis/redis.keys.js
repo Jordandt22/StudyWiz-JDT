@@ -1,7 +1,7 @@
 module.exports = {
   USER_KEY: {
     name: "user",
-    params: ["fbId", "provider"],
+    params: ["fbId"],
     expiresIn: 60 * 60,
     callback: (data, req, next) => {
       if (!data) return next();
@@ -10,5 +10,10 @@ module.exports = {
       req.user = cachedData;
       return next();
     },
+  },
+  SET_KEY: {
+    name: "set",
+    params: ["setId"],
+    expiresIn: 60 * 60 * 12,
   },
 };

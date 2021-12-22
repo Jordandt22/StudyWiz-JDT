@@ -64,7 +64,7 @@ function AppAuth(props) {
             displayName,
             email,
             emailVerified,
-            profilePic: photoURL,
+            photoURL,
             createdAt,
             lastLoginAt,
           },

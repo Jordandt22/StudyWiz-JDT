@@ -35,7 +35,66 @@ module.exports = {
             );
 
           default:
-            return errorHandler(res, 500, "FIREBASE AUTH", "ERROR OCCURED");
+            return errorHandler(
+              res,
+              500,
+              "FIREBASE AUTH",
+              "ERROR OCCURED - VERIFYING AN ACCESS TOKEN"
+            );
+        }
+      }),
+  getFBUser: async (fbId, cb) =>
+    await admin
+      .auth()
+      .getUser(fbId)
+      .then(cb)
+      .catch((err) => {
+        const {
+          errorInfo: { code, message },
+        } = err;
+        if (process.env.NODE_ENV === "development") console.log(code, message);
+
+        switch (code) {
+          case "auth/user-not-found":
+            return errorHandler(
+              res,
+              404,
+              "FIREBASE AUTH",
+              "UNABLE TO FIND USER"
+            );
+
+          default:
+            return errorHandler(
+              res,
+              500,
+              "FIREBASE AUTH",
+              "ERROR OCCURED - GETTING A USER"
+            );
+        }
+      }),
+  getMultipleFBUsers: async (users, cb) =>
+    await admin
+      .auth()
+      .getUsers(
+        users.map((user) => ({
+          uid: user.fbId,
+        }))
+      )
+      .then(cb)
+      .catch((err) => {
+        const {
+          errorInfo: { code, message },
+        } = err;
+        if (process.env.NODE_ENV === "development") console.log(code, message);
+
+        switch (code) {
+          default:
+            return errorHandler(
+              res,
+              500,
+              "FIREBASE AUTH",
+              "ERROR OCCURED - GETTING MULTIPLE USERS"
+            );
         }
       }),
 };

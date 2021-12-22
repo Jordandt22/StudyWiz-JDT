@@ -8,6 +8,13 @@ const http = require("http");
 const rateLimiter = require("express-rate-limit");
 const slowDown = require("express-slow-down");
 const connect = require("./models/db");
+const { authUser, checkUser } = require("./middleware/auth.mw");
+const { getCacheData } = require("./redis/redis.mw");
+const { USER_KEY } = require("./redis/redis.keys");
+const {
+  validator,
+  schemas: { FirebaseIDSchema },
+} = require("./validators/params.validator");
 const app = express();
 
 // Middleware
@@ -49,6 +56,14 @@ app.use(limiter);
 // Routes
 const version = `/v${API_VERSION}/api`;
 app.use(version + "/user", require("./routes/api/user.api.route"));
+app.use(
+  version + "/sets/user/:fbId",
+  validator(FirebaseIDSchema),
+  authUser,
+  getCacheData(USER_KEY),
+  checkUser,
+  require("./routes/api/sets.api.route")
+);
 
 // PORT and Sever
 const PORT = process.env.PORT || 5000;

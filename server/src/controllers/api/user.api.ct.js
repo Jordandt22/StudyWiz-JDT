@@ -14,7 +14,7 @@ module.exports = {
     if (!dbUser) {
       const newUser = await User.create(userInfo);
 
-      cacheData(USER_KEY, userInfo, newUser);
+      await cacheData(USER_KEY, { fbId }, newUser);
       res.status(200).json({
         user: newUser,
       });

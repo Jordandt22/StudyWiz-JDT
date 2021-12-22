@@ -1,3 +1,4 @@
+const User = require("../models/user/user.model");
 const { errorHandler } = require("../utils/global.utils");
 const { verifyAccessToken } = require("../firebase/firebase.utils");
 
@@ -26,9 +27,30 @@ module.exports = {
           return errorHandler(res, 401, ERROR_ROUTE, "INCORRECT UID");
 
         // Sending the data to next part
-        req.body = { ...req.body, fbId, provider: sign_in_provider };
+        req.body = {
+          ...req.body,
+          oldReqBody: { ...req.body },
+          fbId,
+          provider: sign_in_provider,
+        };
+        req.fbUser = decodedToken;
         return next();
       }
     );
+  },
+  checkUser: async (req, res, next) => {
+    const { fbId, provider, oldReqBody } = req.body;
+    req.body = oldReqBody;
+
+    const cachedUser = req.user;
+    if (cachedUser) return next();
+
+    // Checking if the User exists or not
+    const userInfo = { fbId, provider };
+    const dbUser = await User.findOne(userInfo);
+    if (!dbUser) return errorHandler(res, 404, "AUTH", "UNABLE TO FIND USER");
+
+    req.user = dbUser;
+    next();
   },
 };

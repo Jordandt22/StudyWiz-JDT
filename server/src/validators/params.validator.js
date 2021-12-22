@@ -4,6 +4,14 @@ const Joi = require("joi");
 const FirebaseIDSchema = Joi.object()
   .keys({
     fbId: Joi.string().trim().min(1).max(500).required(),
+    setId: Joi.string().trim().min(1).max(500),
+  })
+  .options({ abortEarly: false });
+
+// Set ID
+const SetIdSchema = Joi.object()
+  .keys({
+    setId: Joi.string().trim().min(1).max(500).required(),
   })
   .options({ abortEarly: false });
 
@@ -19,5 +27,5 @@ module.exports = {
 
     next();
   },
-  schemas: { FirebaseIDSchema },
+  schemas: { FirebaseIDSchema, SetIdSchema },
 };

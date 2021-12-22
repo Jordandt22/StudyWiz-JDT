@@ -6,6 +6,8 @@ const formatRedisKey = (key, reqParams) => {
   let redisKey = name;
   params.map((param) => {
     const val = reqParams[param];
+    if (!val) return;
+
     redisKey = redisKey + "_" + param + ":" + val.trim();
   });
 
@@ -13,11 +15,10 @@ const formatRedisKey = (key, reqParams) => {
 };
 
 module.exports = {
-  cacheData: (key, reqParams, data) => {
-    redis.set(formatRedisKey(key, reqParams), JSON.stringify(data), {
+  cacheData: async (key, reqParams, data) =>
+    await redis.set(formatRedisKey(key, reqParams), JSON.stringify(data), {
       EX: key.expiresIn,
-    });
-  },
+    }),
   getCacheData: (key) => async (req, res, next) => {
     const redisKey = formatRedisKey(key, { ...req.params, ...req.body });
     const data = await redis.get(redisKey);
@@ -29,6 +30,11 @@ module.exports = {
     if (!data) return next();
 
     const cachedData = JSON.parse(data);
-    return res.status(200).json({ ...cachedData });
+    req[key.name] = cachedData;
+    next();
   },
+  removeCacheData: async (key, reqParams) =>
+    await redis.del(formatRedisKey(key, reqParams)),
+  getCache: async (key, reqParams) =>
+    await redis.get(formatRedisKey(key, reqParams)),
 };
