@@ -37,7 +37,7 @@ if (NODE_ENV !== "production") {
 connect();
 
 const timeLimit = 300000;
-const maxReq = 25;
+const maxReq = 75;
 const limiter = rateLimiter({
   windowMs: timeLimit,
   max: maxReq,
