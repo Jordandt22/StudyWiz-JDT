@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 // Axios
 import axios from "axios";
+import { getProxyAuthPassword } from "../../../config/auth.config";
 
 // Firebase
 import { fb } from "../../../firebase/firebase";
@@ -74,6 +75,10 @@ function AppAuth(props) {
         axios.defaults.headers.common[
           "Authorization"
         ] = `Bearer ${accessToken}`;
+
+        // Setting Proxy Auth Header for Axios
+        // axios.defaults.headers.common["Proxy-Authentication"] =
+        //   getProxyAuthPassword();
 
         // Auth API Call
         const dbUser = await getUser(fbId);

@@ -7,20 +7,27 @@ const morgan = require("morgan");
 const http = require("http");
 const rateLimiter = require("express-rate-limit");
 const slowDown = require("express-slow-down");
+const {
+  createProxyMiddleware,
+  fixRequestBody,
+} = require("http-proxy-middleware");
+const { checkProxyAuth } = require("./middleware/auth.mw");
+const { getAPIServerURI } = require("./config/url");
 const connectMongoose = require("./models/db");
 const connectSocket = require("./socket/socket");
 const app = express();
 
 // Middleware
-const { NODE_ENV, WEB_URL, API_VERSION } = process.env;
+const { NODE_ENV, WEB_URL } = process.env;
+const isProduction = NODE_ENV === "production";
 app.use(helmet());
 app.use(
   cors({
-    origin: NODE_ENV !== "production" ? "http://localhost:3000" : WEB_URL,
+    origin: !isProduction ? "http://localhost:3000" : WEB_URL,
   })
 );
 app.use(express.json());
-if (NODE_ENV !== "production") {
+if (!isProduction) {
   app.use(morgan("dev"));
 } else {
   app.enable("trust proxy");
@@ -48,7 +55,16 @@ app.use(speedLimiter);
 app.use(limiter);
 
 // Routes
-const version = `/v${API_VERSION}`;
+app.use(
+  "/",
+  // checkProxyAuth,
+  createProxyMiddleware({
+    target: getAPIServerURI(),
+    changeOrigin: true,
+    onProxyReq: fixRequestBody,
+    router: () => getAPIServerURI(),
+  })
+);
 
 // PORT and Sever
 const PORT = process.env.PORT || 8000;

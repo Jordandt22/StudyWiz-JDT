@@ -18,15 +18,20 @@ const {
 const app = express();
 
 // Middleware
-const { NODE_ENV, WEB_URL, API_VERSION } = process.env;
+const { NODE_ENV, PROXY_SERVER_URI, WEB_URL, API_VERSION } = process.env;
+const isProduction = NODE_ENV === "production";
+const webURL = isProduction ? WEB_URL : "http://localhost:3000";
+const proxyServerURI = isProduction
+  ? PROXY_SERVER_URI
+  : "http://localhost:8000";
 app.use(helmet());
 app.use(
   cors({
-    origin: NODE_ENV !== "production" ? "http://localhost:3000" : WEB_URL,
+    origin: [proxyServerURI, webURL],
   })
 );
 app.use(express.json());
-if (NODE_ENV !== "production") {
+if (!isProduction) {
   app.use(morgan("dev"));
 } else {
   app.enable("trust proxy");
