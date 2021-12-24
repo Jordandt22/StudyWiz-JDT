@@ -15,6 +15,24 @@ const SetIdSchema = Joi.object()
   })
   .options({ abortEarly: false });
 
+// Community Sets
+const CommunitySetsSchema = Joi.object()
+  .keys({
+    filter: Joi.string().min(1).max(50).required(),
+    page: Joi.number().min(1).max(10).required(),
+    limit: Joi.number().min(1).max(20).required(),
+  })
+  .options({ abortEarly: false });
+
+// Community Search
+const CommunitySearchSchema = Joi.object()
+  .keys({
+    page: Joi.number().min(1).max(10).required(),
+    limit: Joi.number().min(1).max(20).required(),
+    query: Joi.string().min(1).max(100).required(),
+  })
+  .options({ abortEarly: false });
+
 module.exports = {
   validator: (schema) => async (req, res, next) => {
     const result = schema.validate(req.params);
@@ -27,5 +45,10 @@ module.exports = {
 
     next();
   },
-  schemas: { FirebaseIDSchema, SetIdSchema },
+  schemas: {
+    FirebaseIDSchema,
+    SetIdSchema,
+    CommunitySetsSchema,
+    CommunitySearchSchema,
+  },
 };

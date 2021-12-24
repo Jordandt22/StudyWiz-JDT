@@ -6,14 +6,12 @@ const {
   getCache,
 } = require("../../redis/redis.mw");
 const { USER_KEY, SET_KEY } = require("../../redis/redis.keys");
+const { getMultipleSetsData } = require("../../utils/sets.utils");
 const { errorHandler } = require("../../utils/global.utils");
 const {
   getFBUser,
   getMultipleFBUsers,
 } = require("../../firebase/firebase.utils");
-
-// Get User Cache
-const getUserCache = async (fbId) => await getCache(USER_KEY, { fbId });
 
 // Update User Cache
 const updateUserCache = async (fbId, updatedUser) =>
@@ -22,10 +20,6 @@ const updateUserCache = async (fbId, updatedUser) =>
 // Update Set Cache
 const updateSetCache = async (setId, updatedSet) =>
   await cacheData(SET_KEY, { setId }, updatedSet);
-
-// Remove Set Cache
-const removeSetCache = async (setId) =>
-  await removeCacheData(SET_KEY, { setId });
 
 module.exports = {
   getSet: async (req, res, next) => {
@@ -69,7 +63,7 @@ module.exports = {
     if (!isCreator && !alreadyAddedToUsers) {
       setData = await Sets.findByIdAndUpdate(
         setId,
-        { $push: { users: { fbId } } },
+        { $push: { users: { fbId } }, $inc: { totalUsers: 1 } },
         { returnDocument: "after" }
       );
     }
@@ -100,25 +94,25 @@ module.exports = {
 
     // Creator
     if (isCreator) {
-      const { name, picture } = req.fbUser;
+      const { name, picture, email } = req.fbUser;
       res.status(200).json({
         isCreator,
         creator: {
           fbId,
-          displayName: name ? name : null,
+          displayName: name ? name : email ? email : null,
           photoURL: picture ? picture : null,
         },
       });
     } else {
       // If not creator, get Firebaes user info
       await getFBUser(creatorFbId, (data) => {
-        const { uid, displayName, photoURL } = data;
+        const { uid, displayName, email, photoURL } = data;
 
         res.status(200).json({
           isCreator,
           creator: {
             fbId: uid,
-            displayName: displayName ? displayName : null,
+            displayName: displayName ? displayName : email ? email : null,
             photoURL: photoURL ? photoURL : null,
           },
         });
@@ -134,6 +128,7 @@ module.exports = {
       creatorFbId,
       privacy: { private },
       users,
+      totalUsers,
     } = setData;
     const isCreator = fbId === creatorFbId;
 
@@ -147,152 +142,43 @@ module.exports = {
     // Get Firebase info of the set users
     await getMultipleFBUsers(users, (data) => {
       res.status(200).json({
+        totalUsers,
         users: data.users.map((user) => {
-          const { uid, displayName, photoURL } = user;
+          const { uid, displayName, email, photoURL } = user;
 
           return {
             fbId: uid,
-            displayName: displayName ? displayName : null,
+            displayName: displayName ? displayName : email ? email : null,
             photoURL: photoURL ? photoURL : null,
           };
         }),
       });
     });
   },
-  createSet: async (req, res, next) => {
+  getMultipleSets: async (req, res, next) => {
+    const { sets } = req.body;
     const { fbId } = req.user;
-    const { title, privacy: privacyData, terms } = req.body;
-    const privacy = privacyData
-      ? privacyData
-      : { hideCreator: false, private: false };
 
-    // Create Set
-    const newSet = await Sets.create({
-      title,
-      creatorFbId: fbId,
-      privacy,
-      terms,
+    // Getting Data for the Multiple Sets
+    const multipleSetsData = await Sets.find({
+      $or: [
+        { $and: [{ creatorFbId: fbId }, { $or: sets }] },
+        {
+          $and: [
+            { creatorFbId: { $not: { $regex: fbId } } },
+            { "privacy.private": false },
+            { $or: sets },
+          ],
+        },
+      ],
     });
 
-    // Add Set to User Sets
-    const newSetId = newSet.id;
-    const updatedUser = await User.findOneAndUpdate(
-      { fbId },
-      { $push: { sets: { setId: newSetId, creatorFbId: fbId } } },
-      { returnDocument: "after" }
-    );
+    // Get Sets Data with Creator Data
+    const setsData = await getMultipleSetsData(multipleSetsData, fbId);
 
-    // Updating the Redis Cache
-    updateUserCache(fbId, updatedUser);
-    updateSetCache(newSetId, newSet);
-    res.status(200).json({ user: { sets: updatedUser.sets } });
-  },
-  updateSet: async (req, res, next) => {
-    const { fbId } = req.user;
-    const { setId } = req.params;
-    const { title, privacy, terms } = req.body;
-
-    // Updated User & Set Data
-    let setData = req.set;
-
-    // Checking if the user is the creator of the set
-    const { creatorFbId } = setData;
-    if (fbId !== creatorFbId)
-      return errorHandler(
-        res,
-        403,
-        "SETS",
-        "UNAUTHORIZED ACTION - UPDATING A SET"
-      );
-
-    // Update the set
-    setData = await Sets.findByIdAndUpdate(
-      setId,
-      { title, privacy, terms },
-      { returnDocument: "after" }
-    );
-
-    // Updating the Redis Cache
-    updateSetCache(setId, setData);
-    res.status(200).json({ set: setData });
-  },
-  deleteSet: async (req, res, next) => {
-    const { fbId, sets } = req.user;
-    const { setId } = req.params;
-    const { creatorFbId, users } = req.set;
-    const isCreator = fbId === creatorFbId;
-    const createdSet = sets.some(
-      (set) => set.setId === setId && set.creatorFbId === fbId
-    );
-    if (!isCreator || !createdSet)
-      return errorHandler(
-        res,
-        403,
-        "SETS",
-        "UNAUTHORIZED ACTION - DELETING A SET"
-      );
-
-    // Delete Set from Database and Redis
-    await Sets.findByIdAndDelete(setId);
-    removeSetCache(setId);
-
-    // Remove Set from user's list
-    const updatedUser = await User.findOneAndUpdate(
-      { fbId },
-      { $pull: { sets: { setId } } },
-      { returnDocument: "after" }
-    );
-
-    // Remove set from all users' lists
-    await User.updateMany(
-      { sets: { $elemMatch: { setId } } },
-      { $pull: { sets: { setId } } }
-    );
-
-    // Updating the cache of all the users' who used this set
-    users.map(async (user) => {
-      const { fbId: setUserFBId } = user;
-
-      // Get Cached User
-      const cachedUser = await getUserCache(setUserFBId);
-      if (!cachedUser) return;
-
-      // Filter out the set being deleted
-      const cachedUserData = JSON.parse(cachedUser);
-      const { sets } = cachedUserData;
-      const updatedSets = sets.filter((set) => set.setId !== setId);
-
-      // Update Redis Cache
-      updateUserCache(setUserFBId, { ...cachedUserData, sets: updatedSets });
+    // Add the Creator Data to Each Set Data
+    res.status(200).json({
+      sets: setsData,
     });
-
-    // Update Redis Cache
-    updateUserCache(fbId, updatedUser);
-    res.status(200).json({ user: { sets: updatedUser.sets } });
-  },
-  copySet: async (req, res, next) => {
-    const { fbId } = req.user;
-    const {
-      title,
-      terms,
-      creatorFbId,
-      privacy: { private },
-    } = req.set;
-    const isCreator = fbId === creatorFbId;
-
-    // If the user is not the creator, check if the set is private
-    if (!isCreator && private)
-      return errorHandler(res, 403, "SETS", "THIS SET IS ON PRIVATE MODE");
-
-    // Creating a new set and sending it to the next part
-    req.body = {
-      title: "Copy of " + title,
-      terms: terms.map((term) => ({
-        term: term.term,
-        definition: term.definition,
-      })),
-    };
-
-    next();
   },
 };

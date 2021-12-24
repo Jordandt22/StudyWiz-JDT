@@ -20,11 +20,15 @@ module.exports = {
       EX: key.expiresIn,
     }),
   getCacheData: (key) => async (req, res, next) => {
-    const redisKey = formatRedisKey(key, { ...req.params, ...req.body });
+    const redisKey = formatRedisKey(key, {
+      fbId: req.user ? req.user.fbId : null,
+      ...req.params,
+      ...req.body,
+    });
     const data = await redis.get(redisKey);
 
     // Checking if there is a callback for a certain redis key
-    if (key.callback) return key.callback(data, req, next);
+    if (key.callback) return key.callback(req, res, next, data);
 
     // Checking if Data exists
     if (!data) return next();

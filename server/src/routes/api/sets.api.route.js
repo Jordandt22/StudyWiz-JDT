@@ -3,26 +3,48 @@ const {
   getSet,
   getSetCreator,
   getSetUsers,
+  getMultipleSets,
+} = require("../../controllers/api/sets.get.api.ct");
+const {
   createSet,
   updateSet,
   deleteSet,
   copySet,
-} = require("../../controllers/api/sets.api.ct");
+} = require("../../controllers/api/sets.action.api.ct");
+const {
+  getCommunitySets,
+  searchCommunitySets,
+} = require("../../controllers/api/community.api.ct");
 const {
   validator: paramsValidator,
-  schemas: { SetIdSchema },
+  schemas: {
+    SetIdSchema,
+    CommunitySetsSchema,
+    CommunitySearchSchema: CommunitySearchParamsSchema,
+  },
 } = require("../../validators/params.validator");
 const {
   validator: bodyValidator,
-  schemas: { SetSchema },
+  schemas: {
+    SetSchema,
+    MultipleSetsSchema,
+    CommunitySearchSchema: CommunitySearchBodySchema,
+  },
 } = require("../../validators/body.validator");
 const { getCacheData } = require("../../redis/redis.mw");
-const { SET_KEY } = require("../../redis/redis.keys");
+const {
+  SET_KEY,
+  COMMUNITY_KEY,
+  SEARCH_KEY,
+} = require("../../redis/redis.keys");
 const { checkSet } = require("../../middleware/api.mw");
 
 // Sets API
 
-// ---- Sets ----
+// ---- Get Data ----
+
+// GET - Get Multiple Sets
+setsRouter.get("/", bodyValidator(MultipleSetsSchema), getMultipleSets);
 
 // GET - Get a Set
 setsRouter.get(
@@ -50,6 +72,8 @@ setsRouter.get(
   checkSet,
   getSetUsers
 );
+
+// ---- Actions ----
 
 // POST - Create a Set
 setsRouter.post("/", bodyValidator(SetSchema), createSet);
@@ -82,6 +106,25 @@ setsRouter.post(
   copySet,
   bodyValidator(SetSchema),
   createSet
+);
+
+// ---- Community ----
+
+// GET - Get Community Sets
+setsRouter.get(
+  "/community/:filter/page/:page/limit/:limit",
+  paramsValidator(CommunitySetsSchema),
+  getCacheData(COMMUNITY_KEY),
+  getCommunitySets
+);
+
+// GET - Search Community Sets
+setsRouter.get(
+  "/community/page/:page/limit/:limit/search/:query",
+  paramsValidator(CommunitySearchParamsSchema),
+  bodyValidator(CommunitySearchBodySchema),
+  getCacheData(SEARCH_KEY),
+  searchCommunitySets
 );
 
 module.exports = setsRouter;

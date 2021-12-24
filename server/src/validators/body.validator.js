@@ -21,6 +21,26 @@ const SetSchema = Joi.object()
   })
   .options({ abortEarly: false });
 
+// Set ID
+const SetIdSchema = Joi.object().keys({
+  setId: Joi.string().trim().min(1).max(500).required(),
+});
+
+// Multiple Sets
+const MultipleSetsSchema = Joi.object()
+  .keys({
+    sets: Joi.array().min(1).max(20).items(SetIdSchema).required(),
+  })
+  .options({ abortEarly: false });
+
+// Community Search
+const CommunitySearchSchema = Joi.object()
+  .keys({
+    filter: Joi.string().min(1).max(50).required(),
+    ownedBy: Joi.string().min(1).max(50).required(),
+  })
+  .options({ abortEarly: false });
+
 module.exports = {
   validator: (schema) => async (req, res, next) => {
     const result = schema.validate(req.body);
@@ -33,5 +53,5 @@ module.exports = {
 
     next();
   },
-  schemas: { SetSchema },
+  schemas: { SetSchema, MultipleSetsSchema, CommunitySearchSchema },
 };

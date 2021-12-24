@@ -1,4 +1,6 @@
 const User = require("../models/user/user.model");
+const { cacheData } = require("../redis/redis.mw");
+const { USER_KEY } = require("../redis/redis.keys");
 const { errorHandler } = require("../utils/global.utils");
 const { verifyAccessToken } = require("../firebase/firebase.utils");
 
@@ -50,6 +52,8 @@ module.exports = {
     const dbUser = await User.findOne(userInfo);
     if (!dbUser) return errorHandler(res, 404, "AUTH", "UNABLE TO FIND USER");
 
+    // Updating the User Cache
+    cacheData(USER_KEY, { fbId }, dbUser);
     req.user = dbUser;
     next();
   },

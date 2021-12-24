@@ -38,15 +38,14 @@ if (!isProduction) {
 connectMongoose();
 
 const timeLimit = 300000;
-const maxReq = 75;
 const limiter = rateLimiter({
   windowMs: timeLimit,
-  max: maxReq,
+  max: 75,
 });
 
 const speedLimiter = slowDown({
   windowMs: timeLimit,
-  delayAfter: maxReq,
+  delayAfter: 55,
   delayMs: 500,
 });
 

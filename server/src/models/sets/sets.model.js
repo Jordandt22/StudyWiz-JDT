@@ -53,6 +53,10 @@ const SetSchema = new Schema(
     privacy: PrivacySchema,
     terms: [TermSchema],
     users: [UserSchema],
+    totalUsers: {
+      type: Number,
+      default: 0,
+    },
   },
   { timestamps: true }
 );
