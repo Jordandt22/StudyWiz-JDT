@@ -1,0 +1,97 @@
+// Auth Styles
+
+// Auth Container
+.auth-container {
+  margin-top: $spacer-md;
+}
+
+// Auth Box
+.auth-box {
+  width: 30vw;
+  background: white;
+  box-shadow: 0 0 15px 0.5px $black-shadow;
+  padding: $spacer;
+
+  h2 {
+    font-weight: 400;
+    text-align: center;
+    font-size: $main-fs;
+    margin-bottom: $spacer;
+
+    span {
+      color: $primary-clr;
+    }
+  }
+
+  // Firebase Card
+  .firebaseui-idp-list {
+    margin-bottom: $spacer-md;
+
+    li {
+      transition: all 200ms ease-out;
+
+      &:hover {
+        transform: scale(0.9);
+      }
+    }
+  }
+
+  // Firebase Form Card
+  .mdl-card {
+    box-shadow: none !important;
+
+    .firebaseui-card-header {
+      display: none;
+    }
+
+    #ui-sign-in-email-input {
+      font-size: $main-fs / 1.25;
+    }
+
+    .firebaseui-text {
+      color: grey;
+      margin-bottom: $spacer-small;
+      line-height: $spacer * 0.85;
+    }
+
+    // Firebase Form Buttons
+    .firebaseui-form-actions {
+      .firebaseui-id-secondary-link {
+        color: grey;
+        transition: all 200ms ease-out;
+        border-radius: $border-radius-width / 2;
+
+        &:hover {
+          color: white;
+          background: rgba(red, 0.75);
+        }
+      }
+
+      .firebaseui-id-submit {
+        color: black;
+        background: $secondary-clr;
+        box-shadow: none;
+        border-radius: $border-radius-width / 2;
+        transition: all 200ms ease-out;
+
+        &:hover {
+          background: rgba($secondary-clr, 0.5);
+        }
+      }
+    }
+  }
+
+  // Firebase Form Link
+  .firebaseui-form-links > .firebaseui-link {
+    color: grey;
+  }
+
+  // Firebaes Form Error
+  .firebaseui-error-wrapper {
+    margin-top: $spacer-small / 2;
+  }
+
+  // Loader
+  #loader {
+  }
+}

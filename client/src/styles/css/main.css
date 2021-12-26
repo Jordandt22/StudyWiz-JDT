@@ -1,0 +1,557 @@
+/* 
+html5doctor.com Reset Stylesheet
+v1.6.1
+Last Updated: 2010-09-17
+Author: Richard Clark - http://richclarkdesign.com 
+Twitter: @rich_clark
+*/
+html,
+body,
+div,
+span,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+abbr,
+address,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+samp,
+small,
+strong,
+sub,
+sup,
+var,
+b,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+body {
+  line-height: 1;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+nav ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+a {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+/* change colours to suit your needs */
+ins {
+  background-color: #ff9;
+  color: #000;
+  text-decoration: none;
+}
+
+/* change colours to suit your needs */
+mark {
+  background-color: #ff9;
+  color: #000;
+  font-style: italic;
+  font-weight: bold;
+}
+
+del {
+  text-decoration: line-through;
+}
+
+abbr[title],
+dfn[title] {
+  border-bottom: 1px dotted;
+  cursor: help;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* change border colour to suit your needs */
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #cccccc;
+  margin: 1em 0;
+  padding: 0;
+}
+
+input,
+select {
+  vertical-align: middle;
+}
+
+/* My Code */
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+}
+
+html {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+/* Variables */
+/* Colors */
+/* Font */
+/* Spacers */
+/* Border */
+.between-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.around-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.center-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.center {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.center-vertical {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.text-overflow {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.user-photo-box {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 50%;
+}
+
+.user-photo-box p {
+  color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+#not-authed-nav {
+  padding: 0.85rem 2rem;
+}
+
+#authed-nav {
+  padding: 0.5rem 2rem;
+}
+
+.nav-bar {
+  background: white;
+  border-bottom: 1px solid lightgrey;
+}
+
+.nav-bar .nav-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #00a3ff;
+  margin-right: 2rem;
+  text-decoration: none;
+}
+
+.nav-bar .nav-link {
+  color: grey;
+  text-decoration: none;
+  margin: 0 0.66667rem;
+  -webkit-transition: all 200ms ease-out;
+  transition: all 200ms ease-out;
+}
+
+.nav-bar .nav-link:hover {
+  padding-bottom: 8.5px;
+  border-bottom: 2px solid #ffe600;
+}
+
+.nav-bar .nav-link.active {
+  padding-bottom: 8.5px;
+  border-bottom: 2px solid #ffe600;
+}
+
+.nav-bar .login-link {
+  color: grey;
+  text-decoration: none;
+  margin-right: 1rem;
+  -webkit-transition: all 200ms ease-out;
+  transition: all 200ms ease-out;
+}
+
+.nav-bar .login-link:hover {
+  background: #ededed;
+  padding: 0.5rem;
+  border-radius: 5px;
+}
+
+.nav-bar .signup-link {
+  background: #ffe600;
+  color: black;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  -webkit-transition: all 200ms ease-out;
+  transition: all 200ms ease-out;
+}
+
+.nav-bar .signup-link:hover {
+  opacity: 0.5;
+}
+
+.nav-bar .nav-user-photo:hover {
+  cursor: pointer;
+}
+
+.nav-bar .nav-user-close {
+  width: 2.5rem;
+  height: 2.5rem;
+  color: red;
+  -webkit-transition: all 600ms ease-out;
+  transition: all 600ms ease-out;
+}
+
+.nav-bar .nav-user-close:hover {
+  cursor: pointer;
+  -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+}
+
+.nav-bar .form-disabled {
+  opacity: 0.5;
+}
+
+.nav-bar .nav-search-bar {
+  background: #ededed;
+  border-radius: 5px;
+  padding: 5px 7.5px;
+  margin-right: 1rem;
+}
+
+.nav-bar .nav-search-bar .icon {
+  margin: 0 5px;
+}
+
+.nav-bar .nav-search-bar input {
+  background: transparent;
+  outline: none;
+  border: none;
+}
+
+.user-menu {
+  max-width: 17.5vw;
+  position: absolute;
+  top: 7.5vh;
+  right: 5vw;
+  background: white;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
+          box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
+}
+
+.user-menu .user-menu-header {
+  padding: 1rem 1.5rem;
+}
+
+.user-menu .user-menu-header .user-photo-box {
+  min-width: 2.5rem;
+  height: 2.5rem;
+  margin-right: 0.5rem;
+}
+
+.user-menu .user-menu-header h3 {
+  max-width: 60%;
+}
+
+.user-menu .user-menu-header h4 {
+  color: grey;
+  max-width: 60%;
+  font-weight: lighter;
+  margin-top: 1.5px;
+}
+
+.user-menu .user-menu-links-box {
+  border-top: 2px solid rgba(211, 211, 211, 0.35);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.user-menu .user-menu-links-box .user-menu-link {
+  color: grey;
+  text-decoration: none;
+  padding: 1rem 1.5rem;
+}
+
+.user-menu .user-menu-links-box .user-menu-link:hover {
+  background: rgba(211, 211, 211, 0.25);
+}
+
+.user-menu .user-menu-links-box .signout-btn {
+  color: grey;
+  padding: 1rem 1.5rem;
+}
+
+.user-menu .user-menu-links-box .signout-btn:hover {
+  cursor: pointer;
+  color: white;
+  background: rgba(255, 0, 0, 0.5);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.auth-container {
+  margin-top: 4rem;
+}
+
+.auth-box {
+  width: 30vw;
+  background: white;
+  -webkit-box-shadow: 0 0 15px 0.5px rgba(0, 0, 0, 0.25);
+          box-shadow: 0 0 15px 0.5px rgba(0, 0, 0, 0.25);
+  padding: 2rem;
+}
+
+.auth-box h2 {
+  font-weight: 400;
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.auth-box h2 span {
+  color: #00a3ff;
+}
+
+.auth-box .firebaseui-idp-list {
+  margin-bottom: 4rem;
+}
+
+.auth-box .firebaseui-idp-list li {
+  -webkit-transition: all 200ms ease-out;
+  transition: all 200ms ease-out;
+}
+
+.auth-box .firebaseui-idp-list li:hover {
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
+}
+
+.auth-box .mdl-card {
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
+.auth-box .mdl-card .firebaseui-card-header {
+  display: none;
+}
+
+.auth-box .mdl-card #ui-sign-in-email-input {
+  font-size: 1.2rem;
+}
+
+.auth-box .mdl-card .firebaseui-text {
+  color: grey;
+  margin-bottom: 1rem;
+  line-height: 1.7rem;
+}
+
+.auth-box .mdl-card .firebaseui-form-actions .firebaseui-id-secondary-link {
+  color: grey;
+  -webkit-transition: all 200ms ease-out;
+  transition: all 200ms ease-out;
+  border-radius: 5px;
+}
+
+.auth-box .mdl-card .firebaseui-form-actions .firebaseui-id-secondary-link:hover {
+  color: white;
+  background: rgba(255, 0, 0, 0.75);
+}
+
+.auth-box .mdl-card .firebaseui-form-actions .firebaseui-id-submit {
+  color: black;
+  background: #ffe600;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border-radius: 5px;
+  -webkit-transition: all 200ms ease-out;
+  transition: all 200ms ease-out;
+}
+
+.auth-box .mdl-card .firebaseui-form-actions .firebaseui-id-submit:hover {
+  background: rgba(255, 230, 0, 0.5);
+}
+
+.auth-box .firebaseui-form-links > .firebaseui-link {
+  color: grey;
+}
+
+.auth-box .firebaseui-error-wrapper {
+  margin-top: 0.5rem;
+}
+
+body {
+  background: #ededed;
+  font-family: "Signika Negative", sans-serif;
+}
+
+#App {
+  font-family: "Signika Negative", sans-serif;
+}
+/*# sourceMappingURL=main.css.map */

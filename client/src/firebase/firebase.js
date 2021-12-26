@@ -20,8 +20,8 @@ export const uiConfig = {
     firebase.auth.GoogleAuthProvider.PROVIDER_ID,
     firebase.auth.EmailAuthProvider.PROVIDER_ID,
   ],
-  tosUrl: "<your-tos-url>",
-  privacyPolicyUrl: "<your-privacy-policy-url>",
+  tosUrl: "/tos",
+  privacyPolicyUrl: "/privacy",
 };
 
 export const fb = { firebase, firebaseAuth: firebase.auth() };

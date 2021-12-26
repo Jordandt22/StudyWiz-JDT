@@ -37,45 +37,45 @@ export default connect(ReduxState)((props) => {
     });
 
   // Creating a Socket Client for the API Namespace
-  useEffect(() => {
-    if (loggedIn && fbId && accessToken) {
-      const socket = io(process.env.REACT_APP_PROXY_SERVER_URL + "/api", {
-        auth: { token: accessToken },
-      });
-      APISocket.current = socket;
+  // useEffect(() => {
+  //   if (loggedIn && fbId && accessToken) {
+  //     const socket = io(process.env.REACT_APP_PROXY_SERVER_URL + "/api", {
+  //       auth: { token: accessToken },
+  //     });
+  //     APISocket.current = socket;
 
-      // Connection Error
-      socket.on("connect_error", (data) => {
-        console.log(data);
-      });
+  //     // Connection Error
+  //     socket.on("connect_error", (data) => {
+  //       console.log(data);
+  //     });
 
-      // Favorite Set Response
-      socket.on("favorite-set-response", (data) => {
-        console.log(data);
-      });
+  //     // Favorite Set Response
+  //     socket.on("favorite-set-response", (data) => {
+  //       console.log(data);
+  //     });
 
-      // Favorite Set Response Error
-      socket.on("favorite-set-response-error", (data) => {
-        console.log(data);
-      });
+  //     // Favorite Set Response Error
+  //     socket.on("favorite-set-response-error", (data) => {
+  //       console.log(data);
+  //     });
 
-      // Favorite Term Response
-      socket.on("favorite-term-response", (data) => {
-        console.log(data);
-      });
+  //     // Favorite Term Response
+  //     socket.on("favorite-term-response", (data) => {
+  //       console.log(data);
+  //     });
 
-      // Favorite Term Response Error
-      socket.on("favorite-term-response-error", (data) => {
-        console.log(data);
-      });
+  //     // Favorite Term Response Error
+  //     socket.on("favorite-term-response-error", (data) => {
+  //       console.log(data);
+  //     });
 
-      // CLEAN UP THE EFFECT
-      return () => {
-        socket.disconnect();
-      };
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loggedIn, fbId, accessToken]);
+  //     // CLEAN UP THE EFFECT
+  //     return () => {
+  //       socket.disconnect();
+  //     };
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [loggedIn, fbId, accessToken]);
 
   return (
     <APISocketContext.Provider value={{ APISocket, favoriteSet, favoriteTerm }}>

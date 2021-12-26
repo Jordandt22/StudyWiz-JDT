@@ -1,0 +1,25 @@
+// Global Styles & Classes
+
+// Text Overflow
+.text-overflow {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+// User Photo
+.user-photo-box {
+  $s: 2.5rem;
+  width: $s;
+  height: $s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+
+  p {
+    color: white;
+    font-weight: bold;
+    font-size: $main-fs / 1.25;
+  }
+}

@@ -62,7 +62,11 @@ function AppAuth(props) {
           },
           user: {
             provider,
-            displayName,
+            displayName: displayName
+              ? displayName
+              : email
+              ? email
+              : "NoDisplayName",
             email,
             emailVerified,
             photoURL,
@@ -76,10 +80,6 @@ function AppAuth(props) {
           "Authorization"
         ] = `Bearer ${accessToken}`;
 
-        // Setting Proxy Auth Header for Axios
-        // axios.defaults.headers.common["Proxy-Authentication"] =
-        //   getProxyAuthPassword();
-
         // Auth API Call
         const dbUser = await getUser(fbId);
         if (!dbUser) {
@@ -91,6 +91,7 @@ function AppAuth(props) {
         }
       });
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fbId, loggedIn]);
 

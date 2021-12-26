@@ -1,5 +1,8 @@
 import { AUTHED, RESET_USER } from "./user.types";
 
+// Utils
+import { getRandomColor } from "../../utils/global.utils";
+
 // User State
 const UserState = {
   auth: {
@@ -16,6 +19,7 @@ const UserState = {
   photoURL: "",
   createdAt: new Date(),
   lastLoginAt: new Date(),
+  photoColor: getRandomColor(),
 };
 
 // eslint-disable-next-line import/no-anonymous-default-export

@@ -4,11 +4,7 @@ import React from "react";
 import FirebaseAuth from "../../layout/auth/FirebaseAuth";
 
 function Signup() {
-  return (
-    <div>
-      <FirebaseAuth />
-    </div>
-  );
+  return <FirebaseAuth formTitle="Sign Up for" />;
 }
 
 export default Signup;

@@ -8,6 +8,8 @@ import Home from "./components/pages/Home/Home";
 import Login from "./components/pages/Login/Login";
 import Signup from "./components/pages/Signup/Signup";
 import AppAuth from "./components/layout/auth/AppAuth";
+import NavBar from "./components/layout/nav/NavBar";
+import Alert from "./components/layout/alert/Alert";
 
 function App() {
   return (
@@ -15,6 +17,12 @@ function App() {
       <BrowserRouter>
         {/* App Auth */}
         <AppAuth />
+
+        {/* Nav Bar */}
+        <NavBar />
+
+        {/* Alerts */}
+        <Alert />
 
         <Routes>
           <Route exact path="/" element={<Home />} />

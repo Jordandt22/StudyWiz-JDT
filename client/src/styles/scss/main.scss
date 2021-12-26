@@ -1,0 +1,20 @@
+// Setup
+@import "setup/reset";
+@import "setup/vars";
+@import "setup/mixins";
+@import "utils/alignments";
+@import "utils/global";
+
+// Layout
+@import "layout/nav/nav";
+@import "layout/auth/auth";
+
+// My Styles
+body {
+  background: $main-bg;
+  font-family: $main-ft;
+}
+
+#App {
+  font-family: $main-ft;
+}

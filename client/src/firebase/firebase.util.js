@@ -14,3 +14,5 @@ export const checkTokenTime = async (isExpired, expirationTime) => {
 
   return null;
 };
+
+export const signOutFbUser = async () => await firebaseAuth.signOut();

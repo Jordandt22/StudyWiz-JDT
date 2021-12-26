@@ -1,11 +1,10 @@
-import React from 'react'
+import React from "react";
+
+// Components
+import FirebaseAuth from "../../layout/auth/FirebaseAuth";
 
 function Login() {
-  return (
-    <div>
-      Login page
-    </div>
-  )
+  return <FirebaseAuth formTitle="Log In to" />;
 }
 
-export default Login
+export default Login;
