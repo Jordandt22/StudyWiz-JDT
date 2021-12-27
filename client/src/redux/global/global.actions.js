@@ -15,7 +15,7 @@ export const setAlert = (alert) => ({ type: SET_ALERT, payload: alert });
 
 export const resetAlert = () => ({ type: RESET_ALERT });
 
-export const setLoading = (isLoading) => ({
+export const setLoading = (loading) => ({
   type: SET_LOADING,
-  payload: isLoading,
+  payload: loading,
 });

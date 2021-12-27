@@ -43,7 +43,7 @@ module.exports = {
             );
         }
       }),
-  getFBUser: async (fbId, cb) =>
+  getFBUser: async (fbId, res, cb) =>
     await admin
       .auth()
       .getUser(fbId)
@@ -72,7 +72,7 @@ module.exports = {
             );
         }
       }),
-  getMultipleFBUsers: async (users, cb) =>
+  getMultipleFBUsers: async (users, res, cb) =>
     await admin
       .auth()
       .getUsers(

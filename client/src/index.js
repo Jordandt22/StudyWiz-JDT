@@ -10,6 +10,7 @@ import { StylesProvider } from "@material-ui/core";
 
 // React Query
 import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 
 // Redux
 import { Provider } from "react-redux";
@@ -27,6 +28,11 @@ ReactDOM.render(
             <App />
           </ContextProvider>
         </Provider>
+
+        {/* React Query Dev Tools */}
+        {process.env.NODE_ENV === "development" && (
+          <ReactQueryDevtools initialIsOpen={false} />
+        )}
       </QueryClientProvider>
     </StylesProvider>
   </React.StrictMode>,

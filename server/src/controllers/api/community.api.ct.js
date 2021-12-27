@@ -61,7 +61,7 @@ module.exports = {
     if (communitySets.length <= 0) return res.status(200).json({ sets: [] });
 
     // Get Sets Data with Creator Data
-    const setsData = await getMultipleSetsData(communitySets, fbId);
+    const setsData = await getMultipleSetsData(communitySets, fbId, res);
 
     // Updating Cache
     const data = { sets: setsData, next: getNextInfo(limit, page, setsData) };
@@ -126,7 +126,7 @@ module.exports = {
       .skip(currentSkip);
 
     // Get Sets Data with Creator Data
-    const setsData = await getMultipleSetsData(communitySets, fbId);
+    const setsData = await getMultipleSetsData(communitySets, fbId, res);
 
     // Updating Cache
     const data = { sets: setsData, next: getNextInfo(limit, page, setsData) };

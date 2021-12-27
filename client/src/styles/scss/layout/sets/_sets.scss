@@ -1,0 +1,79 @@
+// Sets Styles
+
+// Set Card
+.set-card {
+  background: white;
+  box-shadow: 0 2px 2.5px 1px $black-shadow;
+  padding: $spacer-small * 1.15 $spacer-small * 1.25;
+  transition: all 200ms ease-out;
+  border-top: 4px solid $secondary-clr;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(0.95);
+  }
+
+  .set-info {
+    margin-bottom: $spacer;
+
+    p {
+      color: grey;
+      margin-top: $spacer-small / 2.5;
+    }
+  }
+
+  .creator {
+    .user-photo-box {
+      $s: 2.25rem;
+      width: $s;
+      height: $s;
+      margin-right: $spacer-small * 0.75;
+    }
+
+    .creator-name {
+      color: grey;
+    }
+  }
+}
+
+// Set Card Skeleton
+.set-card-skel {
+  height: 22.5vh !important;
+}
+
+// Minimal Set Card
+.minimal-set-card {
+  width: 100%;
+  background: white;
+  border-top: 4px solid $secondary-clr;
+  padding: $spacer-small * 1.15 $spacer-small * 1.25;
+  margin-top: $spacer-small * 1.5;
+  box-shadow: 0 2px 2.5px 1px $black-shadow;
+  transition: all 200ms ease-out;
+
+  &:hover {
+    cursor: pointer;
+    transform: translateY(-1vh);
+    box-shadow: 0 5px 5px 2px $black-shadow;
+  }
+
+  h4 {
+    max-width: 75%;
+  }
+
+  span {
+    color: grey;
+    margin-left: $spacer-small / 1.5;
+  }
+
+  p {
+    color: grey;
+    margin-top: $spacer-small / 1.5;
+  }
+}
+
+// Minimal Set Card Skeleton
+.minimal-set-card-skel {
+  height: 10vh !important;
+  margin-bottom: $spacer-small * 1.5;
+}

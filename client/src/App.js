@@ -10,6 +10,7 @@ import Signup from "./components/pages/Signup/Signup";
 import AppAuth from "./components/layout/auth/AppAuth";
 import NavBar from "./components/layout/nav/NavBar";
 import Alert from "./components/layout/alert/Alert";
+import LoadingScreen from "./components/layout/loading/LoadingScreen";
 
 function App() {
   return (
@@ -23,6 +24,9 @@ function App() {
 
         {/* Alerts */}
         <Alert />
+
+        {/* Loading Screen */}
+        <LoadingScreen />
 
         <Routes>
           <Route exact path="/" element={<Home />} />

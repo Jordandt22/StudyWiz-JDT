@@ -8,13 +8,28 @@
 // Layout
 @import "layout/nav/nav";
 @import "layout/auth/auth";
+@import "layout/loading/loading";
+@import "layout/sets/display";
+@import "layout/sets/sets";
+@import "layout/alert/alert";
+@import "layout/error/error";
+
+// Pages
+@import "pages/home/dashboard";
 
 // My Styles
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: $main-bg;
   font-family: $main-ft;
+  overflow-x: hidden;
 }
 
 #App {
   font-family: $main-ft;
+  padding: $spacer-md * 2 $spacer-md;
+  min-height: 100vh;
 }

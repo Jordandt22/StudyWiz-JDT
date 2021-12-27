@@ -1,0 +1,15 @@
+// Display Styles
+.display-box {
+  margin-bottom: $spacer-md;
+
+  h3 {
+    color: grey;
+    font-size: $main-fs;
+    font-weight: lighter;
+    margin-bottom: $spacer;
+  }
+
+  .display-link {
+    margin-top: $spacer;
+  }
+}

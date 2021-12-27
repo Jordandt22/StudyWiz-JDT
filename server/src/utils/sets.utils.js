@@ -2,7 +2,7 @@ const _ = require("lodash");
 const { getMultipleFBUsers } = require("../firebase/firebase.utils");
 
 module.exports = {
-  getMultipleSetsData: async (multipleSetsData, fbId) => {
+  getMultipleSetsData: async (multipleSetsData, fbId, res) => {
     // Removing Duplicates of the Creator Firebase IDs
     const multipleSetsFbIDs = _.uniqBy(multipleSetsData, "creatorFbId").map(
       (set) => ({
@@ -13,6 +13,7 @@ module.exports = {
     // Getting the Creator Data for the Multiple Sets
     const multipleSetsCreatorData = await getMultipleFBUsers(
       multipleSetsFbIDs,
+      res,
       (data) => {
         const users = {};
         data.users.map((user) => {

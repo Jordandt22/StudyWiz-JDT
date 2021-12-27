@@ -1,7 +1,23 @@
 import React from "react";
+import { connect } from "react-redux";
 
-function Home() {
-  return <div>Home page</div>;
+// Components
+import Dashboard from "./Dashboard";
+import LandingPage from "./LandingPage";
+
+function Home(props) {
+  const {
+    user: {
+      auth: { loggedIn },
+    },
+  } = props;
+
+  return <>{loggedIn ? <Dashboard /> : <LandingPage />}</>;
 }
 
-export default Home;
+// Redux
+const ReduxState = (state) => ({
+  user: state.user,
+});
+
+export default connect(ReduxState)(Home);

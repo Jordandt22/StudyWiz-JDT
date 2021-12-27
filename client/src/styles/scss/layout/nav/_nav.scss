@@ -8,8 +8,13 @@
 }
 
 .nav-bar {
+  top: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
   background: white;
   border-bottom: 1px solid lightgrey;
+  z-index: 1000;
 
   .nav-title {
     font-size: $main-fs;

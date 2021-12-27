@@ -19,7 +19,10 @@ const GlobalState = {
     title: "Error",
     duration: 3000,
   },
-  isLoading: false,
+  loading: {
+    isLoading: false,
+    loadingText: "Loading...",
+  },
 };
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -63,7 +66,10 @@ export default (state = GlobalState, action) => {
     case SET_LOADING:
       return {
         ...state,
-        isLoading: action.payload,
+        loading: {
+          ...GlobalState.loading,
+          ...action.payload,
+        },
       };
 
     default:

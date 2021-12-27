@@ -28,7 +28,9 @@ function UserPhoto(props) {
   return (
     <Box
       onClick={onClick}
-      style={{ background: isUser ? photoColor : getRandomColor() }}
+      style={{
+        background: photoURL ? "lightgrey" : isUser ? photoColor : "lightgrey",
+      }}
       className={"user-photo-box " + className}
     >
       {photoURL ? (

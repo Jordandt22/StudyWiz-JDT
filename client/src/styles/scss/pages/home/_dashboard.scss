@@ -1,0 +1,92 @@
+// Dashboard Styles
+
+// No Recent Sets
+.no-recent-sets {
+  p {
+    font-size: $main-fs / 1.25;
+  }
+
+  .link {
+    margin-top: $spacer;
+  }
+}
+
+// Recent Sets
+.recent-sets-box {
+  $w: 70vw;
+  display: grid;
+  grid-template-columns: repeat(3, minmax($w / 3, 1fr));
+  gap: $spacer;
+  width: $w;
+}
+
+// Section 2
+.dashboard-section-2 {
+  display: flex;
+
+  // Community Sets
+  .display-box {
+    width: 55%;
+  }
+
+  // Schedule List
+  .schedule-list {
+    width: 40%;
+    margin-left: 5%;
+    background: white;
+    padding: $spacer-small * 1.5;
+    box-shadow: 0 2px 2px 1px $black-shadow;
+    padding-bottom: $spacer-md * 1.5;
+
+    .placeholder-message {
+      color: grey;
+      margin-top: $spacer;
+      line-height: $spacer * 0.75;
+
+      p {
+        font-weight: bold;
+        margin-bottom: $spacer-small;
+      }
+    }
+
+    h2 {
+      font-size: $main-fs;
+      font-weight: lighter;
+      margin-bottom: $spacer-small * 1.5;
+    }
+
+    .minimal-schedule-card {
+      margin-bottom: $spacer-small;
+      transition: all 200ms ease-out;
+
+      &:hover {
+        opacity: 0.5;
+      }
+
+      .main {
+        background: $main-bg;
+        padding: $spacer-small / 1.5;
+      }
+
+      .schedule-info p {
+        color: grey;
+        font-weight: lighter;
+        font-size: $main-fs * 0.5;
+        margin-top: 5px;
+      }
+
+      .due-date {
+        color: grey;
+        font-weight: lighter;
+        font-size: $main-fs * 0.5;
+      }
+
+      .days-left {
+        color: $primary-clr;
+        font-weight: bold;
+        font-size: $main-fs * 0.5;
+        margin-top: $spacer-small / 2;
+      }
+    }
+  }
+}

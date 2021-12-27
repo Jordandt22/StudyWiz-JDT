@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 
 // Axios
 import axios from "axios";
-import { getProxyAuthPassword } from "../../../config/auth.config";
 
 // Firebase
 import { fb } from "../../../firebase/firebase";
@@ -12,6 +11,7 @@ import { checkTokenTime } from "../../../firebase/firebase.util";
 // Redux
 import { authed } from "../../../redux/user/user.actions";
 import { setSets } from "../../../redux/sets/sets.actions";
+import { setAlert, setLoading } from "../../../redux/global/global.actions";
 
 // Context
 import { useUserAPIContext } from "../../../context/api/User.context";
@@ -23,10 +23,11 @@ function AppAuth(props) {
     },
     authed,
     setSets,
+    setLoading,
+    setAlert,
   } = props;
   const { firebaseAuth } = fb;
   const {
-    setError,
     api: { getUser },
   } = useUserAPIContext();
 
@@ -35,6 +36,12 @@ function AppAuth(props) {
     if (!loggedIn || (loggedIn && !fbId)) {
       firebaseAuth.onAuthStateChanged(async (user) => {
         if (!user) return;
+
+        // Start Loading Screen
+        setLoading({
+          isLoading: true,
+          loadingText: "Signing you in and loading your data...",
+        });
 
         const {
           displayName,
@@ -83,12 +90,18 @@ function AppAuth(props) {
         // Auth API Call
         const dbUser = await getUser(fbId);
         if (!dbUser) {
-          setError(500, "Unable to Sign In.");
+          setAlert({
+            message: "Sorry, there was a problem signing you in.",
+            title: "Error",
+          });
         } else {
           const { sets } = dbUser.data.user;
           authed(userData);
           setSets(sets);
         }
+
+        // Stop Loading Screen
+        setLoading({ isLoading: false });
       });
     }
 
@@ -106,6 +119,8 @@ const ReduxState = (state) => ({
 const ReduxActions = (dispatch) => ({
   authed: (userData) => dispatch(authed(userData)),
   setSets: (sets) => dispatch(setSets(sets)),
+  setLoading: (loading) => dispatch(setLoading(loading)),
+  setAlert: (alert) => dispatch(setAlert(alert)),
 });
 
 export default connect(ReduxState, ReduxActions)(AppAuth);

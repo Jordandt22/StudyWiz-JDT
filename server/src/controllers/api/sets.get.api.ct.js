@@ -105,7 +105,7 @@ module.exports = {
       });
     } else {
       // If not creator, get Firebaes user info
-      await getFBUser(creatorFbId, (data) => {
+      await getFBUser(creatorFbId, res, (data) => {
         const { uid, displayName, email, photoURL } = data;
 
         res.status(200).json({
@@ -140,7 +140,7 @@ module.exports = {
     if (users.length < 1) return res.status(200).json({ users: [] });
 
     // Get Firebase info of the set users
-    await getMultipleFBUsers(users, (data) => {
+    await getMultipleFBUsers(users, res, (data) => {
       res.status(200).json({
         totalUsers,
         users: data.users.map((user) => {
@@ -174,7 +174,7 @@ module.exports = {
     });
 
     // Get Sets Data with Creator Data
-    const setsData = await getMultipleSetsData(multipleSetsData, fbId);
+    const setsData = await getMultipleSetsData(multipleSetsData, fbId, res);
 
     // Add the Creator Data to Each Set Data
     res.status(200).json({

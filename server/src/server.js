@@ -42,10 +42,10 @@ if (!isProduction) {
 connect();
 
 // Rate & Speed Limiters Config
-const timeLimit = 1000 * 60 * 15;
+const timeLimit = 1000 * 60 * 5;
 const limiter = rateLimiter({
   windowMs: timeLimit,
-  max: 100,
+  max: 125,
 });
 
 const speedLimiter = slowDown({

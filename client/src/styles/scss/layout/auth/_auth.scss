@@ -1,10 +1,5 @@
 // Auth Styles
 
-// Auth Container
-.auth-container {
-  margin-top: $spacer-md;
-}
-
 // Auth Box
 .auth-box {
   width: 30vw;
@@ -89,9 +84,5 @@
   // Firebaes Form Error
   .firebaseui-error-wrapper {
     margin-top: $spacer-small / 2;
-  }
-
-  // Loader
-  #loader {
   }
 }

@@ -43,8 +43,8 @@ const { checkSet } = require("../../middleware/api.mw");
 
 // ---- Get Data ----
 
-// GET - Get Multiple Sets
-setsRouter.get("/", bodyValidator(MultipleSetsSchema), getMultipleSets);
+// POST - Get Multiple Sets
+setsRouter.post("/", bodyValidator(MultipleSetsSchema), getMultipleSets);
 
 // GET - Get a Set
 setsRouter.get(
@@ -118,8 +118,8 @@ setsRouter.get(
   getCommunitySets
 );
 
-// GET - Search Community Sets
-setsRouter.get(
+// POST - Search Community Sets
+setsRouter.post(
   "/community/page/:page/limit/:limit/search/:query",
   paramsValidator(CommunitySearchParamsSchema),
   bodyValidator(CommunitySearchBodySchema),
