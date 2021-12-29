@@ -174,11 +174,11 @@ module.exports = {
     });
 
     // Get Sets Data with Creator Data
-    const setsData = await getMultipleSetsData(multipleSetsData, fbId, res);
-
-    // Add the Creator Data to Each Set Data
-    res.status(200).json({
-      sets: setsData,
+    await getMultipleSetsData(multipleSetsData, fbId, res, (setsData) => {
+      // Add the Creator Data to Each Set Data
+      res.status(200).json({
+        sets: setsData,
+      });
     });
   },
 };

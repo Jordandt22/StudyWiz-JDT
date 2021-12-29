@@ -61,12 +61,12 @@ module.exports = {
     if (communitySets.length <= 0) return res.status(200).json({ sets: [] });
 
     // Get Sets Data with Creator Data
-    const setsData = await getMultipleSetsData(communitySets, fbId, res);
-
-    // Updating Cache
-    const data = { sets: setsData, next: getNextInfo(limit, page, setsData) };
-    cacheData(COMMUNITY_KEY, { ...req.params, fbId }, data);
-    res.status(200).json(data);
+    await getMultipleSetsData(communitySets, fbId, res, (setsData) => {
+      // Updating Cache
+      const data = { sets: setsData, next: getNextInfo(limit, page, setsData) };
+      cacheData(COMMUNITY_KEY, { ...req.params, fbId }, data);
+      res.status(200).json(data);
+    });
   },
   searchCommunitySets: async (req, res, next) => {
     const { fbId } = req.user;
@@ -126,11 +126,19 @@ module.exports = {
       .skip(currentSkip);
 
     // Get Sets Data with Creator Data
-    const setsData = await getMultipleSetsData(communitySets, fbId, res);
-
-    // Updating Cache
-    const data = { sets: setsData, next: getNextInfo(limit, page, setsData) };
-    cacheData(SEARCH_KEY, { ...req.params, fbId, ...req.body }, data);
-    res.status(200).json(data);
+    const setsData = await getMultipleSetsData(
+      communitySets,
+      fbId,
+      res,
+      (setsData) => {
+        // Updating Cache
+        const data = {
+          sets: setsData,
+          next: getNextInfo(limit, page, setsData),
+        };
+        cacheData(SEARCH_KEY, { ...req.params, fbId, ...req.body }, data);
+        res.status(200).json(data);
+      }
+    );
   },
 };

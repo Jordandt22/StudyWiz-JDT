@@ -729,7 +729,7 @@ html {
   padding: 1.15rem 1.25rem;
   -webkit-transition: all 200ms ease-out;
   transition: all 200ms ease-out;
-  border-top: 4px solid #ffe600;
+  border-top: 3px solid #ffe600;
 }
 
 .set-card:hover {
@@ -764,7 +764,7 @@ html {
 .minimal-set-card {
   width: 100%;
   background: white;
-  border-top: 4px solid #ffe600;
+  border-top: 3px solid #ffe600;
   padding: 1.15rem 1.25rem;
   margin-top: 1.5rem;
   -webkit-box-shadow: 0 2px 2.5px 1px rgba(0, 0, 0, 0.25);

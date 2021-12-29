@@ -49,10 +49,9 @@ module.exports = {
       .getUser(fbId)
       .then(cb)
       .catch((err) => {
-        const {
-          errorInfo: { code, message },
-        } = err;
-        if (process.env.NODE_ENV === "development") console.log(code, message);
+        const errorInfo = err.errorInfo;
+        if (process.env.NODE_ENV === "development" && errorInfo)
+          console.log(errorInfo.code, errorInfo.message);
 
         switch (code) {
           case "auth/user-not-found":
@@ -82,10 +81,9 @@ module.exports = {
       )
       .then(cb)
       .catch((err) => {
-        const {
-          errorInfo: { code, message },
-        } = err;
-        if (process.env.NODE_ENV === "development") console.log(code, message);
+        const errorInfo = err.errorInfo;
+        if (process.env.NODE_ENV === "development" && errorInfo)
+          console.log(errorInfo.code, errorInfo.message);
 
         switch (code) {
           default:

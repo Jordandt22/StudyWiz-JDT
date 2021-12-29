@@ -6,7 +6,7 @@
   box-shadow: 0 2px 2.5px 1px $black-shadow;
   padding: $spacer-small * 1.15 $spacer-small * 1.25;
   transition: all 200ms ease-out;
-  border-top: 4px solid $secondary-clr;
+  border-top: 3px solid $secondary-clr;
 
   &:hover {
     cursor: pointer;
@@ -45,7 +45,7 @@
 .minimal-set-card {
   width: 100%;
   background: white;
-  border-top: 4px solid $secondary-clr;
+  border-top: 3px solid $secondary-clr;
   padding: $spacer-small * 1.15 $spacer-small * 1.25;
   margin-top: $spacer-small * 1.5;
   box-shadow: 0 2px 2.5px 1px $black-shadow;
