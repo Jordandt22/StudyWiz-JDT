@@ -30,9 +30,9 @@ const checkOwnedBy = (ownedBy, options) => {
 const getCurrentSkip = (page, limit) => (page > 0 ? limit * (page - 1) : 0);
 
 // Get Next Info
-const getNextInfo = (limit, page, setsData) => ({
+const getNextInfo = (limit, page, setsLength) => ({
   limit,
-  page: setsData.length < limit ? 1 : page + 1,
+  page: setsLength <= limit ? 1 : Number(page) + 1,
 });
 
 module.exports = {
@@ -54,19 +54,29 @@ module.exports = {
           ? { totalUsers: -1, createdAt: -1 }
           : { createdAt: isNewestFilter ? -1 : 1 }
       )
-      .limit(Number(limit))
+      .limit(Number(limit) + 1)
       .skip(currentSkip);
 
     // Checking if there are any community sets
-    if (communitySets.length <= 0) return res.status(200).json({ sets: [] });
+    const setsLength = communitySets.length;
+    if (setsLength <= 0)
+      return res.status(200).json({ sets: [], next: { limit, page: 1 } });
 
     // Get Sets Data with Creator Data
-    await getMultipleSetsData(communitySets, fbId, res, (setsData) => {
-      // Updating Cache
-      const data = { sets: setsData, next: getNextInfo(limit, page, setsData) };
-      cacheData(COMMUNITY_KEY, { ...req.params, fbId }, data);
-      res.status(200).json(data);
-    });
+    await getMultipleSetsData(
+      communitySets.slice(0, limit),
+      fbId,
+      res,
+      (setsData) => {
+        // Updating Cache
+        const data = {
+          sets: setsData,
+          next: getNextInfo(limit, page, setsLength),
+        };
+        cacheData(COMMUNITY_KEY, { ...req.params, fbId }, data);
+        res.status(200).json(data);
+      }
+    );
   },
   searchCommunitySets: async (req, res, next) => {
     const { fbId } = req.user;
@@ -122,23 +132,22 @@ module.exports = {
           ? { totalUsers: -1, createdAt: -1 }
           : { createdAt: isNewestFilter ? -1 : 1 }
       )
-      .limit(Number(limit))
+      .limit(Number(limit) + 1)
       .skip(currentSkip);
 
+    // Checking if there are any community sets
+    if (communitySets.length <= 0)
+      return res.status(200).json({ sets: [], next: { limit, page: 1 } });
+
     // Get Sets Data with Creator Data
-    const setsData = await getMultipleSetsData(
-      communitySets,
-      fbId,
-      res,
-      (setsData) => {
-        // Updating Cache
-        const data = {
-          sets: setsData,
-          next: getNextInfo(limit, page, setsData),
-        };
-        cacheData(SEARCH_KEY, { ...req.params, fbId, ...req.body }, data);
-        res.status(200).json(data);
-      }
-    );
+    await getMultipleSetsData(communitySets, fbId, res, (setsData) => {
+      // Updating Cache
+      const data = {
+        sets: setsData,
+        next: getNextInfo(limit, page, setsData),
+      };
+      cacheData(SEARCH_KEY, { ...req.params, fbId, ...req.body }, data);
+      res.status(200).json(data);
+    });
   },
 };

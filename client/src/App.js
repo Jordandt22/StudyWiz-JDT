@@ -11,6 +11,7 @@ import AppAuth from "./components/layout/auth/AppAuth";
 import NavBar from "./components/layout/nav/NavBar";
 import Alert from "./components/layout/alert/Alert";
 import LoadingScreen from "./components/layout/loading/LoadingScreen";
+import Community from "./components/pages/Community/Community";
 
 function App() {
   return (
@@ -34,6 +35,9 @@ function App() {
           {/* Auth */}
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/signup" element={<Signup />} />
+
+          {/* Community */}
+          <Route exact path="/community" element={<Community />} />
         </Routes>
       </BrowserRouter>
     </div>

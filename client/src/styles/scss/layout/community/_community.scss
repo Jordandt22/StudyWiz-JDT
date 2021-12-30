@@ -1,0 +1,272 @@
+// Community Styles
+.community-container {
+  width: 75vw;
+  padding: 0;
+
+  .main {
+    display: flex;
+
+    .vocab-sets-display {
+      width: 40%;
+      margin-right: 5%;
+    }
+
+    .set-preview-display {
+      width: 55%;
+    }
+  }
+}
+
+.filters-box {
+  margin-top: $spacer;
+
+  .divider {
+    width: 100%;
+    margin-bottom: $spacer;
+
+    h3 {
+      margin: 0 $spacer-small;
+    }
+  }
+
+  .filter-box {
+    h4 {
+      margin-bottom: $spacer-small;
+      color: grey;
+      font-weight: lighter;
+    }
+
+    .active {
+      background: $primary-clr;
+      color: white;
+      border: 1px solid $primary-clr;
+    }
+
+    .not-active {
+      background: transparent;
+      color: grey;
+      border: 1px solid grey;
+      transition: all 200ms ease-out;
+
+      &:hover {
+        background: $primary-clr;
+        border: 1px solid $primary-clr;
+        color: white;
+      }
+    }
+
+    .opt-btn {
+      border-radius: $border-radius-width / 2;
+      padding: $spacer-small / 2 $spacer;
+      font-weight: bold;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  $filter-spacing: $spacer-small;
+  #left-filter > .opt-btn {
+    margin-right: $filter-spacing;
+  }
+
+  #right-filter {
+    h4,
+    .opt-btn {
+      margin-left: $filter-spacing;
+    }
+  }
+}
+
+// Community Display
+.community-display {
+  margin-top: $spacer-md;
+
+  h2 {
+    font-size: $main-fs * 1.25;
+    margin-bottom: $spacer;
+  }
+}
+
+// Community Sets
+.community-sets {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .community-set-card {
+    position: relative;
+    background: white;
+    padding: $spacer-small;
+    box-shadow: 0 0 5px 1px $black-shadow;
+    border-radius: $border-radius-width / 2;
+    margin-bottom: $spacer;
+
+    // Click Layer
+    .click-layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: transparent;
+      box-shadow: 0 0 7.5px 2px rgba($black-shadow, 0.05);
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    // Preview
+    .preview-btn {
+      z-index: 100;
+      font-weight: bold;
+      padding: $spacer-small / 2 $spacer;
+      border-radius: $border-radius-width / 2;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    .not-active {
+      background: transparent;
+      border: 1px solid grey;
+      color: grey;
+      transition: all 200ms ease-out;
+
+      &:hover {
+        background: $secondary-clr;
+        border-color: $secondary-clr;
+        color: black;
+      }
+    }
+
+    .active {
+      background: $secondary-clr;
+      color: black;
+      border: 1px solid $secondary-clr;
+      transition: all 200ms ease-out;
+
+      &:hover {
+        opacity: 0.75;
+      }
+    }
+
+    // Set Info
+    .set-info {
+      margin-bottom: $spacer * 1.5;
+
+      h3 {
+        font-size: $main-fs * 0.8;
+        margin-bottom: $spacer-small;
+      }
+
+      p {
+        background: $main-bg;
+        padding: 5px $spacer-small;
+        border-radius: $border-radius-width * 2;
+        margin-right: $spacer-small;
+        font-size: $main-fs * 0.5;
+        color: grey;
+      }
+    }
+
+    // Profile
+    .user-photo-box {
+      margin-right: $spacer-small / 1.5;
+    }
+
+    .display-name {
+      font-size: $main-fs * 0.65;
+      font-weight: bold;
+    }
+  }
+}
+
+// Community Set Card Skeleton
+.community-set-card-skel {
+  height: 25vh !important;
+  margin-bottom: $spacer;
+  border-radius: $border-radius-width / 2;
+}
+
+// Error
+.error-box {
+  width: 100%;
+}
+
+// Set Preview
+.set-preview {
+  background: white;
+  padding: $spacer;
+  box-shadow: 0 0 5px 1px $black-shadow;
+  border-radius: $border-radius-width / 2;
+
+  .study-btn {
+    padding-left: $spacer;
+    padding-right: $spacer;
+    font-weight: bold;
+    font-size: $main-fs * 0.65;
+  }
+
+  .set-info {
+    h3 {
+      font-size: $main-fs;
+      font-weight: lighter;
+      margin-bottom: $spacer-small / 2;
+    }
+
+    p {
+      color: grey;
+      font-size: $main-fs * 0.75;
+    }
+  }
+
+  .terms-box {
+    margin-top: $spacer * 1.5;
+
+    .term {
+      border-top: 1px solid $main-bg;
+      padding: $spacer-small * 1.5 0;
+
+      h4 {
+        font-size: $main-fs * 0.75;
+        font-weight: bold;
+        margin-bottom: $spacer-small / 1.5;
+      }
+
+      p {
+        color: grey;
+        font-weight: lighter;
+      }
+    }
+  }
+}
+
+// Sets Page Nav
+.sets-page-nav {
+  margin-top: $spacer-small / 1.5;
+
+  p {
+    $s: 3rem;
+    width: $s;
+    height: $s;
+    background: $secondary-clr;
+    border-radius: 50%;
+    font-size: $main-fs * 0.9;
+  }
+
+  .icon {
+    font-size: $main-fs * 1.5;
+    color: black;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .not-active {
+    color: rgba(grey, 0.25);
+  }
+}

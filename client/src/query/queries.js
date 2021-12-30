@@ -16,9 +16,18 @@ export const useGetMultipleSets = (key, { fbId, sets }) =>
   useQuery([key, sets], () => getMultipleSets(fbId, sets), defaultOptions);
 
 // GET - Get Community Sets
-export const useGetCommunitySets = (key, { fbId, filter, page, limit }) =>
+export const useGetCommunitySets = (
+  key,
+  { fbId, filter, page, limit },
+  options
+) =>
   useQuery(
     [key, page],
     () => getCommunitySets(fbId, filter, page, limit),
-    defaultOptions
+    options
+      ? {
+          ...defaultOptions,
+          ...options,
+        }
+      : defaultOptions
   );

@@ -4,13 +4,16 @@ import React from "react";
 import NavContextProvider from "./nav/Nav.context";
 import APISocketContextProvider from "./api-socket/APISocket.context";
 import UserContextProvider from "./api/User.context";
+import CommunityContextProvider from "./community/Community.context";
 
 function ContextProvider(props) {
   return (
     <NavContextProvider>
-      <UserContextProvider>
-        <APISocketContextProvider>{props.children}</APISocketContextProvider>
-      </UserContextProvider>
+      <CommunityContextProvider>
+        <UserContextProvider>
+          <APISocketContextProvider>{props.children}</APISocketContextProvider>
+        </UserContextProvider>
+      </CommunityContextProvider>
     </NavContextProvider>
   );
 }

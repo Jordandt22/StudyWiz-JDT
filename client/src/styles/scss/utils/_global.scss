@@ -45,3 +45,13 @@
     opacity: 0.75;
   }
 }
+
+// Page Container
+.page-container {
+  .page-title {
+    color: grey;
+    font-size: $main-fs;
+    font-weight: lighter;
+    margin-bottom: $spacer;
+  }
+}
