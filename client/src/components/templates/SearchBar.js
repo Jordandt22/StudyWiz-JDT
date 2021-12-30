@@ -15,12 +15,12 @@ import { Search } from "@material-ui/icons";
 import { setAlert } from "../../redux/global/global.actions";
 
 function SearchBar(props) {
-  const { setAlert, className } = props;
+  const { setAlert, className, initialValues } = props;
   const navigate = useNavigate();
 
   return (
     <Formik
-      initialValues={{ query: "" }}
+      initialValues={initialValues ? initialValues : { query: "" }}
       onSubmit={(values, { setSubmitting, resetForm }) => {
         const { query } = values;
         const queryLength = query.length;

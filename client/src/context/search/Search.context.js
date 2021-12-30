@@ -1,8 +1,8 @@
 import React, { createContext, useContext, useState } from "react";
 
-// Community Context
-const CommunityContext = createContext();
-export const useCommunity = () => useContext(CommunityContext);
+// Search Context
+const SearchContext = createContext();
+export const useSearch = () => useContext(SearchContext);
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (props) => {
@@ -17,9 +17,14 @@ export default (props) => {
 
   // Filters
   const [sortedBy, setSortedBy] = useState(0);
+  const [ownedBy, setOwnedBy] = useState(0);
   const sortedByHandler = (value) => {
     setPage(1);
     setSortedBy(value);
+  };
+  const ownedByHandler = (value) => {
+    setPage(1);
+    setOwnedBy(value);
   };
 
   // Sorted By Filter
@@ -44,6 +49,28 @@ export default (props) => {
     ],
   };
 
+  // Owned By Filter
+  const ownedByFilter = {
+    label: "Owned By",
+    options: [
+      {
+        label: "Anyone",
+        value: 0,
+        onClick: () => ownedByHandler(0),
+      },
+      {
+        label: "Me",
+        value: 1,
+        onClick: () => ownedByHandler(1),
+      },
+      {
+        label: "Others",
+        value: 2,
+        onClick: () => ownedByHandler(2),
+      },
+    ],
+  };
+
   // Preview
   const [preview, setPreview] = useState({
     setId: null,
@@ -58,26 +85,29 @@ export default (props) => {
     });
 
   // Reset
-  const resetCommunityContext = () => {
+  const resetSearchContext = () => {
     setPage(1);
     setSortedBy(0);
+    setOwnedBy(0);
   };
 
   return (
-    <CommunityContext.Provider
+    <SearchContext.Provider
       value={{
         sortedBy,
         sortedByFilter,
+        ownedBy,
+        ownedByFilter,
         preview,
         setPreview,
         resetPreview,
         page,
         prevPage,
         nextPage,
-        resetCommunityContext,
+        resetSearchContext,
       }}
     >
       {props.children}
-    </CommunityContext.Provider>
+    </SearchContext.Provider>
   );
 };

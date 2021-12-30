@@ -136,18 +136,24 @@ module.exports = {
       .skip(currentSkip);
 
     // Checking if there are any community sets
-    if (communitySets.length <= 0)
+    const setsLength = communitySets.length;
+    if (setsLength <= 0)
       return res.status(200).json({ sets: [], next: { limit, page: 1 } });
 
     // Get Sets Data with Creator Data
-    await getMultipleSetsData(communitySets, fbId, res, (setsData) => {
-      // Updating Cache
-      const data = {
-        sets: setsData,
-        next: getNextInfo(limit, page, setsData),
-      };
-      cacheData(SEARCH_KEY, { ...req.params, fbId, ...req.body }, data);
-      res.status(200).json(data);
-    });
+    await getMultipleSetsData(
+      communitySets.slice(0, limit),
+      fbId,
+      res,
+      (setsData) => {
+        // Updating Cache
+        const data = {
+          sets: setsData,
+          next: getNextInfo(limit, page, setsLength),
+        };
+        cacheData(SEARCH_KEY, { ...req.params, fbId, ...req.body }, data);
+        res.status(200).json(data);
+      }
+    );
   },
 };

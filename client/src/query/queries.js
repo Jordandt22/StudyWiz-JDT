@@ -2,7 +2,7 @@
 import { useQuery } from "react-query";
 
 // API
-import { getMultipleSets, getCommunitySets } from "./api";
+import { getMultipleSets, getCommunitySets, getSearchedSets } from "./api";
 
 // Default Options
 const defaultOptions = {
@@ -24,6 +24,23 @@ export const useGetCommunitySets = (
   useQuery(
     [key, page],
     () => getCommunitySets(fbId, filter, page, limit),
+    options
+      ? {
+          ...defaultOptions,
+          ...options,
+        }
+      : defaultOptions
+  );
+
+// POST - Get Searched Sets
+export const useGetSearchedSets = (
+  key,
+  { fbId, filter, page, limit, ownedBy, query },
+  options
+) =>
+  useQuery(
+    [key, page],
+    () => getSearchedSets(fbId, filter, page, limit, ownedBy, query),
     options
       ? {
           ...defaultOptions,

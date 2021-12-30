@@ -4,12 +4,8 @@ import React from "react";
 import { Box } from "@material-ui/core";
 import { ArrowBack, ArrowForward } from "@material-ui/icons";
 
-// Contexts
-import { useCommunity } from "../../../context/community/Community.context";
-
 function SetsPageNav(props) {
-  const { next } = props;
-  const { page, prevPage, nextPage } = useCommunity();
+  const { next, page, prevPage, nextPage } = props;
   const nextPageNum = next?.page;
   const isPrevActive = page > 1;
   const isNextActive = nextPageNum && nextPageNum !== page;

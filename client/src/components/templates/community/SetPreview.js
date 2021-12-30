@@ -6,16 +6,13 @@ import { NavLink } from "react-router-dom";
 // MUI
 import { Box } from "@material-ui/core";
 
-// Contexts
-import { useCommunity } from "../../../context/community/Community.context";
-
 // Components
 import CommunityDisplay from "./CommunityDisplay";
 
-function SetPreview() {
+function SetPreview(props) {
   const {
     preview: { setId, title, terms },
-  } = useCommunity();
+  } = props;
   const amountOfTerms = terms.length;
 
   return (

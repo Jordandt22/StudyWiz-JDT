@@ -6,23 +6,33 @@ import { NavLink } from "react-router-dom";
 // MUI
 import { Box } from "@material-ui/core";
 
-// Contexts
-import { useCommunity } from "../../../context/community/Community.context";
-
 // Components
 import CommunitySetCard from "./CommunitySetCard";
 import SetsPageNav from "./SetsPageNav";
 
 function CommunityPageSets(props) {
-  const { sets, next } = props;
+  const {
+    noSetsMessage,
+    sets,
+    next,
+    page,
+    prevPage,
+    nextPage,
+    preview,
+    setPreview,
+    resetPreview,
+  } = props;
   const noSets = sets ? sets.length <= 0 : true;
-  const { preview, setPreview } = useCommunity();
 
+  // Setting the Vocab Set Preview to the first Vocab set.
   useEffect(() => {
     if (!noSets) {
       const { title, _id, terms } = sets[0];
       setPreview({ title, setId: _id, terms });
+    } else {
+      resetPreview();
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sets]);
 
@@ -30,7 +40,7 @@ function CommunityPageSets(props) {
     <Box className="community-sets">
       {noSets ? (
         <Box className="no-recent-sets">
-          <p>It looks like there aren't any community sets available.</p>
+          <p>{noSetsMessage}</p>
           <NavLink to="/create" className="link primary-btn">
             Create One
           </NavLink>
@@ -57,7 +67,14 @@ function CommunityPageSets(props) {
       )}
 
       {/* Page Nav */}
-      {!noSets && <SetsPageNav next={next} />}
+      {!noSets && (
+        <SetsPageNav
+          next={next}
+          page={page}
+          prevPage={prevPage}
+          nextPage={nextPage}
+        />
+      )}
     </Box>
   );
 }

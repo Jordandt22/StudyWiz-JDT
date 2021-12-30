@@ -12,6 +12,7 @@ import NavBar from "./components/layout/nav/NavBar";
 import Alert from "./components/layout/alert/Alert";
 import LoadingScreen from "./components/layout/loading/LoadingScreen";
 import Community from "./components/pages/Community/Community";
+import Search from "./components/pages/Search/Search";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
 
           {/* Community */}
           <Route exact path="/community" element={<Community />} />
+          <Route exact path="/search/:query" element={<Search />} />
         </Routes>
       </BrowserRouter>
     </div>

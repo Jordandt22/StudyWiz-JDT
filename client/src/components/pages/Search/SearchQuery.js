@@ -2,46 +2,52 @@ import React from "react";
 import { connect } from "react-redux";
 
 // Queries
-import { useGetCommunitySets } from "../../../query/queries";
+import { useGetSearchedSets } from "../../../query/queries";
 
 // Contexts
-import { useCommunity } from "../../../context/community/Community.context";
+import { useSearch } from "../../../context/search/Search.context";
 
 // Components
 import CommunityPageSets from "../../templates/community/CommunityPageSets";
 import CommunitySetCardSkeleton from "../../templates/community/skeletons/CommunitySetCardSkeleton";
 import ErrorBox from "../../layout/error/ErrorBox";
 
-function CommunityQuery(props) {
+function SearchQuery(props) {
   const {
     user: {
       auth: { fbId },
     },
+    query,
   } = props;
   const {
     sortedBy,
+    ownedBy,
     page,
     prevPage,
     nextPage,
     preview,
     setPreview,
     resetPreview,
-  } = useCommunity();
+  } = useSearch();
 
-  // Filter
+  // Filters
   const filter =
     sortedBy === 1 ? "newest" : sortedBy === 2 ? "oldest" : "popularity";
+  const ownedByFilter =
+    ownedBy === 1 ? "me" : ownedBy === 2 ? "others" : "anyone";
 
   // Query
   const limit = 5;
-  const queryKey = `${fbId}_COMMUNITY_FILTER:${filter}_PAGE:${page}_LIMIT:${limit}`;
-  const { data, isLoading, isError, error } = useGetCommunitySets(
+  const queryKey = `${fbId}_COMMUNITY_FILTER:${filter}_PAGE:${page}_LIMIT:${limit}_OWNED_BY:${ownedByFilter}_SEARCH:${query}`;
+  const { data, isLoading, isError, error } = useGetSearchedSets(
     queryKey,
     {
       fbId,
       filter,
       page,
       limit,
+      ownedBy: ownedByFilter,
+      query,
     },
     { keepPreviousData: false }
   );
@@ -53,6 +59,7 @@ function CommunityQuery(props) {
     return <ErrorBox message={error.message} />;
   }
 
+  // Data
   const { sets: setsData, next: nextData } = data.data;
   const sets = setsData.sets ? setsData.sets : setsData;
   const next = nextData ? nextData : setsData.next;
@@ -66,7 +73,9 @@ function CommunityQuery(props) {
       page={page}
       prevPage={prevPage}
       nextPage={nextPage}
-      noSetsMessage="It looks like there aren't any community sets available."
+      noSetsMessage={`It looks like there aren't any community sets that are owned by ${
+        ownedByFilter === "me" ? "you" : ownedByFilter
+      } and named ${query}.`}
     />
   );
 }
@@ -76,4 +85,4 @@ const ReduxState = (state) => ({
   user: state.user,
 });
 
-export default connect(ReduxState)(CommunityQuery);
+export default connect(ReduxState)(SearchQuery);

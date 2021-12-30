@@ -21,3 +21,20 @@ export const getCommunitySets = async (fbId, filter, page, limit) =>
   await axios.get(
     createURI(fbId) + `/community/${filter}/page/${page}/limit/${limit}`
   );
+
+// POST - Get Searched Sets
+export const getSearchedSets = async (
+  fbId,
+  filter,
+  page,
+  limit,
+  ownedBy,
+  query
+) =>
+  await axios.post(
+    createURI(fbId) + `/community/page/${page}/limit/${limit}/search/${query}`,
+    {
+      filter,
+      ownedBy,
+    }
+  );

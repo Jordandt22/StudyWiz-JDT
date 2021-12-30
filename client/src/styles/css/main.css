@@ -1120,6 +1120,7 @@ html {
 
 .no-recent-sets p {
   font-size: 1.2rem;
+  line-height: 1.75rem;
 }
 
 .no-recent-sets .link {
@@ -1205,6 +1206,24 @@ html {
   font-weight: bold;
   font-size: 0.75rem;
   margin-top: 0.5rem;
+}
+
+.community-search-bar {
+  background: white;
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.community-search-bar .icon {
+  font-size: 1.875rem;
+  margin-right: 1rem;
+}
+
+.community-search-bar input {
+  outline: none;
+  border: none;
+  background: transparent;
+  font-size: 1.35rem;
 }
 
 html {

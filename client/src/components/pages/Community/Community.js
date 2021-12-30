@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 // MUI
 import { Container, Box } from "@material-ui/core";
@@ -14,7 +14,14 @@ import CommunityDisplay from "../../templates/community/CommunityDisplay";
 import SetPreview from "../../templates/community/SetPreview";
 
 function Community() {
-  const { sortedBy, sortedByFilter } = useCommunity();
+  const { sortedBy, sortedByFilter, preview, resetCommunityContext } =
+    useCommunity();
+
+  // Resetting Search Context
+  useEffect(() => {
+    resetCommunityContext();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <ProtectedPage>
@@ -32,7 +39,7 @@ function Community() {
           </CommunityDisplay>
 
           {/* Set Preview */}
-          <SetPreview />
+          <SetPreview preview={preview} />
         </Box>
       </Container>
     </ProtectedPage>
