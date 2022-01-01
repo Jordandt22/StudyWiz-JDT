@@ -55,3 +55,13 @@
     margin-bottom: $spacer;
   }
 }
+
+// Divider
+.divider {
+  width: 100%;
+  margin-bottom: $spacer;
+
+  h3 {
+    margin: 0 $spacer-small;
+  }
+}

@@ -15,7 +15,8 @@ import { Search } from "@material-ui/icons";
 import { setAlert } from "../../redux/global/global.actions";
 
 function SearchBar(props) {
-  const { setAlert, className, initialValues } = props;
+  const { setAlert, className, initialValues, callback, disabledValidations } =
+    props;
   const navigate = useNavigate();
 
   return (
@@ -24,13 +25,13 @@ function SearchBar(props) {
       onSubmit={(values, { setSubmitting, resetForm }) => {
         const { query } = values;
         const queryLength = query.length;
-        if (queryLength <= 0) {
+        if (queryLength <= 0 && !disabledValidations["min"]) {
           setSubmitting(false);
           setAlert({
             message: "Must enter a value to search.",
             title: "Error",
           });
-        } else if (queryLength > 100) {
+        } else if (queryLength > 100 && !disabledValidations["max"]) {
           setSubmitting(false);
           setAlert({
             message: "Your search value is too long.",
@@ -39,6 +40,8 @@ function SearchBar(props) {
         } else {
           setSubmitting(false);
           resetForm();
+          if (callback) return callback(query);
+
           navigate(`/search/${query}`);
         }
       }}

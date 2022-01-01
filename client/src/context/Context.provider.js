@@ -6,19 +6,22 @@ import APISocketContextProvider from "./api-socket/APISocket.context";
 import UserContextProvider from "./api/User.context";
 import CommunityContextProvider from "./community/Community.context";
 import SearchContextProvider from "./search/Search.context";
+import SetsContextProvider from "./sets/Sets.context";
 
 function ContextProvider(props) {
   return (
     <NavContextProvider>
-      <CommunityContextProvider>
-        <SearchContextProvider>
-          <UserContextProvider>
-            <APISocketContextProvider>
-              {props.children}
-            </APISocketContextProvider>
-          </UserContextProvider>
-        </SearchContextProvider>
-      </CommunityContextProvider>
+      <SetsContextProvider>
+        <CommunityContextProvider>
+          <SearchContextProvider>
+            <UserContextProvider>
+              <APISocketContextProvider>
+                {props.children}
+              </APISocketContextProvider>
+            </UserContextProvider>
+          </SearchContextProvider>
+        </CommunityContextProvider>
+      </SetsContextProvider>
     </NavContextProvider>
   );
 }

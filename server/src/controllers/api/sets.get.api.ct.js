@@ -173,12 +173,26 @@ module.exports = {
       ],
     });
 
-    // Get Sets Data with Creator Data
-    await getMultipleSetsData(multipleSetsData, fbId, res, (setsData) => {
-      // Add the Creator Data to Each Set Data
-      res.status(200).json({
-        sets: setsData,
-      });
+    // Checking the Sets
+    let setsIdObj = {};
+    sets.map((set) => (setsIdObj[set.setId] = true));
+    const checkedMultipleSetsData = multipleSetsData.filter((set) => {
+      return setsIdObj[set.id];
     });
+    if (checkedMultipleSetsData.length <= 0)
+      return res.status(200).json({ sets: [] });
+
+    // Get Sets Data with Creator Data
+    await getMultipleSetsData(
+      checkedMultipleSetsData,
+      fbId,
+      res,
+      (setsData) => {
+        // Add the Creator Data to Each Set Data
+        res.status(200).json({
+          sets: setsData,
+        });
+      }
+    );
   },
 };

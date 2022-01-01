@@ -12,7 +12,7 @@ const createURI = (fbId) => SETS_URI + `/user/${fbId}`;
 export const getMultipleSets = async (fbId, sets) =>
   await axios.post(createURI(fbId), {
     sets: sets.map((set) => ({
-      setId: set._id,
+      setId: set.setId ? set.setId : set._id,
     })),
   });
 

@@ -8,12 +8,11 @@ module.exports = {
       .verifyIdToken(accessToken)
       .then(cb)
       .catch((err) => {
-        const {
-          errorInfo: { code, message },
-        } = err;
-        if (process.env.NODE_ENV === "development") console.log(code, message);
+        const errorInfo = err.errorInfo;
+        if (process.env.NODE_ENV === "development" && errorInfo)
+          console.log(errorInfo.code, errorInfo.message);
 
-        switch (code) {
+        switch (errorInfo.code) {
           case "auth/argument-error":
           case "auth/invalid-id-token":
           case "auth/id-token-revoked":
@@ -22,7 +21,7 @@ module.exports = {
               400,
               "FIREBASE AUTH",
               "INVALID ACCESS TOKEN",
-              err.errorInfo
+              errorInfo
             );
 
           case "auth/id-token-expired":
@@ -31,7 +30,7 @@ module.exports = {
               400,
               "FIREBASE AUTH",
               "EXPIRED ACCESS TOKEN",
-              err.errorInfo
+              errorInfo
             );
 
           default:
@@ -53,7 +52,7 @@ module.exports = {
         if (process.env.NODE_ENV === "development" && errorInfo)
           console.log(errorInfo.code, errorInfo.message);
 
-        switch (code) {
+        switch (errorInfo.code) {
           case "auth/user-not-found":
             return errorHandler(
               res,
@@ -85,7 +84,7 @@ module.exports = {
         if (process.env.NODE_ENV === "development" && errorInfo)
           console.log(errorInfo.code, errorInfo.message);
 
-        switch (code) {
+        switch (errorInfo.code) {
           default:
             return errorHandler(
               res,

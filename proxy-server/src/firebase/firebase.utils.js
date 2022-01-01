@@ -8,12 +8,11 @@ module.exports = {
       .verifyIdToken(accessToken)
       .then((data) => data)
       .catch((err) => {
-        const {
-          errorInfo: { code, message },
-        } = err;
-        if (process.env.NODE_ENV === "development") console.log(code, message);
+        const errorInfo = err.errorInfo;
+        if (process.env.NODE_ENV === "development" && errorInfo)
+          console.log(errorInfo.code, errorInfo.message);
 
-        switch (code) {
+        switch (errorInfo.code) {
           case "auth/argument-error":
           case "auth/invalid-id-token":
           case "auth/id-token-revoked":
@@ -46,12 +45,11 @@ module.exports = {
       .getUser(fbId)
       .then((data) => data)
       .catch((err) => {
-        const {
-          errorInfo: { code, message },
-        } = err;
-        if (process.env.NODE_ENV === "development") console.log(code, message);
+        const errorInfo = err.errorInfo;
+        if (process.env.NODE_ENV === "development" && errorInfo)
+          console.log(errorInfo.code, errorInfo.message);
 
-        switch (code) {
+        switch (errorInfo.code) {
           case "auth/user-not-found":
             return socketErrorHandler(
               404,
@@ -77,12 +75,11 @@ module.exports = {
       )
       .then((data) => data)
       .catch((err) => {
-        const {
-          errorInfo: { code, message },
-        } = err;
-        if (process.env.NODE_ENV === "development") console.log(code, message);
+        const errorInfo = err.errorInfo;
+        if (process.env.NODE_ENV === "development" && errorInfo)
+          console.log(errorInfo.code, errorInfo.message);
 
-        switch (code) {
+        switch (errorInfo.code) {
           default:
             return socketErrorHandler(
               500,

@@ -313,6 +313,15 @@ html {
   margin-bottom: 2rem;
 }
 
+.divider {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.divider h3 {
+  margin: 0 1rem;
+}
+
 #not-authed-nav {
   padding: 0.85rem 2rem;
 }
@@ -874,15 +883,6 @@ html {
   margin-top: 2rem;
 }
 
-.filters-box .divider {
-  width: 100%;
-  margin-bottom: 2rem;
-}
-
-.filters-box .divider h3 {
-  margin: 0 1rem;
-}
-
 .filters-box .filter-box h4 {
   margin-bottom: 1rem;
   color: grey;
@@ -1224,6 +1224,186 @@ html {
   border: none;
   background: transparent;
   font-size: 1.35rem;
+}
+
+.sets-container {
+  width: 85vw;
+}
+
+.sets-container .profile-box .user-photo-box {
+  width: 5rem;
+  height: 5rem;
+  margin-right: 1.5rem;
+}
+
+.sets-container .profile-box .user-photo-box p {
+  font-size: 2.8125rem;
+  font-weight: normal;
+}
+
+.sets-container .profile-box .profile-info h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.sets-container .profile-box .profile-info p {
+  color: grey;
+}
+
+.tab-filter {
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.25);
+}
+
+.tab-filter .tab {
+  margin-right: 2rem;
+  color: grey;
+  font-weight: bold;
+  padding-bottom: 1rem;
+  -webkit-transition: all 200ms ease-out;
+  transition: all 200ms ease-out;
+}
+
+.tab-filter .tab:hover {
+  cursor: pointer;
+  border-bottom: 2px solid rgba(0, 163, 255, 0.5);
+}
+
+.tab-filter .active {
+  border-bottom: 2px solid #00a3ff;
+}
+
+.menu-filter-box {
+  position: relative;
+}
+
+.menu-filter-btn {
+  width: 8.5vw;
+  background: white;
+  border: 2px solid rgba(128, 128, 128, 0.25);
+  border-radius: 5px;
+  padding: 0.5rem 1.5rem;
+  font-weight: bold;
+  color: grey;
+}
+
+.menu-filter-btn .icon {
+  margin-left: 3px;
+}
+
+.menu-filter-btn:hover {
+  cursor: pointer;
+}
+
+.menu-filter {
+  width: 100%;
+  position: absolute;
+  background: white;
+  margin-top: 1rem;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.15);
+  padding: 5px 0;
+}
+
+.menu-filter .menu-opt {
+  padding: 0.66667rem 1rem;
+  margin: 5px 0;
+  color: grey;
+  -webkit-transition: all 200ms ease-out;
+  transition: all 200ms ease-out;
+}
+
+.menu-filter .menu-opt:hover {
+  cursor: pointer;
+  background: rgba(237, 237, 237, 0.5);
+}
+
+.sets-search-bar {
+  background: white;
+  border-radius: 20px;
+  border: 2px solid rgba(128, 128, 128, 0.25);
+  padding: 0.5rem 1rem;
+  margin-left: 2rem;
+}
+
+.sets-search-bar input {
+  outline: none;
+  border: none;
+  background: transparent;
+  width: 25vw;
+  font-size: 0.975rem;
+}
+
+.sets-box {
+  margin-top: 4rem;
+}
+
+.sets-box h2 {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.sets-box .no-recent-sets {
+  margin-top: 1rem;
+}
+
+.sets {
+  margin-top: 3rem;
+}
+
+.sets-list {
+  width: 75%;
+  margin-bottom: 3rem;
+}
+
+.sets-list .divider {
+  margin-bottom: 1.5rem;
+}
+
+.sets-list .divider h3 {
+  margin-left: 0;
+  color: grey;
+}
+
+.sets-list .divider .MuiDivider-wrapper {
+  padding-left: 0;
+}
+
+.sets-list .divider::before {
+  display: none;
+}
+
+.sets-list .no-sets {
+  color: grey;
+}
+
+.sets-list .no-sets span {
+  text-transform: lowercase;
+}
+
+.sets-list .minimal-set-card {
+  width: 100%;
+}
+
+.sets-list .minimal-set-card .set-info {
+  max-width: 60%;
+}
+
+.sets-list .minimal-set-card .set-info h4 {
+  max-width: 100%;
+}
+
+.sets-list .minimal-set-card .user-photo-box {
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-right: 1rem;
+}
+
+.sets-list .minimal-set-card .user-photo-box p {
+  color: white;
+  margin-top: 0;
 }
 
 html {

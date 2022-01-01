@@ -12,7 +12,6 @@ import { useSearch } from "../../../context/search/Search.context";
 // Components
 import Filters from "../../templates/community/Filters";
 import SearchQuery from "./SearchQuery";
-import ProtectedPage from "../../layout/auth/ProtectedPage";
 import CommunityDisplay from "../../templates/community/CommunityDisplay";
 import SetPreview from "../../templates/community/SetPreview";
 import SearchBar from "../../templates/SearchBar";
@@ -37,36 +36,34 @@ function Search() {
   }, [query]);
 
   return (
-    <ProtectedPage>
-      <Container className="page-container community-container">
-        {/* Search Bar */}
-        {initialValues.current.query === query && (
-          <SearchBar
-            initialValues={initialValues.current}
-            className="community-search-bar"
-          />
-        )}
-
-        {/* Filters */}
-        <Filters
-          sortedBy={sortedBy}
-          sortedByFilter={sortedByFilter}
-          ownedBy={ownedBy}
-          ownedByFilter={ownedByFilter}
+    <Container className="page-container community-container">
+      {/* Search Bar */}
+      {initialValues.current.query === query && (
+        <SearchBar
+          initialValues={initialValues.current}
+          className="community-search-bar"
         />
+      )}
 
+      {/* Filters */}
+      <Filters
+        sortedBy={sortedBy}
+        sortedByFilter={sortedByFilter}
+        ownedBy={ownedBy}
+        ownedByFilter={ownedByFilter}
+      />
+
+      {/* Vocab Sets */}
+      <Box className="main">
         {/* Vocab Sets */}
-        <Box className="main">
-          {/* Vocab Sets */}
-          <CommunityDisplay className="vocab-sets-display" title="Vocab Sets">
-            <SearchQuery query={query} />
-          </CommunityDisplay>
+        <CommunityDisplay className="vocab-sets-display" title="Vocab Sets">
+          <SearchQuery query={query} />
+        </CommunityDisplay>
 
-          {/* Set Preview */}
-          <SetPreview preview={preview} />
-        </Box>
-      </Container>
-    </ProtectedPage>
+        {/* Set Preview */}
+        <SetPreview preview={preview} />
+      </Box>
+    </Container>
   );
 }
 

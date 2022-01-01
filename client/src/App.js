@@ -13,6 +13,8 @@ import Alert from "./components/layout/alert/Alert";
 import LoadingScreen from "./components/layout/loading/LoadingScreen";
 import Community from "./components/pages/Community/Community";
 import Search from "./components/pages/Search/Search";
+import Sets from "./components/pages/Sets/Sets";
+import ProtectedRoute from "./components/layout/auth/ProtectedRoute";
 
 function App() {
   return (
@@ -38,8 +40,23 @@ function App() {
           <Route exact path="/signup" element={<Signup />} />
 
           {/* Community */}
-          <Route exact path="/community" element={<Community />} />
-          <Route exact path="/search/:query" element={<Search />} />
+          <Route
+            exact
+            path="/community"
+            element={<ProtectedRoute Component={<Community />} />}
+          />
+          <Route
+            exact
+            path="/search/:query"
+            element={<ProtectedRoute Component={<Search />} />}
+          />
+
+          {/* User */}
+          <Route
+            exact
+            path="/sets"
+            element={<ProtectedRoute Component={<Sets />} />}
+          />
         </Routes>
       </BrowserRouter>
     </div>
