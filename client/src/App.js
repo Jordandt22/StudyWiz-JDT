@@ -15,6 +15,8 @@ import Community from "./components/pages/Community/Community";
 import Search from "./components/pages/Search/Search";
 import Sets from "./components/pages/Sets/Sets";
 import ProtectedRoute from "./components/layout/auth/ProtectedRoute";
+import NotFound from "./components/pages/NotFound/NotFound";
+import ComingSoon from "./components/pages/ComingSoon/ComingSoon";
 
 function App() {
   return (
@@ -57,6 +59,10 @@ function App() {
             path="/sets"
             element={<ProtectedRoute Component={<Sets />} />}
           />
+          <Route exact path="/schedule" element={<ComingSoon />} />
+
+          {/* Not Found */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 // React Router
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 // MUI
 import { Box } from "@material-ui/core";
@@ -35,6 +35,12 @@ function NavBar(props) {
       path: "/schedule",
     },
   ];
+
+  // Resetting Scroll Position on Page Change
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   return (
     <header

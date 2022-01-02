@@ -14,6 +14,8 @@
 @import "layout/alert/alert";
 @import "layout/error/error";
 @import "layout/community/community";
+@import "layout/placeholder/placeholder";
+@import "layout/footer/footer";
 
 // Pages
 @import "pages/home/dashboard";
@@ -26,6 +28,7 @@ html {
 }
 
 body {
+  position: relative;
   background: $main-bg;
   font-family: $main-ft;
   overflow-x: hidden;
