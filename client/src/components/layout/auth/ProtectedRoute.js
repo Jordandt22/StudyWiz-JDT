@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 // React Router
-import { Route, Navigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 function ProtectedRoute(props) {
   const {

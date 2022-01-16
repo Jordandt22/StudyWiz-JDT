@@ -15,7 +15,7 @@ const TermSchema = Joi.object().keys({
 // Set
 const SetSchema = Joi.object()
   .keys({
-    title: Joi.string().trim().min(1).max(100).required(),
+    title: Joi.string().alphanum().trim().min(1).max(100).required(),
     privacy: PrivacySchema,
     terms: Joi.array().min(1).max(50).items(TermSchema).required(),
   })

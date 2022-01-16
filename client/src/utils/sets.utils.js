@@ -63,4 +63,6 @@ export const organizeSets = (sets, isByRequested) => {
 };
 
 export const searchSets = (sets, search) =>
-  sets.filter((set) => new RegExp(search, "ig").test(set.title));
+  sets.filter((set) =>
+    new RegExp(search.replaceAll(/[^a-zA-Z\d:]/ig, ""), "ig").test(set.title)
+  );

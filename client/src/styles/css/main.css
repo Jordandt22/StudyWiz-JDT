@@ -379,7 +379,7 @@ html {
 }
 
 .nav-bar .login-link:hover {
-  background: #ededed;
+  background: #fbfbfb;
   padding: 0.5rem;
   border-radius: 5px;
 }
@@ -421,7 +421,7 @@ html {
 }
 
 .nav-bar .nav-search-bar {
-  background: #ededed;
+  background: #fbfbfb;
   border-radius: 5px;
   padding: 5px 7.5px;
   margin-right: 1rem;
@@ -887,6 +887,10 @@ html {
   margin-top: 2rem;
 }
 
+.filters-box .filter-box {
+  margin-top: 2rem;
+}
+
 .filters-box .filter-box h4 {
   margin-bottom: 1rem;
   color: grey;
@@ -1024,7 +1028,7 @@ html {
 }
 
 .community-sets .community-set-card .set-info p {
-  background: #ededed;
+  background: #fbfbfb;
   padding: 5px 1rem;
   border-radius: 20px;
   margin-right: 1rem;
@@ -1082,7 +1086,7 @@ html {
 }
 
 .set-preview .terms-box .term {
-  border-top: 1px solid #ededed;
+  border-top: 1px solid #fbfbfb;
   padding: 1.5rem 0;
 }
 
@@ -1349,7 +1353,7 @@ html {
 }
 
 .dashboard-section-2 .schedule-list .minimal-schedule-card .main {
-  background: #ededed;
+  background: #fbfbfb;
   padding: 0.66667rem;
 }
 
@@ -1374,6 +1378,7 @@ html {
 }
 
 .community-search-bar {
+  width: 100%;
   background: white;
   padding: 1rem;
   border-radius: 10px;
@@ -1385,10 +1390,12 @@ html {
 }
 
 .community-search-bar input {
+  display: block;
   outline: none;
   border: none;
   background: transparent;
   font-size: 1.35rem;
+  width: 100%;
 }
 
 .sets-container {
@@ -1482,7 +1489,7 @@ html {
 
 .menu-filter .menu-opt:hover {
   cursor: pointer;
-  background: rgba(237, 237, 237, 0.5);
+  background: rgba(251, 251, 251, 0.5);
 }
 
 .sets-search-bar {
@@ -1577,7 +1584,7 @@ html {
 
 body {
   position: relative;
-  background: #ededed;
+  background: #fbfbfb;
   font-family: "Signika Negative", sans-serif;
   overflow-x: hidden;
 }

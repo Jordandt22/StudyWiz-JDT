@@ -40,8 +40,14 @@ function SetsFilter() {
             initialValues={initialValues}
             disabledValidations={{ min: true }}
             callback={(query) => {
+              // setSearch(query);
+              // setValues({ query });
+            }}
+            onChange={(e, formikOnChange) => {
+              const query = e.target.value;
               setSearch(query);
               setValues({ query });
+              formikOnChange(e);
             }}
           />
         )}

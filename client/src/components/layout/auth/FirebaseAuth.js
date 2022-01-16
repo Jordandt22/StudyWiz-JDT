@@ -23,7 +23,7 @@ function FirebaseAuth(props) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (loggedIn && fbId) navigate("/settings");
+    if (loggedIn && fbId) navigate("/");
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loggedIn, fbId]);

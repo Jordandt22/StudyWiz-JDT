@@ -1,13 +1,12 @@
 const User = require("../../models/user/user.model");
 const Sets = require("../../models/sets/sets.model");
-const {
-  cacheData,
-  removeCacheData,
-  getCache,
-} = require("../../redis/redis.mw");
+const { cacheData } = require("../../redis/redis.mw");
 const { USER_KEY, SET_KEY } = require("../../redis/redis.keys");
 const { getMultipleSetsData } = require("../../utils/sets.utils");
-const { errorHandler } = require("../../utils/global.utils");
+const {
+  errorHandler,
+  cleanStringForRegex,
+} = require("../../utils/global.utils");
 const {
   getFBUser,
   getMultipleFBUsers,
@@ -165,7 +164,7 @@ module.exports = {
         { $and: [{ creatorFbId: fbId }, { $or: sets }] },
         {
           $and: [
-            { creatorFbId: { $not: { $regex: fbId } } },
+            { creatorFbId: { $not: { $regex: cleanStringForRegex(fbId) } } },
             { "privacy.private": false },
             { $or: sets },
           ],

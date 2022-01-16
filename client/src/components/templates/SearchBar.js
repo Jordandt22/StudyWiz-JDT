@@ -15,8 +15,14 @@ import { Search } from "@material-ui/icons";
 import { setAlert } from "../../redux/global/global.actions";
 
 function SearchBar(props) {
-  const { setAlert, className, initialValues, callback, disabledValidations } =
-    props;
+  const {
+    setAlert,
+    className,
+    initialValues,
+    callback,
+    disabledValidations,
+    onChange,
+  } = props;
   const navigate = useNavigate();
 
   return (
@@ -25,7 +31,14 @@ function SearchBar(props) {
       onSubmit={(values, { setSubmitting, resetForm }) => {
         const { query } = values;
         const queryLength = query.length;
-        if (queryLength <= 0 && !disabledValidations["min"]) {
+        const specialCharRegex = new RegExp(/[^a-zA-Z\d:]/, "ig");
+        if (specialCharRegex.test(query)) {
+          setSubmitting(false);
+          setAlert({
+            message: "Special Characters can not be used for searching.",
+            title: "Error",
+          });
+        } else if (queryLength <= 0 && !disabledValidations["min"]) {
           setSubmitting(false);
           setAlert({
             message: "Must enter a value to search.",
@@ -39,9 +52,9 @@ function SearchBar(props) {
           });
         } else {
           setSubmitting(false);
-          resetForm();
           if (callback) return callback(query);
 
+          resetForm();
           navigate(`/search/${query}`);
         }
       }}
@@ -67,6 +80,11 @@ function SearchBar(props) {
                   placeholder="Search for sets..."
                   autoComplete="off"
                   {...field}
+                  onChange={
+                    onChange
+                      ? (e) => onChange(e, field.onChange)
+                      : field.onChange
+                  }
                 />
               </Box>
             )}

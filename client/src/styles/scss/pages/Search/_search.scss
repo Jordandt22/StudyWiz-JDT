@@ -1,5 +1,6 @@
 // Search Styles
 .community-search-bar {
+  width: 100%;
   background: white;
   padding: $spacer-small;
   border-radius: $border-radius-width;
@@ -10,9 +11,11 @@
   }
 
   input {
+    display: block;
     outline: none;
     border: none;
     background: transparent;
     font-size: $main-fs * 0.9;
+    width: 100%;
   }
 }

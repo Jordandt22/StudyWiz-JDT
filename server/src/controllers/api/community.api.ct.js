@@ -2,7 +2,10 @@ const Sets = require("../../models/sets/sets.model");
 const { cacheData } = require("../../redis/redis.mw");
 const { COMMUNITY_KEY, SEARCH_KEY } = require("../../redis/redis.keys");
 const { getMultipleSetsData } = require("../../utils/sets.utils");
-const { errorHandler } = require("../../utils/global.utils");
+const {
+  errorHandler,
+  cleanStringForRegex,
+} = require("../../utils/global.utils");
 
 // Check Filter
 const checkFilter = (filter, options) => {
@@ -101,13 +104,15 @@ module.exports = {
       return errorHandler(res, 422, "SETS", "INVALID OWNED BY VALUE");
 
     // Queriess
-    const titleQuery = { title: { $regex: query, $options: "ig" } };
+    const titleQuery = {
+      title: { $regex: cleanStringForRegex(query), $options: "ig" },
+    };
     const ownedByMeQuery = {
       $and: [{ creatorFbId: fbId }, titleQuery],
     };
     const ownedByOthersQuery = {
       $and: [
-        { creatorFbId: { $not: { $regex: fbId } } },
+        { creatorFbId: { $not: { $regex: cleanStringForRegex(fbId) } } },
         { "privacy.private": false },
         titleQuery,
       ],
