@@ -1517,6 +1517,10 @@ html {
   font-size: 1.5rem;
 }
 
+.sets-box .error-box {
+  margin-top: 2rem;
+}
+
 .sets-box .no-recent-sets {
   margin-top: 1rem;
 }

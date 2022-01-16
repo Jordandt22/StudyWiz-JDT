@@ -20,6 +20,8 @@ import { useSets } from "../../../context/sets/Sets.context";
 
 // Components
 import SetsList from "./SetsList";
+import ErrorBox from "../../layout/error/ErrorBox";
+import SetsSkeleton from "./SetsSkeleton";
 
 function SetsQuery(props) {
   const {
@@ -28,6 +30,7 @@ function SetsQuery(props) {
     },
     sets,
   } = props;
+  const titles = ["This Week", "Before This Week"];
   const { filter, sortedBy, search } = useSets();
   const queryKey = `${fbId}_SETS_FILTER:${filter}`;
   const { data, isLoading, isError, error } = useGetMultipleSets(queryKey, {
@@ -37,9 +40,9 @@ function SetsQuery(props) {
 
   // Loading & Error
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <SetsSkeleton titles={titles} />;
   } else if (isError) {
-    return <div>{error.message}</div>;
+    return <ErrorBox message={error.message} />;
   }
 
   const { sets: setsData } = data.data;
@@ -53,10 +56,10 @@ function SetsQuery(props) {
   return (
     <Box className="sets">
       {/* This Week Sets */}
-      <SetsList sets={thisWeekSets} title="This Week" />
+      <SetsList sets={thisWeekSets} title={titles[0]} />
 
       {/* Before This Week Sets */}
-      <SetsList sets={notThisWeekSets} title="Before This Week" />
+      <SetsList sets={notThisWeekSets} title={titles[1]} />
     </Box>
   );
 }
