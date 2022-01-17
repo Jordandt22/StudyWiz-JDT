@@ -11,8 +11,8 @@ import Footer from "../../layout/footer/Footer";
 
 function PlaceholderPageTemplate(props) {
   const { title, message, links } = props;
-  const firstLink = links[0];
-  const secondLink = links[1];
+  const firstLink = links && links[0];
+  const secondLink = links && links[1];
 
   return (
     <>

@@ -5,6 +5,9 @@
 @import "utils/alignments";
 @import "utils/global";
 
+// Icons
+@import "icons/study/study-icons";
+
 // Layout
 @import "layout/nav/nav";
 @import "layout/auth/auth";
@@ -21,6 +24,7 @@
 @import "pages/home/dashboard";
 @import "pages/search/search";
 @import "pages/sets/sets";
+@import "pages/set/set";
 
 // My Styles
 html {

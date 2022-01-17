@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 // React Router
@@ -10,11 +10,16 @@ import { Container } from "@mui/material";
 // Queries
 import { useGetSingleSet } from "../../../query/queries";
 
+// Redux
+import { setSets } from "../../../redux/sets/sets.actions";
+import SetMainContent from "./SetMainContent";
+
 function Set(props) {
   const {
     user: {
       auth: { fbId },
     },
+    setSets,
   } = props;
   const { setId } = useParams();
   const { data, isLoading, isError, error } = useGetSingleSet(
@@ -25,6 +30,16 @@ function Set(props) {
     }
   );
 
+  // Updating User's Sets in Redux
+  useEffect(() => {
+    if (!isLoading && !isError && data?.data?.user?.sets) {
+      const { user } = data.data;
+      setSets(user.sets);
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data, isLoading, isError]);
+
   // Loading & Error
   if (isLoading) {
     return <div>Loading...</div>;
@@ -32,10 +47,12 @@ function Set(props) {
     return <div>{error.message}</div>;
   }
 
-  const { set, user } = data.data;
-  console.log(set, user);
+  const { set } = data.data;
   return (
-    <Container className="page-container set-page-container">{setId}</Container>
+    <Container className="page-container set-page-container">
+      {/* Main Content */}
+      <SetMainContent set={set} />
+    </Container>
   );
 }
 
@@ -44,4 +61,8 @@ const ReduxState = (state) => ({
   user: state.user,
 });
 
-export default connect(ReduxState)(Set);
+const ReduxActions = (dispatch) => ({
+  setSets: (sets) => dispatch(setSets(sets)),
+});
+
+export default connect(ReduxState, ReduxActions)(Set);
