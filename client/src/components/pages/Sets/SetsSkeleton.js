@@ -13,7 +13,7 @@ function SetsSkeleton(props) {
   return (
     <Box className="sets">
       {titles.map((title) => (
-        <Box className="sets-list">
+        <Box key={title} className="sets-list">
           <Box className="between-row">
             <Divider textAlign="left" className="divider">
               <h3>{title}</h3>

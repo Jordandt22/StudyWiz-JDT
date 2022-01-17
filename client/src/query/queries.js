@@ -2,7 +2,12 @@
 import { useQuery } from "react-query";
 
 // API
-import { getMultipleSets, getCommunitySets, getSearchedSets } from "./api";
+import {
+  getMultipleSets,
+  getCommunitySets,
+  getSearchedSets,
+  getSingleSet,
+} from "./api";
 
 // Default Options
 const defaultOptions = {
@@ -10,6 +15,15 @@ const defaultOptions = {
   keepPreviousData: true,
   retry: 3,
 };
+
+// Format Options
+const formatOptions = (options) =>
+  options
+    ? {
+        ...defaultOptions,
+        ...options,
+      }
+    : defaultOptions;
 
 // GET - Get Data of Multiple Sets
 export const useGetMultipleSets = (key, { fbId, sets }) =>
@@ -24,12 +38,7 @@ export const useGetCommunitySets = (
   useQuery(
     [key, page],
     () => getCommunitySets(fbId, filter, page, limit),
-    options
-      ? {
-          ...defaultOptions,
-          ...options,
-        }
-      : defaultOptions
+    formatOptions(options)
   );
 
 // POST - Get Searched Sets
@@ -41,10 +50,9 @@ export const useGetSearchedSets = (
   useQuery(
     [key, page],
     () => getSearchedSets(fbId, filter, page, limit, ownedBy, query),
-    options
-      ? {
-          ...defaultOptions,
-          ...options,
-        }
-      : defaultOptions
+    formatOptions(options)
   );
+
+// POST - Get Data for a Specifc Set
+export const useGetSingleSet = (key, { fbId, setId }) =>
+  useQuery(key, () => getSingleSet(fbId, setId), defaultOptions);

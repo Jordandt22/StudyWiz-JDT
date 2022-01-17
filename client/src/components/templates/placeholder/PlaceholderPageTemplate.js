@@ -10,7 +10,9 @@ import { Container, Box } from "@material-ui/core";
 import Footer from "../../layout/footer/Footer";
 
 function PlaceholderPageTemplate(props) {
-  const { title, message } = props;
+  const { title, message, links } = props;
+  const firstLink = links[0];
+  const secondLink = links[1];
 
   return (
     <>
@@ -25,15 +27,28 @@ function PlaceholderPageTemplate(props) {
 
         {/* Bottom Box */}
         <Box className="rounded-box bot-box row">
-          <NavLink to="/" className="link">
-            Home
-          </NavLink>
+          {/* First Link */}
+          {firstLink ? (
+            <NavLink to={firstLink.path} className="link">
+              {firstLink.label}
+            </NavLink>
+          ) : (
+            <NavLink to="/" className="link">
+              Home
+            </NavLink>
+          )}
 
           <p>or</p>
 
-          <NavLink to="/community" className="link">
-            Explore
-          </NavLink>
+          {secondLink ? (
+            <NavLink to={secondLink.path} className="link">
+              {secondLink.label}
+            </NavLink>
+          ) : (
+            <NavLink to="/community" className="link">
+              Explore
+            </NavLink>
+          )}
         </Box>
       </Container>
 

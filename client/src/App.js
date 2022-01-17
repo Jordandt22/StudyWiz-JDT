@@ -17,6 +17,7 @@ import Sets from "./components/pages/Sets/Sets";
 import ProtectedRoute from "./components/layout/auth/ProtectedRoute";
 import NotFound from "./components/pages/NotFound/NotFound";
 import ComingSoon from "./components/pages/ComingSoon/ComingSoon";
+import Set from "./components/pages/Set/Set";
 
 function App() {
   return (
@@ -58,6 +59,11 @@ function App() {
             exact
             path="/sets"
             element={<ProtectedRoute Component={<Sets />} />}
+          />
+          <Route
+            exact
+            path="/set/:setId"
+            element={<ProtectedRoute Component={<Set />} />}
           />
           <Route exact path="/schedule" element={<ComingSoon />} />
 

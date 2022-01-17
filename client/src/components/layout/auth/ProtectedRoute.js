@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 
-// React Router
-import { Navigate } from "react-router-dom";
+// Components
+import PlaceholderPageTemplate from "../../templates/placeholder/PlaceholderPageTemplate";
 
 function ProtectedRoute(props) {
   const {
@@ -13,7 +13,16 @@ function ProtectedRoute(props) {
   } = props;
 
   if (!loggedIn) {
-    return <Navigate to="/login" />;
+    return (
+      <PlaceholderPageTemplate
+        title={<p className="row">Not Authorized</p>}
+        message="To access this content, you must sign up or log in."
+        links={[
+          { label: "Sign Up", path: "/signup" },
+          { label: "Log In", path: "/login" },
+        ]}
+      />
+    );
   } else {
     return Component;
   }
