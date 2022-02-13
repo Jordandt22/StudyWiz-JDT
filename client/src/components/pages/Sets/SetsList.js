@@ -1,7 +1,7 @@
 import React from "react";
 
 // MUI
-import { Box } from "@material-ui/core";
+import { Box } from "@mui/material";
 import { Divider } from "@mui/material";
 
 // Contexts
@@ -31,12 +31,12 @@ function SetsList(props) {
       ) : (
         <>
           {sets.map((set) => {
-            const { title: setTitle, creator, _id, terms } = set;
+            const { title: setTitle, creator, setId, terms } = set;
 
             return (
               <SetCard
-                key={_id}
-                setId={_id}
+                key={setId}
+                setId={setId}
                 title={setTitle}
                 terms={terms}
                 creator={creator}

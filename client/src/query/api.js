@@ -42,3 +42,7 @@ export const getSearchedSets = async (
 // GET - Get Data for a Specific Set
 export const getSingleSet = async (fbId, setId) =>
   await axios.get(createURI(fbId) + `/${setId}`);
+
+// GET - Get Creator Data for a Specific Set
+export const getSetCreator = async (fbId, setId) =>
+  await axios.get(createURI(fbId) + `/${setId}/creator`);

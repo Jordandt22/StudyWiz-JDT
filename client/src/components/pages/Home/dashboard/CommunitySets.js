@@ -8,7 +8,7 @@ import { NavLink } from "react-router-dom";
 import { useGetCommunitySets } from "../../../../query/queries";
 
 // MUI
-import { Box } from "@material-ui/core";
+import { Box } from "@mui/material";
 
 // Components
 import Display from "../../../templates/sets/Display";

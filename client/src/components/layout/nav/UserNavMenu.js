@@ -8,7 +8,7 @@ import { NavLink } from "react-router-dom";
 import { signOut } from "../../../redux/user/user.actions";
 
 // MUI
-import { Box } from "@material-ui/core";
+import { Box } from "@mui/material";
 import { ClickAwayListener } from "@mui/material";
 
 // Contexts

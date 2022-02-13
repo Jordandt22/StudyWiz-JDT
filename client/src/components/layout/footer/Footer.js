@@ -1,7 +1,7 @@
 import React from "react";
 
 // MUI
-import { Box } from "@material-ui/core";
+import { Box } from "@mui/material";
 
 // Components
 import FooterNav from "./FooterNav";

@@ -2,8 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 
 // MUI
-import { Box } from "@material-ui/core";
-import { Close } from "@material-ui/icons";
+import { Box } from "@mui/material";
+import { Close } from "@mui/icons-material";
 
 // Contexts
 import { useNav } from "../../../context/nav/Nav.context";

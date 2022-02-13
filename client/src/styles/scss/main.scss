@@ -4,6 +4,7 @@
 @import "setup/mixins";
 @import "utils/alignments";
 @import "utils/global";
+@import "utils/animations";
 
 // Icons
 @import "icons/study/study-icons";
@@ -19,6 +20,10 @@
 @import "layout/community/community";
 @import "layout/placeholder/placeholder";
 @import "layout/footer/footer";
+@import "layout/flashcards/flashcards";
+@import "layout/flashcards/flashcard-skel";
+@import "layout/flashcards/creator";
+@import "layout/flashcards/creator-skel";
 
 // Pages
 @import "pages/home/dashboard";

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 // MUI
 import { Alert as AlertComponent, AlertTitle } from "@mui/material";
-import { Box } from "@material-ui/core";
+import { Box } from "@mui/material";
 
 // Redux
 import { resetAlert } from "../../../redux/global/global.actions";

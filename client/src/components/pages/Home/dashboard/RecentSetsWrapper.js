@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 // MUI
-import { Box } from "@material-ui/core";
+import { Box } from "@mui/material";
 
 // Utils
 import { sortSetsByRecent } from "../../../../utils/sets.utils";

@@ -7,6 +7,7 @@ import {
   getCommunitySets,
   getSearchedSets,
   getSingleSet,
+  getSetCreator
 } from "./api";
 
 // Default Options
@@ -53,6 +54,10 @@ export const useGetSearchedSets = (
     formatOptions(options)
   );
 
-// POST - Get Data for a Specifc Set
+// GET - Get Data for a Specifc Set
 export const useGetSingleSet = (key, { fbId, setId }) =>
   useQuery(key, () => getSingleSet(fbId, setId), defaultOptions);
+
+// GET - Get Creator Data for a Specifc Set
+export const useGetSetCreator = (key, { fbId, setId }) =>
+  useQuery(key, () => getSetCreator(fbId, setId), defaultOptions);

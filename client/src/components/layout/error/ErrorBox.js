@@ -1,8 +1,8 @@
 import React from "react";
 
 // MUI
-import { Box } from "@material-ui/core";
-import { ErrorOutline } from "@material-ui/icons";
+import { Box } from "@mui/material";
+import { ErrorOutline } from "@mui/icons-material";
 
 function ErrorBox(props) {
   const { message } = props;

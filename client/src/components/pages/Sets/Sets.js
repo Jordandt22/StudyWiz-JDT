@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 // MUI
-import { Container, Box } from "@material-ui/core";
+import { Container, Box } from "@mui/material";
 
 // Components
 import UserPhoto from "../../templates/UserPhoto";

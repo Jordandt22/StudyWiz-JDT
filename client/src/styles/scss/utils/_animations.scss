@@ -1,0 +1,35 @@
+// Animations
+
+// Card Flip
+.flipper {
+  position: relative;
+  perspective: 600px;
+  transform-origin: 100% center;
+}
+
+.front-card,
+.back-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  transition: transform 500ms ease-in-out, opacity 200ms ease-out;
+}
+
+.front-card {
+  z-index: 2;
+  transform: rotateX(0deg);
+}
+.flipper.flip .front-card {
+  transform: rotateX(180deg);
+}
+
+.back-card {
+  transform: rotateX(-180deg);
+}
+
+.flipper.flip .back-card {
+  transform: rotateX(0deg);
+}

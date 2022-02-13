@@ -326,6 +326,50 @@ html {
   margin: 0 1rem;
 }
 
+.flipper {
+  position: relative;
+  -webkit-perspective: 600px;
+          perspective: 600px;
+  -webkit-transform-origin: 100% center;
+          transform-origin: 100% center;
+}
+
+.front-card,
+.back-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  -webkit-transition: opacity 200ms ease-out, -webkit-transform 500ms ease-in-out;
+  transition: opacity 200ms ease-out, -webkit-transform 500ms ease-in-out;
+  transition: transform 500ms ease-in-out, opacity 200ms ease-out;
+  transition: transform 500ms ease-in-out, opacity 200ms ease-out, -webkit-transform 500ms ease-in-out;
+}
+
+.front-card {
+  z-index: 2;
+  -webkit-transform: rotateX(0deg);
+          transform: rotateX(0deg);
+}
+
+.flipper.flip .front-card {
+  -webkit-transform: rotateX(180deg);
+          transform: rotateX(180deg);
+}
+
+.back-card {
+  -webkit-transform: rotateX(-180deg);
+          transform: rotateX(-180deg);
+}
+
+.flipper.flip .back-card {
+  -webkit-transform: rotateX(0deg);
+          transform: rotateX(0deg);
+}
+
 .flashcards-icon {
   width: 4rem;
   height: 1.75rem;
@@ -563,6 +607,15 @@ html {
   border-bottom-right-radius: 10px;
 }
 
+.auth-container {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 .auth-box {
   width: 30vw;
   background: white;
@@ -592,8 +645,8 @@ html {
 }
 
 .auth-box .firebaseui-idp-list li:hover {
-  -webkit-transform: scale(0.9);
-          transform: scale(0.9);
+  -webkit-transform: scale(0.95);
+          transform: scale(0.95);
 }
 
 .auth-box .mdl-card {
@@ -1347,6 +1400,290 @@ html {
           transform: translateY(-50%);
 }
 
+.fc-progress-bar {
+  margin-bottom: 2rem;
+}
+
+.fc-progress-bar h6,
+.fc-progress-bar p {
+  color: lightgrey;
+}
+
+.fc-progress-bar .bar {
+  position: relative;
+  height: 2vh;
+  background: white;
+  border-radius: 10px;
+  margin-top: 1rem;
+  -webkit-box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.05);
+          box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.05);
+}
+
+.fc-progress-bar .bar .pg-bar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: lime;
+  border-radius: 10px;
+  -webkit-transition: all 750ms ease-out;
+  transition: all 750ms ease-out;
+}
+
+.fc-container {
+  position: relative;
+  height: 60vh;
+  padding: 0 !important;
+}
+
+.fc-container .fc-box {
+  height: 100%;
+}
+
+.current-fc {
+  width: 100%;
+  border-radius: 5px;
+  background: white;
+  height: 100%;
+  -webkit-box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.15);
+}
+
+.current-fc:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.current-fc .term {
+  font-size: 2.25rem;
+}
+
+.current-fc .definition {
+  font-size: 1.5rem;
+}
+
+.fc-nav-bar {
+  margin-top: 2rem;
+  margin-bottom: 4rem;
+}
+
+.fc-nav-bar .nav-btn {
+  background: transparent;
+  outline: none;
+  border: none;
+}
+
+.fc-nav-bar .nav-btn .icon {
+  font-size: 1.6875rem;
+}
+
+.fc-nav-bar p {
+  margin: 0 1rem;
+}
+
+.fc-tooltip-btn {
+  outline: none;
+  background: transparent;
+  border: none;
+}
+
+.fc-tooltip-btn .icon {
+  font-size: 1.875rem;
+  -webkit-transform: scaleX(1.25);
+          transform: scaleX(1.25);
+  color: #b4b2b2;
+  -webkit-transition: all 300ms ease-out;
+  transition: all 300ms ease-out;
+}
+
+.fc-tooltip-btn:hover {
+  cursor: pointer;
+}
+
+.fc-tooltip-btn:hover .icon {
+  color: grey;
+}
+
+.fc-tooltip .MuiTooltip-tooltip {
+  background: white;
+  padding: 0.75rem 1rem;
+  -webkit-box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.15);
+}
+
+.fc-tooltip .MuiTooltip-tooltip header h6 {
+  color: black;
+  font-weight: bold;
+  margin-bottom: 0.66667rem;
+}
+
+.fc-tooltip .MuiTooltip-tooltip .kb-shc {
+  height: 3vh;
+  border-bottom: 1px solid #ecebeb;
+  margin-bottom: 0.25rem;
+  padding: 1rem 0;
+}
+
+.fc-tooltip .MuiTooltip-tooltip .kb-shc .label,
+.fc-tooltip .MuiTooltip-tooltip .kb-shc .icon-text {
+  color: grey;
+  margin: 0;
+}
+
+.fc-tooltip .MuiTooltip-tooltip .kb-shc .icon {
+  color: grey;
+  font-size: 1.2rem;
+}
+
+.fs-link {
+  margin-left: 0.25rem;
+}
+
+.fs-link .icon {
+  font-size: 1.725rem;
+  color: #b4b2b2;
+}
+
+.fs-link:hover {
+  cursor: pointer;
+}
+
+.fs-link:hover .icon {
+  color: grey;
+}
+
+.fc-util-bar {
+  position: absolute;
+  right: -5.25vw;
+  top: 0;
+  width: 3.5vw;
+  background: #383737;
+  border-radius: 5px;
+  padding: 0.5rem;
+  -webkit-box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.15);
+}
+
+.fc-util-bar button {
+  outline: none;
+  border: none;
+  background: transparent;
+  margin: 0.5rem 0;
+}
+
+.fc-util-bar button .icon {
+  -webkit-transition: all 200ms ease-out;
+  transition: all 200ms ease-out;
+}
+
+.fc-util-bar button:hover {
+  cursor: pointer;
+}
+
+.fc-util-bar button:hover .icon {
+  color: #ffe600;
+}
+
+.fc-util-bar .audio-btn,
+.fc-util-bar .favorite-btn {
+  color: white;
+}
+
+.fc-util-bar .audio-btn .icon,
+.fc-util-bar .favorite-btn .icon {
+  font-size: 1.725rem;
+}
+
+.fc-skel-container .title-box {
+  margin-bottom: 4rem;
+}
+
+.fc-skel-container .title-box .title {
+  height: 3vh;
+  margin-bottom: 0.5rem;
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.fc-skel-container .title-box .title-skel-1 {
+  width: 65%;
+}
+
+.fc-skel-container .title-box .title-skel-2 {
+  width: 40%;
+}
+
+.fc-skel-container .current-fc {
+  height: 60vh;
+}
+
+.fc-skel-container .fc-nav-bar {
+  border-radius: 10px;
+}
+
+.set-creator {
+  margin: 2rem 0;
+}
+
+.creator-profile .user-photo-box {
+  width: 5rem;
+  height: 5rem;
+}
+
+.creator-profile .user-photo-box p {
+  font-size: 2.25rem;
+}
+
+.creator-profile .creator-info {
+  margin-left: 1rem;
+}
+
+.creator-profile .creator-info p,
+.creator-profile .creator-info strong {
+  font-size: 1.125rem;
+}
+
+.creator-profile .creator-info p {
+  font-weight: lighter;
+  margin-bottom: 0.35rem;
+}
+
+.fc-set-options .fc-set-opt-btn {
+  width: 2.75rem;
+  height: 2.75rem;
+  outline: none;
+  border: none;
+  background: white;
+  border-radius: 50%;
+  -webkit-box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.15);
+  margin-left: 1rem;
+  -webkit-transition: all 200ms ease-out;
+  transition: all 200ms ease-out;
+}
+
+.fc-set-options .fc-set-opt-btn:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.fc-set-options .fav-icon {
+  color: #00a3ff;
+}
+
+.creator-profile .p-skel {
+  width: 7.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.creator-profile .strong-skel {
+  width: 10rem;
+}
+
+.fc-set-opt-btn-skel {
+  background: lightgrey !important;
+}
+
 .no-recent-sets p {
   font-size: 1.2rem;
   line-height: 1.75rem;
@@ -1647,6 +1984,12 @@ html {
   margin-bottom: 3rem;
 }
 
+.set-page-container .main-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 .set-side-bar h4 {
   color: #c4c4c4;
   font-weight: normal;
@@ -1715,6 +2058,11 @@ html {
 .set-side-bar .link:hover #right-mt-rect {
   -webkit-transform: translate(0.25vw, 0.75vh);
           transform: translate(0.25vw, 0.75vh);
+}
+
+.flashcards-box {
+  margin-left: 4rem;
+  width: 60vw;
 }
 
 html {

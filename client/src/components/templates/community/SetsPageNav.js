@@ -1,8 +1,8 @@
 import React from "react";
 
 // MUI
-import { Box } from "@material-ui/core";
-import { ArrowBack, ArrowForward } from "@material-ui/icons";
+import { Box } from "@mui/material";
+import { ArrowBack, ArrowForward } from "@mui/icons-material";
 
 function SetsPageNav(props) {
   const { next, page, prevPage, nextPage } = props;

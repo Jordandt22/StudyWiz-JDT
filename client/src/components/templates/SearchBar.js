@@ -8,8 +8,8 @@ import { useNavigate } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 
 // MUI
-import { Box } from "@material-ui/core";
-import { Search } from "@material-ui/icons";
+import { Box } from "@mui/material";
+import { Search } from "@mui/icons-material";
 
 // Redux
 import { setAlert } from "../../redux/global/global.actions";

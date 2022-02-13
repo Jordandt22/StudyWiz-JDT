@@ -4,7 +4,7 @@ import React, { useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 
 // MUI
-import { Container, Box } from "@material-ui/core";
+import { Container, Box } from "@mui/material";
 
 // Search
 import { useSearch } from "../../../context/search/Search.context";

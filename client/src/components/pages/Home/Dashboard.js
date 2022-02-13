@@ -1,7 +1,7 @@
 import React from "react";
 
 // MUI
-import { Container, Box } from "@material-ui/core";
+import { Container, Box } from "@mui/material";
 
 // Components
 import RecentSetsWrapper from "./dashboard/RecentSetsWrapper";

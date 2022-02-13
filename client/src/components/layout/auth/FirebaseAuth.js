@@ -10,7 +10,7 @@ import { fb } from "../../../firebase/firebase";
 import { uiConfig } from "../../../firebase/firebase";
 
 // MUI
-import { Container, Box } from "@material-ui/core";
+import { Container, Box } from "@mui/material";
 
 function FirebaseAuth(props) {
   const {

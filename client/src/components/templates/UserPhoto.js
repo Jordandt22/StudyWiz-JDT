@@ -8,7 +8,7 @@ import { getRandomColor } from "../../utils/global.utils";
 import LazyLoadImage from "./LazyLoadImage";
 
 // MUI
-import { Box } from "@material-ui/core";
+import { Box } from "@mui/material";
 
 function UserPhoto(props) {
   const {

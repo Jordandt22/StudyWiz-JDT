@@ -1,4 +1,8 @@
 // Auth Styles
+.auth-container {
+  display: flex !important;
+  justify-content: center;
+}
 
 // Auth Box
 .auth-box {
@@ -26,7 +30,7 @@
       transition: all 200ms ease-out;
 
       &:hover {
-        transform: scale(0.9);
+        transform: scale(0.95);
       }
     }
   }
@@ -88,4 +92,3 @@
 }
 
 // Proteted Page
-

@@ -4,6 +4,10 @@
     font-size: $md-fs * 0.9;
     margin-bottom: $spacer * 1.5;
   }
+
+  .main-content {
+    display: flex;
+  }
 }
 
 // Side Bar
@@ -77,4 +81,10 @@
       }
     }
   }
+}
+
+// Flashcards Box
+.flashcards-box {
+  margin-left: $spacer-md;
+  width: 60vw;
 }

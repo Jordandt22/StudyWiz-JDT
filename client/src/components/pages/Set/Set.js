@@ -12,7 +12,11 @@ import { useGetSingleSet } from "../../../query/queries";
 
 // Redux
 import { setSets } from "../../../redux/sets/sets.actions";
+
+// Components
 import SetMainContent from "./SetMainContent";
+import ErrorBox from "../../layout/error/ErrorBox";
+import MainSkeleton from "./skeletons/MainSkeleton";
 
 function Set(props) {
   const {
@@ -42,9 +46,9 @@ function Set(props) {
 
   // Loading & Error
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <MainSkeleton setId={setId} />;
   } else if (isError) {
-    return <div>{error.message}</div>;
+    return <ErrorBox message={error.message} />;
   }
 
   const { set } = data.data;

@@ -5,9 +5,6 @@ import App from "./App";
 // import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 // import reportWebVitals from './reportWebVitals';
 
-// MUI
-import { StylesProvider } from "@material-ui/core";
-
 // React Query
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
@@ -21,20 +18,18 @@ import ContextProvider from "./context/Context.provider";
 
 ReactDOM.render(
   <React.StrictMode>
-    <StylesProvider injectFirst={true}>
-      <QueryClientProvider client={new QueryClient()}>
-        <Provider store={store}>
-          <ContextProvider>
-            <App />
-          </ContextProvider>
-        </Provider>
+    <QueryClientProvider client={new QueryClient()}>
+      <Provider store={store}>
+        <ContextProvider>
+          <App />
+        </ContextProvider>
+      </Provider>
 
-        {/* React Query Dev Tools */}
-        {process.env.NODE_ENV === "development" && (
-          <ReactQueryDevtools initialIsOpen={false} />
-        )}
-      </QueryClientProvider>
-    </StylesProvider>
+      {/* React Query Dev Tools */}
+      {process.env.NODE_ENV === "development" && (
+        <ReactQueryDevtools initialIsOpen={false} />
+      )}
+    </QueryClientProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 // MUI
-import { Box } from "@material-ui/core";
+import { Box } from "@mui/material";
 
 // Utils
 import {
@@ -53,6 +53,7 @@ function SetsQuery(props) {
     combinedSetsData,
     sortedBy === 0
   );
+
   return (
     <Box className="sets">
       {/* This Week Sets */}

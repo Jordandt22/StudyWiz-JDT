@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
 // MUI
-import { Box } from "@material-ui/core";
+import { Box } from "@mui/material";
 import { ClickAwayListener } from "@mui/material";
-import { KeyboardArrowUp, KeyboardArrowDown } from "@material-ui/icons";
+import { KeyboardArrowUp, KeyboardArrowDown } from "@mui/icons-material";
 
 // Contexts
 import { useSets } from "../../../context/sets/Sets.context";

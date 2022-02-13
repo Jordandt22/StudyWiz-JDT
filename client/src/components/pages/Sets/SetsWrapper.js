@@ -8,7 +8,7 @@ import { NavLink } from "react-router-dom";
 import { filterSets } from "../../../utils/sets.utils";
 
 // MUI
-import { Box } from "@material-ui/core";
+import { Box } from "@mui/material";
 
 // Contexts
 import { useSets } from "../../../context/sets/Sets.context";

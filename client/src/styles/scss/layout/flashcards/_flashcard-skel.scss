@@ -1,0 +1,30 @@
+// Flashcard Skeletons
+.fc-skel-container {
+  // Title Skeleton
+  .title-box {
+    margin-bottom: $spacer-md;
+
+    .title {
+      height: 3vh;
+      margin-bottom: $spacer-small / 2;
+      background: $black-shadow;
+    }
+
+    .title-skel-1 {
+      width: 65%;
+    }
+
+    .title-skel-2 {
+      width: 40%;
+    }
+  }
+
+  // Flashcard Skeleton
+  .current-fc {
+    height: 60vh;
+  }
+
+  .fc-nav-bar {
+    border-radius: $border-radius-width;
+  }
+}

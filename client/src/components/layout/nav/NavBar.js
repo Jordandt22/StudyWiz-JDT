@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { NavLink, useLocation } from "react-router-dom";
 
 // MUI
-import { Box } from "@material-ui/core";
+import { Box } from "@mui/material";
 
 // Components
 import AuthedNav from "./AuthedNav";

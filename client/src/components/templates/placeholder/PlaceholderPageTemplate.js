@@ -4,7 +4,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 // MUI
-import { Container, Box } from "@material-ui/core";
+import { Container, Box } from "@mui/material";
 
 // Components
 import Footer from "../../layout/footer/Footer";

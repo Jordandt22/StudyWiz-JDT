@@ -1,0 +1,56 @@
+// Flashcard Set Creator Styles
+.set-creator {
+  margin: $spacer 0;
+}
+
+// Creator Profile
+.creator-profile {
+  .user-photo-box {
+    $s: 5rem;
+    width: $s;
+    height: $s;
+
+    p {
+      font-size: $main-fs * 1.5;
+    }
+  }
+
+  .creator-info {
+    margin-left: $spacer-small;
+
+    p,
+    strong {
+      font-size: $main-fs * 0.75;
+    }
+
+    p {
+      font-weight: lighter;
+      margin-bottom: $spacer-small * 0.35;
+    }
+  }
+}
+
+// Flashcard Set Options
+.fc-set-options {
+  .fc-set-opt-btn {
+    $s: 2.75rem;
+    width: $s;
+    height: $s;
+    outline: none;
+    border: none;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 0 5px 1px rgba($black-shadow, 0.15);
+    margin-left: $spacer-small;
+    transition: all 200ms ease-out;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 0.5;
+    }
+  }
+
+  .fav-icon {
+    color: $primary-clr;
+  }
+}

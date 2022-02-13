@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 
 // MUI
-import { Container, Box } from "@material-ui/core";
+import { Container, Box } from "@mui/material";
 
 // Contexts
 import { useCommunity } from "../../../context/community/Community.context";
