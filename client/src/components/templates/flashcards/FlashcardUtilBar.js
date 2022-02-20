@@ -4,20 +4,23 @@ import React from "react";
 import { Box } from "@mui/material";
 import { VolumeUp, StarBorderOutlined } from "@mui/icons-material";
 
-// Speech
-import { textToSpeech } from "../../../config/speech.config";
+// Contexts
+import { useSpeech } from "../../../context/speech/Speech.context";
 
 function FlashcardUtilBar(props) {
-  const { userSet, setId, termId, text } = props;
+  const { audioFrom, text, userSet, setId, termId } = props;
   // const userSetTerm = userSet.favoriteTerms;
+  const { textToSpeech, speech } = useSpeech();
 
   return (
     <Box className="fc-util-bar center-vertical">
       {/* Audio */}
       <button
         variant="button"
-        className={`audio-btn`}
-        onClick={() => textToSpeech(text)}
+        className={`audio-btn ${
+          speech.audioFrom === audioFrom ? "active" : "not-active"
+        }`}
+        onClick={() => textToSpeech(audioFrom, text, "en-US")}
       >
         <VolumeUp className="icon" />
       </button>

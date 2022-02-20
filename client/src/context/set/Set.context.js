@@ -85,6 +85,9 @@ export default (props) => {
   const openKeyboard = () => setOpen(true);
   const closeKeyboard = () => setOpen(false);
 
+  // Terms Display
+  const [showAll, setShowAll] = useState(true);
+
   return (
     <SetContext.Provider
       value={{
@@ -101,6 +104,10 @@ export default (props) => {
           keyboardOpen,
           openKeyboard,
           closeKeyboard,
+        },
+        termsDisplay: {
+          showAll,
+          setShowAll,
         },
       }}
     >

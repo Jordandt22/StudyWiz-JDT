@@ -1,0 +1,89 @@
+// Terms Display Styles
+.terms-display-container {
+  width: 85% !important;
+  padding: 0 !important;
+  margin-top: $spacer-lg;
+  margin-left: 0 !important;
+
+  .terms-header {
+    margin-bottom: $spacer * 1.5;
+
+    h3 {
+      color: grey;
+      font-size: $main-fs * 1.25;
+      font-weight: lighter;
+    }
+
+    .terms-filter-btn {
+      border: none;
+      background: lightgrey;
+      color: grey;
+      font-size: $main-fs / 1.35;
+      border-radius: $border-radius-width / 2.5;
+      padding: 0.5rem 1rem;
+      margin-left: $spacer-small;
+      transition: all 250ms ease-out;
+
+      &:hover {
+        cursor: pointer;
+        color: white;
+        background: rgba($primary-clr, 0.25);
+      }
+    }
+
+    .active {
+      background: $primary-clr;
+      color: white;
+
+      &:hover {
+        cursor: pointer;
+        background: $primary-clr;
+      }
+    }
+  }
+}
+
+// Terms List
+.terms-display-list {
+  padding: 0 !important;
+
+  .term-container {
+    display: flex;
+    position: relative;
+    margin-top: $spacer-md * 0.5;
+  }
+
+  .fc-util-bar {
+    position: static;
+    margin-left: $spacer;
+    height: 15vh;
+  }
+
+  .term-box {
+    width: 100%;
+    background: white;
+    border-radius: $border-radius-width / 2.5;
+    box-shadow: 0 0 5px 1px rgba($black-shadow, 0.05);
+    padding: $spacer-small * 1.25 $spacer;
+
+    h4 {
+      width: 25%;
+    }
+
+    p {
+      height: 100%;
+      max-width: 75%;
+      padding-left: $spacer * 1.5;
+      border-left: 2px solid rgba(lightgrey, 0.35);
+    }
+
+    h4,
+    p {
+      align-self: flex-start;
+      color: black;
+      font-weight: lighter;
+      font-size: $main-fs * 0.75;
+      line-height: $spacer;
+    }
+  }
+}

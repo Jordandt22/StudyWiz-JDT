@@ -8,6 +8,7 @@ import { Box } from "@mui/material";
 import MainSideBar from "./main/MainSidebar";
 import Flashcards from "./main/Flashcards";
 import SetCreator from "./creator/SetCreator";
+import TermsDisplay from "./terms/TermsDisplay";
 
 function SetMainContent(props) {
   const {
@@ -31,6 +32,9 @@ function SetMainContent(props) {
 
       {/* Creator */}
       <SetCreator userSet={userSet} setId={setId} />
+
+      {/* Terms */}
+      <TermsDisplay setId={setId} userSet={userSet} terms={terms} />
     </Box>
   );
 }

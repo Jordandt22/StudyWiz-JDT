@@ -22,14 +22,15 @@
 @import "layout/footer/footer";
 @import "layout/flashcards/flashcards";
 @import "layout/flashcards/flashcard-skel";
-@import "layout/flashcards/creator";
-@import "layout/flashcards/creator-skel";
 
 // Pages
 @import "pages/home/dashboard";
 @import "pages/search/search";
 @import "pages/sets/sets";
 @import "pages/set/set";
+@import "pages/set/creator";
+@import "pages/set/creator-skel";
+@import "pages/set/terms-display";
 
 // My Styles
 html {

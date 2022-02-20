@@ -191,4 +191,8 @@
       font-size: $main-fs * 1.15;
     }
   }
+
+  .active {
+    color: $secondary-clr;
+  }
 }

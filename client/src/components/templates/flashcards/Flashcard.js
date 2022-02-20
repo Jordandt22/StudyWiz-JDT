@@ -5,9 +5,7 @@ import { Container, Box } from "@mui/material";
 
 // Contexts
 import { useSet } from "../../../context/set/Set.context";
-
-// Speech
-import { cancelTextToSpeech } from "../../../config/speech.config";
+import { useSpeech } from "../../../context/speech/Speech.context";
 
 // Components
 import FlashcardUtilBar from "./FlashcardUtilBar";
@@ -20,6 +18,7 @@ function Flashcard(props) {
       flipCard,
     },
   } = useSet();
+  const { cancelTextToSpeech } = useSpeech();
   const { term, definition, _id: termId } = terms[pos];
 
   return (
@@ -41,6 +40,7 @@ function Flashcard(props) {
 
       {/* Flashcard Util Bar */}
       <FlashcardUtilBar
+        audioFrom="FC"
         userSet={userSet}
         setId={setId}
         termId={termId}
