@@ -1,8 +1,15 @@
 import React, { createContext, useContext, useEffect, useRef } from "react";
 import { connect } from "react-redux";
 
+// Redux
+import { setSets } from "../../redux/sets/sets.actions";
+
+// Contexts
+import { useReactQuery } from "../react-query/ReactQuery.context";
+
 // Socket
 import { io } from "socket.io-client";
+import connectEvents from "./APISocket.events";
 
 // APISocket Context
 const APISocketContext = createContext();
@@ -13,12 +20,20 @@ const ReduxState = (state) => ({
   user: state.user,
 });
 
-export default connect(ReduxState)((props) => {
+const ReduxActions = (dispatch) => ({
+  setSets: (sets) => dispatch(setSets(sets)),
+});
+
+export default connect(
+  ReduxState,
+  ReduxActions
+)((props) => {
   const {
     user: {
       auth: { loggedIn, fbId, accessToken },
     },
   } = props;
+  const { invalidateQuery } = useReactQuery();
   let APISocket = useRef(null);
 
   // Favorite a set
@@ -37,45 +52,23 @@ export default connect(ReduxState)((props) => {
     });
 
   // Creating a Socket Client for the API Namespace
-  // useEffect(() => {
-  //   if (loggedIn && fbId && accessToken) {
-  //     const socket = io(process.env.REACT_APP_PROXY_SERVER_URL + "/api", {
-  //       auth: { token: accessToken },
-  //     });
-  //     APISocket.current = socket;
+  useEffect(() => {
+    if (loggedIn && fbId && accessToken) {
+      const socket = io(process.env.REACT_APP_PROXY_SERVER_URL + "/api", {
+        auth: { token: accessToken },
+      });
+      APISocket.current = socket;
 
-  //     // Connection Error
-  //     socket.on("connect_error", (data) => {
-  //       console.log(data);
-  //     });
+      // Events
+      connectEvents(socket, { ...props, invalidateQuery });
 
-  //     // Favorite Set Response
-  //     socket.on("favorite-set-response", (data) => {
-  //       console.log(data);
-  //     });
-
-  //     // Favorite Set Response Error
-  //     socket.on("favorite-set-response-error", (data) => {
-  //       console.log(data);
-  //     });
-
-  //     // Favorite Term Response
-  //     socket.on("favorite-term-response", (data) => {
-  //       console.log(data);
-  //     });
-
-  //     // Favorite Term Response Error
-  //     socket.on("favorite-term-response-error", (data) => {
-  //       console.log(data);
-  //     });
-
-  //     // CLEAN UP THE EFFECT
-  //     return () => {
-  //       socket.disconnect();
-  //     };
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [loggedIn, fbId, accessToken]);
+      // CLEAN UP THE EFFECT
+      return () => {
+        socket.disconnect();
+      };
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loggedIn, fbId, accessToken]);
 
   return (
     <APISocketContext.Provider value={{ APISocket, favoriteSet, favoriteTerm }}>

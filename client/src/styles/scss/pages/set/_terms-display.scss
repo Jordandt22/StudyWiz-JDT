@@ -86,4 +86,12 @@
       line-height: $spacer;
     }
   }
+
+  .no-terms {
+    width: fit-content;
+    color: white;
+    background: rgb(160, 159, 159);
+    padding: 0.75rem $spacer;
+    border-radius: $border-radius-width / 2;
+  }
 }

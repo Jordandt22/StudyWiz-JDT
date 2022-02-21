@@ -2,8 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 // MUI
-import { Alert as AlertComponent, AlertTitle } from "@mui/material";
-import { Box } from "@mui/material";
+import { Alert as AlertComponent, AlertTitle, Box } from "@mui/material";
 
 // Redux
 import { resetAlert } from "../../../redux/global/global.actions";

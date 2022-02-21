@@ -9,24 +9,27 @@ import SearchContextProvider from "./search/Search.context";
 import SetsContextProvider from "./sets/Sets.context";
 import SetContextProvider from "./set/Set.context";
 import SpeechContextProvider from "./speech/Speech.context";
+import ReactQueryContextProvider from "./react-query/ReactQuery.context";
 
 function ContextProvider(props) {
   return (
     <NavContextProvider>
       <SpeechContextProvider>
-        <SetsContextProvider>
-          <SetContextProvider>
-            <CommunityContextProvider>
-              <SearchContextProvider>
-                <UserContextProvider>
-                  <APISocketContextProvider>
-                    {props.children}
-                  </APISocketContextProvider>
-                </UserContextProvider>
-              </SearchContextProvider>
-            </CommunityContextProvider>
-          </SetContextProvider>
-        </SetsContextProvider>
+        <ReactQueryContextProvider>
+          <SetsContextProvider>
+            <SetContextProvider>
+              <CommunityContextProvider>
+                <SearchContextProvider>
+                  <UserContextProvider>
+                    <APISocketContextProvider>
+                      {props.children}
+                    </APISocketContextProvider>
+                  </UserContextProvider>
+                </SearchContextProvider>
+              </CommunityContextProvider>
+            </SetContextProvider>
+          </SetsContextProvider>
+        </ReactQueryContextProvider>
       </SpeechContextProvider>
     </NavContextProvider>
   );

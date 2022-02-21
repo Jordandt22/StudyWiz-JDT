@@ -1,6 +1,6 @@
 const { Server } = require("socket.io");
 const { favoriteSet, favoriteTerm } = require("./socket.handlers");
-const { authSocket, getSocketUser } = require("./socket.mw");
+const { authSocket } = require("./socket.mw");
 
 module.exports = (server) => {
   const io = new Server(server, {
@@ -15,9 +15,6 @@ module.exports = (server) => {
 
   // Auth -> Firebase Token
   APINamespace.use(authSocket);
-
-  // Redis User Cache
-  APINamespace.use(getSocketUser);
 
   // Connection to API Namespace
   APINamespace.on("connection", (socket) => {

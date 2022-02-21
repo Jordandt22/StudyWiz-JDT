@@ -3,6 +3,7 @@ const User = UserModel();
 const { cacheData } = require("../redis/redis.mw");
 const { USER_KEY } = require("../redis/redis.keys");
 const { emitSocketError } = require("../utils/global.utils");
+const { getSocketUser } = require("../utils/socket.utils");
 
 // Update User
 const updateUserCache = async (fbId, updatedUser) =>
@@ -11,7 +12,14 @@ const updateUserCache = async (fbId, updatedUser) =>
 module.exports = {
   favoriteSet: async (socket, data) => {
     const ERROR_EVENT = "favorite-set-response-error";
-    const { sets } = socket.data.user;
+
+    // Getting the Socket User's Data
+    const { data: socketUserData, error } = await getSocketUser(socket);
+    if (error)
+      return emitSocketError(socket, ERROR_EVENT, error.status, error.message);
+
+    // Checking if the Set Exists
+    const { sets } = socketUserData;
     const { fbId, setId } = data;
     const setExist = sets.filter((set) => set.setId === setId)[0];
     if (!setExist)
@@ -33,11 +41,21 @@ module.exports = {
       return emitSocketError(socket, ERROR_EVENT, 404, "UNABLE TO FIND USER");
 
     await updateUserCache(fbId, updatedUser);
-    socket.emit("favorite-set-response", { user: { sets: updatedUser.sets } });
+    socket.emit("favorite-set-response", {
+      user: { sets: updatedUser.sets },
+      dataSent: data,
+    });
   },
   favoriteTerm: async (socket, data) => {
     const ERROR_EVENT = "favorite-term-response-error";
-    const { sets } = socket.data.user;
+
+    // Getting the Socket User's Data
+    const { data: socketUserData, error } = await getSocketUser(socket);
+    if (error)
+      return emitSocketError(socket, ERROR_EVENT, error.status, error.message);
+
+    // Checking if the Set Exists
+    const { sets } = socketUserData;
     const { fbId, setId, termId } = data;
     const setExist = sets.filter((set) => set.setId === setId)[0];
     if (!setExist)
@@ -68,6 +86,9 @@ module.exports = {
       return emitSocketError(socket, ERROR_EVENT, 404, "UNABLE TO FIND USER");
 
     await updateUserCache(fbId, updatedUser);
-    socket.emit("favorite-term-response", { user: { sets: updatedUser.sets } });
+    socket.emit("favorite-term-response", {
+      user: { sets: updatedUser.sets },
+      dataSent: data,
+    });
   },
 };

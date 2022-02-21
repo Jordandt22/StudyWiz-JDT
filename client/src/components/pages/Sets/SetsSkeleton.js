@@ -1,8 +1,7 @@
 import React from "react";
 
 // MUI
-import { Box } from "@mui/material";
-import { Divider } from "@mui/material";
+import { Box, Divider } from "@mui/material";
 
 // Components
 import MinimalSetsSkeleton from "../../templates/sets/skeletons/MinimalSetsSkeleton";

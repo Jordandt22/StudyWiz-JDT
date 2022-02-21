@@ -1595,6 +1595,11 @@ html {
   font-size: 1.725rem;
 }
 
+.fc-util-bar .audio-btn .fav-icon,
+.fc-util-bar .favorite-btn .fav-icon {
+  color: #f8c818;
+}
+
 .fc-util-bar .active {
   color: #ffe600;
 }
@@ -2057,7 +2062,7 @@ html {
 }
 
 .fc-set-options .fav-icon {
-  color: #00a3ff;
+  color: #f8c818;
 }
 
 .creator-profile .p-skel {
@@ -2164,6 +2169,16 @@ html {
   font-weight: lighter;
   font-size: 1.125rem;
   line-height: 2rem;
+}
+
+.terms-display-list .no-terms {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  color: white;
+  background: #a09f9f;
+  padding: 0.75rem 2rem;
+  border-radius: 5px;
 }
 
 html {

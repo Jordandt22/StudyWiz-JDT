@@ -13,6 +13,9 @@ import {
 // Queries
 import { useGetSetCreator } from "../../../../query/queries";
 
+// Contexts
+import { useAPISocket } from "../../../../context/api-socket/APISocket.context";
+
 // Components
 import ErrorBox from "../../../layout/error/ErrorBox";
 import UserPhoto from "../../../templates/UserPhoto";
@@ -26,6 +29,7 @@ function SetCreator(props) {
       auth: { fbId },
     },
   } = props;
+  const { APISocket, favoriteSet } = useAPISocket();
   const { data, isLoading, isError, error } = useGetSetCreator(
     `${fbId}_SET_SETID:${setId}_CREATOR`,
     {
@@ -72,7 +76,11 @@ function SetCreator(props) {
 
         {/* Favorite Set */}
         <Tooltip title={!favorite ? "Favorite Set" : "Unfavorite Set"}>
-          <button variant="button" className="fc-set-opt-btn center">
+          <button
+            variant="button"
+            className="fc-set-opt-btn center"
+            onClick={() => favoriteSet(APISocket.current, setId)}
+          >
             {!favorite ? (
               <StarBorderOutlined className="icon" />
             ) : (
