@@ -10,6 +10,7 @@ import SetsContextProvider from "./sets/Sets.context";
 import SetContextProvider from "./set/Set.context";
 import SpeechContextProvider from "./speech/Speech.context";
 import ReactQueryContextProvider from "./react-query/ReactQuery.context";
+import CreateFormContextProvider from "./create-form/CreateForm.context";
 
 function ContextProvider(props) {
   return (
@@ -22,7 +23,9 @@ function ContextProvider(props) {
                 <SearchContextProvider>
                   <UserContextProvider>
                     <APISocketContextProvider>
-                      {props.children}
+                      <CreateFormContextProvider>
+                        {props.children}
+                      </CreateFormContextProvider>
                     </APISocketContextProvider>
                   </UserContextProvider>
                 </SearchContextProvider>

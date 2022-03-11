@@ -18,6 +18,7 @@ import ProtectedRoute from "./components/layout/auth/ProtectedRoute";
 import NotFound from "./components/pages/NotFound/NotFound";
 import ComingSoon from "./components/pages/ComingSoon/ComingSoon";
 import Set from "./components/pages/Set/Set";
+import Create from "./components/pages/Create/Create";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
         {/* Loading Screen */}
         <LoadingScreen />
 
+        {/* Routes */}
         <Routes>
           <Route exact path="/" element={<Home />} />
 
@@ -55,6 +57,11 @@ function App() {
           />
 
           {/* User */}
+          <Route
+            exact
+            path="/create"
+            element={<ProtectedRoute Component={<Create />} />}
+          />
           <Route
             exact
             path="/sets"

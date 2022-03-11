@@ -69,7 +69,7 @@ function SetCreator(props) {
       <Box className="fc-set-options row">
         {/* Copy Set */}
         <Tooltip title="Copy Set">
-          <button variant="button" className="fc-set-opt-btn center">
+          <button type="button" className="fc-set-opt-btn center">
             <ContentCopyRounded className="icon" />
           </button>
         </Tooltip>
@@ -92,7 +92,7 @@ function SetCreator(props) {
         {/* More Options (Only for Creator) */}
         {isCreator && (
           <Tooltip title="More">
-            <button variant="button" className="fc-set-opt-btn center">
+            <button type="button" className="fc-set-opt-btn center">
               <MoreHorizRounded className="icon" />
             </button>
           </Tooltip>
