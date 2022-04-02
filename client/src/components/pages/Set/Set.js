@@ -13,6 +13,9 @@ import { useGetSingleSet } from "../../../query/queries";
 // Redux
 import { setSets } from "../../../redux/sets/sets.actions";
 
+// Contexts
+import { useSet } from "../../../context/set/Set.context";
+
 // Components
 import SetMainContent from "./SetMainContent";
 import ErrorBox from "../../layout/error/ErrorBox";
@@ -25,7 +28,18 @@ function Set(props) {
     },
     setSets,
   } = props;
+  const {
+    terms: { resetCurTerm },
+  } = useSet();
   const { setId } = useParams();
+
+  // Resetting Current Term
+  useEffect(() => {
+    resetCurTerm();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [setId]);
+
+  // Getting Set Data
   const { data, isLoading, isError, error } = useGetSingleSet(
     `${fbId}_SET_SETID:${setId}`,
     {

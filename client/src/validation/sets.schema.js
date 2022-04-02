@@ -10,8 +10,8 @@ const TermSchema = Yup.object().shape({
     .required("A term is required."),
   definition: Yup.string()
     .trim()
-    .min(1, "Term must be between 1-1000 characters.")
-    .max(1000, "Term must be between 1-1000 characters.")
+    .min(1, "Definition must be between 1-1000 characters.")
+    .max(1000, "Definition must be between 1-1000 characters.")
     .required("A definition is required."),
 });
 
@@ -31,4 +31,8 @@ export const SetSchema = Yup.object().shape({
     .max(50, "The max number of terms is 50 per set.")
     .of(TermSchema)
     .required("Must have atleast 1 term to create a set."),
+  importTerms: Yup.string()
+    .trim()
+    .min(1, "Must")
+    .max(1000 * 100, "The character limit is 100,000."),
 });

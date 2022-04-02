@@ -29,7 +29,12 @@ function CustomInput(props) {
             {as === "textarea" ? (
               <TextareaAutosize {...inputProps} {...field} />
             ) : (
-              <input type="text" {...inputProps} {...field} />
+              <input
+                type="text"
+                autoComplete="off"
+                {...inputProps}
+                {...field}
+              />
             )}
 
             <Box className="under-input row">

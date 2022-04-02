@@ -1,0 +1,18 @@
+// Auto Save Notification Styles
+.auto-save-notif {
+  position: fixed;
+  bottom: 5vh;
+  left: 5vw;
+  background: #000034;
+  color: white;
+  padding: $spacer-small $spacer;
+  border-radius: $border-radius-width * 0.5;
+  box-shadow: 0 0 5px 1px rgba(black, 0.25);
+  animation: slide-to-right 1500ms forwards ease-out;
+
+  .icon {
+    color: #00ff80;
+    font-size: $main-fs * 1.25;
+    margin-right: $spacer-small;
+  }
+}

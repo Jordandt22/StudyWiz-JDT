@@ -10,7 +10,7 @@ const createURI = (fbId) => SETS_URI + `/user/${fbId}`;
 
 // GET - Get Data for Multiple Sets
 export const getMultipleSets = async (fbId, sets) =>
-  await axios.post(createURI(fbId), {
+  await axios.post(createURI(fbId) + "/multiple", {
     sets: sets.map((set) => ({
       setId: set.setId ? set.setId : set._id,
     })),
@@ -46,3 +46,12 @@ export const getSingleSet = async (fbId, setId) =>
 // GET - Get Creator Data for a Specific Set
 export const getSetCreator = async (fbId, setId) =>
   await axios.get(createURI(fbId) + `/${setId}/creator`);
+
+// POST - Create a Set
+export const createSet = async (fbId, set, cb) =>
+  await axios
+    .post(createURI(fbId), {
+      ...set,
+    })
+    .then((data) => cb(data, null))
+    .catch((err) => cb(null, err));

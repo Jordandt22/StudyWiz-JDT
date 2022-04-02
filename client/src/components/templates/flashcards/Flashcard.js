@@ -19,7 +19,17 @@ function Flashcard(props) {
     },
   } = useSet();
   const { cancelTextToSpeech } = useSpeech();
-  const { term, definition, _id: termId } = terms[pos];
+  const {
+    term,
+    definition,
+    _id: termId,
+  } = terms[pos]
+    ? terms[pos]
+    : {
+        term: "Unknown Term",
+        definition: "Unknown Definition",
+        _id: "Unknown ID",
+      };
 
   return (
     <Container className="fc-container">

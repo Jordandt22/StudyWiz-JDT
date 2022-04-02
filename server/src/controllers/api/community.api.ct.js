@@ -35,7 +35,7 @@ const getCurrentSkip = (page, limit) => (page > 0 ? limit * (page - 1) : 0);
 // Get Next Info
 const getNextInfo = (limit, page, setsLength) => ({
   limit,
-  page: setsLength <= limit ? 1 : Number(page) + 1,
+  page: setsLength <= limit ? null : Number(page) + 1,
 });
 
 module.exports = {

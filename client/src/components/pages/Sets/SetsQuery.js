@@ -46,21 +46,32 @@ function SetsQuery(props) {
   }
 
   const { sets: setsData } = data.data;
-  const searchedSets = search ? searchSets(setsData, search) : setsData;
+  const combinedSetsData = combineSetsData(sets, setsData);
+  const searchedSets = search
+    ? searchSets(combinedSetsData, search)
+    : combinedSetsData;
   const sortedSets = sortSets(searchedSets, sortedBy);
-  const combinedSetsData = combineSetsData(sets, sortedSets);
+  const isSortedByRecent = sortedBy === 0;
   const { thisWeekSets, notThisWeekSets } = organizeSets(
-    combinedSetsData,
-    sortedBy === 0
+    sortedSets,
+    isSortedByRecent
   );
 
   return (
     <Box className="sets">
       {/* This Week Sets */}
-      <SetsList sets={thisWeekSets} title={titles[0]} />
+      <SetsList
+        sets={thisWeekSets}
+        title={titles[0]}
+        isSortedByRecent={isSortedByRecent}
+      />
 
       {/* Before This Week Sets */}
-      <SetsList sets={notThisWeekSets} title={titles[1]} />
+      <SetsList
+        sets={notThisWeekSets}
+        title={titles[1]}
+        isSortedByRecent={isSortedByRecent}
+      />
     </Box>
   );
 }

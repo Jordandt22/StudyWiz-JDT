@@ -44,7 +44,11 @@ const { checkSet } = require("../../middleware/api.mw");
 // ---- Get Data ----
 
 // POST - Get Multiple Sets
-setsRouter.post("/", bodyValidator(MultipleSetsSchema), getMultipleSets);
+setsRouter.post(
+  "/multiple",
+  bodyValidator(MultipleSetsSchema),
+  getMultipleSets
+);
 
 // GET - Get a Set
 setsRouter.get(

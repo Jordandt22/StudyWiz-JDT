@@ -31,6 +31,12 @@ export default (props) => {
     pos: 0,
     showTerm: true,
   });
+  const resetCurTerm = () =>
+    setCurTerm({
+      pos: 0,
+      showTerm: true,
+    });
+
   const prevTerm = () =>
     setCurTerm((curTerm) => {
       const { pos: curPos } = curTerm;
@@ -96,6 +102,7 @@ export default (props) => {
         handleKeyDown,
         terms: {
           currentTerm,
+          resetCurTerm,
           prevTerm,
           nextTerm,
           flipCard,

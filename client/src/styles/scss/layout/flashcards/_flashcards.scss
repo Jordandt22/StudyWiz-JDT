@@ -73,6 +73,10 @@
     .icon {
       font-size: $md-fs * 0.75;
     }
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   p {

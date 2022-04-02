@@ -157,16 +157,17 @@ module.exports = {
   getMultipleSets: async (req, res, next) => {
     const { sets } = req.body;
     const { fbId } = req.user;
+    const formatedSets = sets.map((set) => ({ _id: set.setId }));
 
     // Getting Data for the Multiple Sets
     const multipleSetsData = await Sets.find({
       $or: [
-        { $and: [{ creatorFbId: fbId }, { $or: sets }] },
+        { $and: [{ creatorFbId: fbId }, { $or: formatedSets }] },
         {
           $and: [
             { creatorFbId: { $not: { $regex: cleanStringForRegex(fbId) } } },
             { "privacy.private": false },
-            { $or: sets },
+            { $or: formatedSets },
           ],
         },
       ],
@@ -174,7 +175,7 @@ module.exports = {
 
     // Checking the Sets
     let setsIdObj = {};
-    sets.map((set) => (setsIdObj[set.setId] = true));
+    formatedSets.map((set) => (setsIdObj[set._id] = true));
     const checkedMultipleSetsData = multipleSetsData.filter((set) => {
       return setsIdObj[set.id];
     });

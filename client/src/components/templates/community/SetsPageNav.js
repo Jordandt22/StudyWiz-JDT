@@ -13,6 +13,7 @@ function SetsPageNav(props) {
   return (
     <Box className="between-row sets-page-nav">
       <ArrowBack
+        disabled={!isPrevActive}
         onClick={() => {
           if (isPrevActive) prevPage();
         }}
@@ -23,6 +24,7 @@ function SetsPageNav(props) {
       <p className="center">{page}</p>
 
       <ArrowForward
+        disabled={!isNextActive}
         onClick={() => {
           if (isNextActive) nextPage(nextPageNum);
         }}

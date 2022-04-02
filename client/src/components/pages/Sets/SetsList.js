@@ -10,7 +10,7 @@ import { useSets } from "../../../context/sets/Sets.context";
 import SetCard from "./SetCard";
 
 function SetsList(props) {
-  const { sets, title } = props;
+  const { sets, title, isSortedByRecent } = props;
   const { search } = useSets();
 
   return (
@@ -24,7 +24,8 @@ function SetsList(props) {
       {/* Sets */}
       {sets.length <= 0 ? (
         <p className="no-sets">
-          You haven't used any sets <span>{title}</span>
+          You haven't {isSortedByRecent ? "used" : "created"} any sets{" "}
+          <span>{title}</span>
           {search ? ` named ${search}.` : "."}
         </p>
       ) : (

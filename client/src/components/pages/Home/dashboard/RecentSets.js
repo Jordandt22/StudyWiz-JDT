@@ -4,6 +4,12 @@ import { connect } from "react-redux";
 // Queries
 import { useGetMultipleSets } from "../../../../query/queries";
 
+// Utils
+import {
+  combineSetsData,
+  sortSetsByRecent,
+} from "../../../../utils/sets.utils";
+
 // Components
 import SetCard from "../../../templates/sets/SetCard";
 import ErrorBox from "../../../layout/error/ErrorBox";
@@ -33,18 +39,20 @@ function RecentSets(props) {
   }
 
   const { sets: setsData } = data.data;
+  const combinedSets = combineSetsData(sets, setsData);
+  const sortedSets = sortSetsByRecent(combinedSets);
   return (
     <>
-      {setsData.map((set) => {
-        const { title, creator, terms, _id } = set;
+      {sortedSets.map((set) => {
+        const { title, creator, terms, setId } = set;
 
         return (
           <SetCard
-            key={`${_id}-recent-set`}
+            key={`${setId}-recent-set`}
             title={title}
             creator={creator}
             terms={terms}
-            setId={_id}
+            setId={setId}
           />
         );
       })}

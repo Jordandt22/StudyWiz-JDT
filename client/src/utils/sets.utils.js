@@ -4,13 +4,15 @@ import isoWeek from "dayjs/plugin/isoWeek";
 dayjs.extend(isoWeek);
 
 export const sortSetsByRecent = (sets) =>
-  sets.sort((a, b) => new Date(a.lastRequested) - new Date(b.lastRequested));
+  sets
+    .slice()
+    .sort((a, b) => new Date(b.lastRequested) - new Date(a.lastRequested));
 
 export const sortSetsByNewest = (sets) =>
-  sets.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+  sets.slice().sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
 export const sortSetsByOldest = (sets) =>
-  sets.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  sets.slice().sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
 
 export const sortSets = (sets, sortedBy) => {
   // Sorted By Filters
@@ -64,5 +66,5 @@ export const organizeSets = (sets, isByRequested) => {
 
 export const searchSets = (sets, search) =>
   sets.filter((set) =>
-    new RegExp(search.replaceAll(/[^a-zA-Z\d:]/ig, ""), "ig").test(set.title)
+    new RegExp(search.replaceAll(/[^a-zA-Z\d:]/gi, ""), "ig").test(set.title)
   );

@@ -243,6 +243,7 @@
     $b: $border-radius-width / 2;
     $bs: 0 0 5px 1px rgba($black-shadow, 0.1);
     margin-bottom: $spacer-md;
+    animation: fade-in 1000ms forwards ease-out;
 
     .term-order {
       background: white;

@@ -59,7 +59,7 @@ function FlashcardNavbar(props) {
           disabled={isNextDisabled}
           variant="button"
           className={`nav-btn ${isNextDisabled && "disabled"}}`}
-          onClick={nextTerm}
+          onClick={() => nextTerm(amountOfTerms)}
         >
           <ArrowForward className="icon" />
         </button>

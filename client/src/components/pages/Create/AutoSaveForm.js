@@ -3,6 +3,9 @@ import React, { useEffect } from "react";
 // Contexts
 import { useCreateForm } from "../../../context/create-form/CreateForm.context";
 
+// Components
+import AutoSaveNotification from "../../layout/alert/AutoSaveNotification";
+
 function AutoSaveForm(props) {
   const { values } = props;
   const { saveFormData } = useCreateForm();
@@ -13,7 +16,7 @@ function AutoSaveForm(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [values]);
 
-  return <></>;
+  return <AutoSaveNotification />;
 }
 
 export default AutoSaveForm;
