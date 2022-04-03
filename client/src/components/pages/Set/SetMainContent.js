@@ -31,7 +31,7 @@ function SetMainContent(props) {
       </main>
 
       {/* Creator */}
-      <SetCreator userSet={userSet} setId={setId} />
+      <SetCreator userSet={userSet} setId={setId} terms={terms} />
 
       {/* Terms */}
       <TermsDisplay setId={setId} userSet={userSet} terms={terms} />

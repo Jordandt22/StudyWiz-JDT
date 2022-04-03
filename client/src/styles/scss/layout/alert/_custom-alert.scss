@@ -1,5 +1,5 @@
 // Auto Save Notification Styles
-.auto-save-notif {
+.custom-alert {
   position: fixed;
   bottom: 5vh;
   left: 5vw;
@@ -9,6 +9,7 @@
   border-radius: $border-radius-width * 0.5;
   box-shadow: 0 0 5px 1px rgba(black, 0.25);
   animation: slide-to-right 1500ms forwards ease-out;
+  z-index: 10000;
 
   .icon {
     color: #00ff80;

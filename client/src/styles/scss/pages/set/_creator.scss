@@ -54,3 +54,88 @@
     color: #f8c818;
   }
 }
+
+// Share Pop Up
+.share-pop-up {
+  height: 80vh;
+  width: 35vw;
+  background: rgb(236, 236, 236);
+  border-radius: $border-radius-width * 0.5;
+
+  header {
+    background: white;
+    padding: $spacer-small;
+
+    h2 {
+      font-family: $main-ft;
+      font-weight: lighter;
+      font-size: $main-fs * 0.8;
+
+      span {
+        font-weight: bold;
+        margin: 0 2.5px;
+      }
+    }
+
+    .close-btn {
+      border: none;
+      outline: none;
+      background: transparent;
+
+      .icon {
+        font-size: $main-fs * 1.25;
+        transition: all 200ms ease-out;
+
+        &:hover {
+          cursor: pointer;
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+
+  // Share Link
+  .share-link-box {
+    margin: $spacer 0;
+    padding: 0 $spacer;
+
+    p {
+      background: white;
+      border: 1px solid lightgrey;
+      padding: $spacer-small * 0.75;
+    }
+  }
+
+  .copy-btn {
+    outline: none;
+    border: none;
+    border-radius: $border-radius-width * 0.5;
+    background: $primary-clr;
+    color: white;
+    padding: $spacer-small * 0.5 $spacer;
+    font-weight: bold;
+    margin-top: $spacer-small;
+    transition: all 200ms ease-out;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 0.5;
+    }
+  }
+
+  // Export Terms
+  .export-terms-box {
+    padding: 0 $spacer;
+
+    p {
+      background: white;
+      border: 1px solid lightgrey;
+      padding: $spacer-small * 0.75;
+      white-space: pre-line;
+      line-height: $spacer * 0.8;
+      height: 35vh;
+      overflow-y: scroll;
+      scroll-behavior: smooth;
+    }
+  }
+}

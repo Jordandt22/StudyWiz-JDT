@@ -2,13 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 // MUI
-import { Box, Tooltip } from "@mui/material";
-import {
-  ContentCopyRounded,
-  StarBorderOutlined,
-  StarRate,
-  MoreHorizRounded,
-} from "@mui/icons-material";
+import { Box } from "@mui/material";
 
 // Queries
 import { useGetSetCreator } from "../../../../query/queries";
@@ -20,11 +14,16 @@ import { useAPISocket } from "../../../../context/api-socket/APISocket.context";
 import ErrorBox from "../../../layout/error/ErrorBox";
 import UserPhoto from "../../../templates/UserPhoto";
 import CreatorSkeleton from "../skeletons/CreatorSkeleton";
+import FCSetOptions from "./FCSetOptions";
+import SharePopUp from "./popups/SharePopUp";
+import LinkCopiedNotification from "../../../layout/alert/LinkCopiedNotification";
+import TermsCopiedNotification from "../../../layout/alert/TermsCopiedNotification";
 
 function SetCreator(props) {
   const {
     userSet: { favorite },
     setId,
+    terms,
     user: {
       auth: { fbId },
     },
@@ -66,38 +65,20 @@ function SetCreator(props) {
       </Box>
 
       {/* Flashcard Options */}
-      <Box className="fc-set-options row">
-        {/* Copy Set */}
-        <Tooltip title="Copy Set">
-          <button type="button" className="fc-set-opt-btn center">
-            <ContentCopyRounded className="icon" />
-          </button>
-        </Tooltip>
+      <FCSetOptions
+        favorite={favorite}
+        isCreator={isCreator}
+        APISocket={APISocket}
+        favoriteSet={favoriteSet}
+        setId={setId}
+      />
 
-        {/* Favorite Set */}
-        <Tooltip title={!favorite ? "Favorite Set" : "Unfavorite Set"}>
-          <button
-            variant="button"
-            className="fc-set-opt-btn center"
-            onClick={() => favoriteSet(APISocket.current, setId)}
-          >
-            {!favorite ? (
-              <StarBorderOutlined className="icon" />
-            ) : (
-              <StarRate className="icon fav-icon" />
-            )}
-          </button>
-        </Tooltip>
+      {/* Pop Ups */}
 
-        {/* More Options (Only for Creator) */}
-        {isCreator && (
-          <Tooltip title="More">
-            <button type="button" className="fc-set-opt-btn center">
-              <MoreHorizRounded className="icon" />
-            </button>
-          </Tooltip>
-        )}
-      </Box>
+      {/* Share & Export */}
+      <SharePopUp terms={terms} />
+      <LinkCopiedNotification />
+      <TermsCopiedNotification />
     </Box>
   );
 }

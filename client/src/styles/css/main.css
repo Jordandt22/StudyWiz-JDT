@@ -990,7 +990,7 @@ html {
   padding: 0.8rem 8rem;
 }
 
-.auto-save-notif {
+.custom-alert {
   position: fixed;
   bottom: 5vh;
   left: 5vw;
@@ -1002,9 +1002,10 @@ html {
           box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.25);
   -webkit-animation: slide-to-right 1500ms forwards ease-out;
           animation: slide-to-right 1500ms forwards ease-out;
+  z-index: 10000;
 }
 
-.auto-save-notif .icon {
+.custom-alert .icon {
   color: #00ff80;
   font-size: 1.875rem;
   margin-right: 1rem;
@@ -2131,6 +2132,90 @@ html {
 
 .fc-set-options .fav-icon {
   color: #f8c818;
+}
+
+.share-pop-up {
+  height: 80vh;
+  width: 35vw;
+  background: #ececec;
+  border-radius: 5px;
+}
+
+.share-pop-up header {
+  background: white;
+  padding: 1rem;
+}
+
+.share-pop-up header h2 {
+  font-family: "Signika Negative", sans-serif;
+  font-weight: lighter;
+  font-size: 1.2rem;
+}
+
+.share-pop-up header h2 span {
+  font-weight: bold;
+  margin: 0 2.5px;
+}
+
+.share-pop-up header .close-btn {
+  border: none;
+  outline: none;
+  background: transparent;
+}
+
+.share-pop-up header .close-btn .icon {
+  font-size: 1.875rem;
+  -webkit-transition: all 200ms ease-out;
+  transition: all 200ms ease-out;
+}
+
+.share-pop-up header .close-btn .icon:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.share-pop-up .share-link-box {
+  margin: 2rem 0;
+  padding: 0 2rem;
+}
+
+.share-pop-up .share-link-box p {
+  background: white;
+  border: 1px solid lightgrey;
+  padding: 0.75rem;
+}
+
+.share-pop-up .copy-btn {
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  background: #00a3ff;
+  color: white;
+  padding: 0.5rem 2rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  -webkit-transition: all 200ms ease-out;
+  transition: all 200ms ease-out;
+}
+
+.share-pop-up .copy-btn:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.share-pop-up .export-terms-box {
+  padding: 0 2rem;
+}
+
+.share-pop-up .export-terms-box p {
+  background: white;
+  border: 1px solid lightgrey;
+  padding: 0.75rem;
+  white-space: pre-line;
+  line-height: 1.6rem;
+  height: 35vh;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
 }
 
 .creator-profile .p-skel {

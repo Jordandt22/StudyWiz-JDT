@@ -94,6 +94,36 @@ export default (props) => {
   // Terms Display
   const [showAll, setShowAll] = useState(true);
 
+  // Creator Pop Ups
+  const defaultCreatorPopUpsValue = {
+    share: false,
+    info: false,
+    delete: false,
+  };
+  const [creatorPopUps, setCreatorPopUps] = useState(defaultCreatorPopUpsValue);
+  const openCreatorPopUp = (name) =>
+    setCreatorPopUps((prevState) => ({
+      ...prevState,
+      [name]: { ...prevState[name], open: true },
+    }));
+  const closeCreatorPopUps = () =>
+    setCreatorPopUps((prevState) => ({
+      ...prevState,
+      ...defaultCreatorPopUpsValue,
+    }));
+
+  // Creator Notifications
+  const [creatorNotifs, setCreatorNotifs] = useState({
+    share: false,
+    export: false,
+    delete: false,
+  });
+  const setPopUpNotification = (name, showNotif) =>
+    setCreatorNotifs((prevState) => ({
+      ...prevState,
+      [name]: showNotif,
+    }));
+
   return (
     <SetContext.Provider
       value={{
@@ -115,6 +145,13 @@ export default (props) => {
         termsDisplay: {
           showAll,
           setShowAll,
+        },
+        creator: {
+          creatorPopUps,
+          openCreatorPopUp,
+          closeCreatorPopUps,
+          creatorNotifs,
+          setPopUpNotification,
         },
       }}
     >
