@@ -1,11 +1,13 @@
 import React from "react";
 
 // MUI
-import { Dialog, Box } from "@mui/material";
-import { Close } from "@mui/icons-material";
+import { Box } from "@mui/material";
 
 // Contexts
 import { useSet } from "../../../../../context/set/Set.context";
+
+// Components
+import CustomPopUp from "../../../../templates/popup/CustomPopUp";
 
 function SharePopUp(props) {
   const { terms } = props;
@@ -18,55 +20,48 @@ function SharePopUp(props) {
     .join("\n");
 
   return (
-    <Dialog onClose={closeCreatorPopUps} open={creatorPopUps.share}>
-      <Box className="share-pop-up">
-        <header className="between-row">
-          <h2>
-            <span>Share</span> or <span>Export</span> this Vocab Set
-          </h2>
-
-          <button
-            type="button"
-            className="close-btn"
-            onClick={closeCreatorPopUps}
-          >
-            <Close className="icon" />
-          </button>
-        </header>
-
-        {/* Share Link */}
-        <Box className="share-link-box">
-          <p>{currentPageURL}</p>
-          <button
-            type="button"
-            className="copy-btn"
-            onClick={() => {
-              navigator.clipboard
-                .writeText(currentPageURL)
-                .then(() => setPopUpNotification("share", true));
-            }}
-          >
-            Copy Link
-          </button>
-        </Box>
-
-        {/* Export Terms */}
-        <Box className="export-terms-box">
-          <p>{termsToStr}</p>
-          <button
-            type="button"
-            className="copy-btn"
-            onClick={() => {
-              navigator.clipboard
-                .writeText(termsToStr)
-                .then(() => setPopUpNotification("export", true));
-            }}
-          >
-            Copy Terms
-          </button>
-        </Box>
+    <CustomPopUp
+      onClose={closeCreatorPopUps}
+      open={creatorPopUps.share}
+      className="share-pop-up"
+      title={
+        <h2>
+          <span>Share</span> or <span>Export</span> this Vocab Set
+        </h2>
+      }
+    >
+      {/* Share Link */}
+      <Box className="share-link-box">
+        <p>{currentPageURL}</p>
+        <button
+          type="button"
+          className="copy-btn"
+          onClick={() => {
+            navigator.clipboard
+              .writeText(currentPageURL)
+              .then(() => setPopUpNotification("share", true));
+          }}
+        >
+          Copy Link
+        </button>
       </Box>
-    </Dialog>
+
+      {/* Export Terms */}
+      <Box className="export-terms-box">
+        <p>{termsToStr}</p>
+        <button
+          type="button"
+          className="copy-btn"
+          onClick={() => {
+            navigator.clipboard
+              .writeText(termsToStr)
+              .then(() => setPopUpNotification("export", true));
+          }}
+        >
+          Copy Terms
+        </button>
+      </Box>
+    </CustomPopUp>
   );
 }
 

@@ -13,7 +13,7 @@ import TermsDisplay from "./terms/TermsDisplay";
 function SetMainContent(props) {
   const {
     sets: { sets },
-    set: { title, terms, _id: setId },
+    set: { title, terms, _id: setId, users, privacy, totalUsers },
   } = props;
   const userSet = sets.filter((set) => set.setId === setId)[0];
 
@@ -31,7 +31,12 @@ function SetMainContent(props) {
       </main>
 
       {/* Creator */}
-      <SetCreator userSet={userSet} setId={setId} terms={terms} />
+      <SetCreator
+        userSet={userSet}
+        setId={setId}
+        terms={terms}
+        info={{ title, users, totalUsers, privacy }}
+      />
 
       {/* Terms */}
       <TermsDisplay setId={setId} userSet={userSet} terms={terms} />

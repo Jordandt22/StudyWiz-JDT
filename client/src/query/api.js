@@ -47,6 +47,10 @@ export const getSingleSet = async (fbId, setId) =>
 export const getSetCreator = async (fbId, setId) =>
   await axios.get(createURI(fbId) + `/${setId}/creator`);
 
+// GET - Get Users Data for a Specific Set
+export const getSetUsers = async (fbId, setId) =>
+  await axios.get(createURI(fbId) + `/${setId}/users`);
+
 // POST - Create a Set
 export const createSet = async (fbId, set, cb) =>
   await axios

@@ -18,12 +18,14 @@ import FCSetOptions from "./FCSetOptions";
 import SharePopUp from "./popups/SharePopUp";
 import LinkCopiedNotification from "../../../layout/alert/LinkCopiedNotification";
 import TermsCopiedNotification from "../../../layout/alert/TermsCopiedNotification";
+import InfoPopUp from "./popups/InfoPopUp";
 
 function SetCreator(props) {
   const {
     userSet: { favorite },
     setId,
     terms,
+    info,
     user: {
       auth: { fbId },
     },
@@ -44,10 +46,8 @@ function SetCreator(props) {
     return <ErrorBox message={error.message} />;
   }
 
-  const {
-    creator: { displayName, photoURL, fbId: creatorFbId },
-    isCreator,
-  } = data.data;
+  const { creator, isCreator } = data.data;
+  const { displayName, photoURL, fbId: creatorFbId } = creator;
   return (
     <Box className="set-creator between-row">
       {/* Creator Profile */}
@@ -79,6 +79,9 @@ function SetCreator(props) {
       <SharePopUp terms={terms} />
       <LinkCopiedNotification />
       <TermsCopiedNotification />
+
+      {/* Information */}
+      <InfoPopUp info={info} creator={creator} setId={setId} />
     </Box>
   );
 }

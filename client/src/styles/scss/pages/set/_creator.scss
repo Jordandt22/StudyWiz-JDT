@@ -48,6 +48,12 @@
       cursor: pointer;
       opacity: 0.5;
     }
+
+    p {
+      font-size: $main-fs * 0.85;
+      font-weight: bold;
+      font-family: $main-ft;
+    }
   }
 
   .fav-icon {
@@ -55,45 +61,15 @@
   }
 }
 
-// Share Pop Up
-.share-pop-up {
-  height: 80vh;
+// Share / Export & Info Pop Up
+.share-pop-up,
+.info-pop-up {
+  min-height: 80vh;
   width: 35vw;
-  background: rgb(236, 236, 236);
-  border-radius: $border-radius-width * 0.5;
+  overflow-y: scroll;
+}
 
-  header {
-    background: white;
-    padding: $spacer-small;
-
-    h2 {
-      font-family: $main-ft;
-      font-weight: lighter;
-      font-size: $main-fs * 0.8;
-
-      span {
-        font-weight: bold;
-        margin: 0 2.5px;
-      }
-    }
-
-    .close-btn {
-      border: none;
-      outline: none;
-      background: transparent;
-
-      .icon {
-        font-size: $main-fs * 1.25;
-        transition: all 200ms ease-out;
-
-        &:hover {
-          cursor: pointer;
-          opacity: 0.5;
-        }
-      }
-    }
-  }
-
+.share-pop-up {
   // Share Link
   .share-link-box {
     margin: $spacer 0;
@@ -136,6 +112,98 @@
       height: 35vh;
       overflow-y: scroll;
       scroll-behavior: smooth;
+    }
+  }
+}
+
+.info-pop-up {
+  padding-bottom: $spacer-md;
+
+  // Creator
+  .creator-info-box {
+    margin: $spacer 0;
+    padding: 0 $spacer;
+
+    .user-photo-box {
+      margin-right: $spacer-small;
+    }
+
+    .creator-info {
+      p {
+        font-weight: lighter;
+        margin-bottom: $spacer-small * 0.35;
+        font-size: $main-fs * 0.5;
+      }
+
+      strong {
+        font-size: $main-fs * 0.65;
+      }
+    }
+  }
+
+  // Users
+  .users-box {
+    padding: 0 $spacer;
+
+    .set-user-info {
+      margin-bottom: $spacer * 1.5 !important;
+    }
+
+    // Total Users
+    .total-users {
+      $s: 10vw;
+      width: $s;
+      height: $s;
+      background: rgba(rgb(0, 132, 255), 0.5);
+      padding: $spacer;
+      color: white;
+      transition: all 200ms ease-out;
+
+      &:hover {
+        cursor: pointer;
+        background: rgb(255, 208, 0);
+        border: 3px solid white;
+      }
+
+      .icon {
+        font-size: $main-fs * 1.65;
+      }
+
+      p {
+        font-size: $main-fs * 1.5;
+        font-weight: bold;
+        margin-right: 2.5px;
+      }
+    }
+
+    .active {
+      background: #00ff80;
+    }
+
+    // Privacy
+    .privacy {
+      margin-left: $spacer;
+
+      p {
+        font-size: $main-fs * 0.9;
+        margin-bottom: 2.5px;
+      }
+
+      h3 {
+        font-size: $main-fs * 1.15;
+      }
+    }
+
+    // User
+    .user-box {
+      background: white;
+      padding: $spacer-small * 0.75;
+      margin-bottom: $spacer-small;
+      animation: fade-in 500ms forwards ease-out;
+
+      .user-photo-box {
+        margin-right: $spacer-small * 0.75;
+      }
     }
   }
 }

@@ -54,6 +54,17 @@ function FCSetOptions(props) {
         </button>
       </Tooltip>
 
+      {/* Information */}
+      <Tooltip title="Info">
+        <button
+          type="button"
+          className="fc-set-opt-btn center"
+          onClick={() => openCreatorPopUp("info")}
+        >
+          <p>i</p>
+        </button>
+      </Tooltip>
+
       {/* More Options (Only for Creator) */}
       {isCreator && (
         <Tooltip title="More">

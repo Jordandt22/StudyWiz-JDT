@@ -104,7 +104,7 @@ export default (props) => {
   const openCreatorPopUp = (name) =>
     setCreatorPopUps((prevState) => ({
       ...prevState,
-      [name]: { ...prevState[name], open: true },
+      [name]: true,
     }));
   const closeCreatorPopUps = () =>
     setCreatorPopUps((prevState) => ({

@@ -1,0 +1,37 @@
+// Pop Up Styles
+.custom-pop-up {
+  background: rgb(236, 236, 236);
+  border-radius: $border-radius-width * 0.5;
+
+  header {
+    background: white;
+    padding: $spacer-small;
+
+    h2 {
+      font-family: $main-ft;
+      font-weight: lighter;
+      font-size: $main-fs * 0.8;
+
+      span {
+        font-weight: bold;
+        margin: 0 2.5px;
+      }
+    }
+
+    .close-btn {
+      border: none;
+      outline: none;
+      background: transparent;
+
+      .icon {
+        font-size: $main-fs * 1.25;
+        transition: all 200ms ease-out;
+
+        &:hover {
+          cursor: pointer;
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+}

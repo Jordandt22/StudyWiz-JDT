@@ -1699,6 +1699,44 @@ html {
   border-radius: 10px;
 }
 
+.custom-pop-up {
+  background: #ececec;
+  border-radius: 5px;
+}
+
+.custom-pop-up header {
+  background: white;
+  padding: 1rem;
+}
+
+.custom-pop-up header h2 {
+  font-family: "Signika Negative", sans-serif;
+  font-weight: lighter;
+  font-size: 1.2rem;
+}
+
+.custom-pop-up header h2 span {
+  font-weight: bold;
+  margin: 0 2.5px;
+}
+
+.custom-pop-up header .close-btn {
+  border: none;
+  outline: none;
+  background: transparent;
+}
+
+.custom-pop-up header .close-btn .icon {
+  font-size: 1.875rem;
+  -webkit-transition: all 200ms ease-out;
+  transition: all 200ms ease-out;
+}
+
+.custom-pop-up header .close-btn .icon:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
+
 .no-recent-sets p {
   font-size: 1.2rem;
   line-height: 1.75rem;
@@ -2130,48 +2168,21 @@ html {
   opacity: 0.5;
 }
 
+.fc-set-options .fc-set-opt-btn p {
+  font-size: 1.275rem;
+  font-weight: bold;
+  font-family: "Signika Negative", sans-serif;
+}
+
 .fc-set-options .fav-icon {
   color: #f8c818;
 }
 
-.share-pop-up {
-  height: 80vh;
+.share-pop-up,
+.info-pop-up {
+  min-height: 80vh;
   width: 35vw;
-  background: #ececec;
-  border-radius: 5px;
-}
-
-.share-pop-up header {
-  background: white;
-  padding: 1rem;
-}
-
-.share-pop-up header h2 {
-  font-family: "Signika Negative", sans-serif;
-  font-weight: lighter;
-  font-size: 1.2rem;
-}
-
-.share-pop-up header h2 span {
-  font-weight: bold;
-  margin: 0 2.5px;
-}
-
-.share-pop-up header .close-btn {
-  border: none;
-  outline: none;
-  background: transparent;
-}
-
-.share-pop-up header .close-btn .icon {
-  font-size: 1.875rem;
-  -webkit-transition: all 200ms ease-out;
-  transition: all 200ms ease-out;
-}
-
-.share-pop-up header .close-btn .icon:hover {
-  cursor: pointer;
-  opacity: 0.5;
+  overflow-y: scroll;
 }
 
 .share-pop-up .share-link-box {
@@ -2216,6 +2227,92 @@ html {
   height: 35vh;
   overflow-y: scroll;
   scroll-behavior: smooth;
+}
+
+.info-pop-up {
+  padding-bottom: 4rem;
+}
+
+.info-pop-up .creator-info-box {
+  margin: 2rem 0;
+  padding: 0 2rem;
+}
+
+.info-pop-up .creator-info-box .user-photo-box {
+  margin-right: 1rem;
+}
+
+.info-pop-up .creator-info-box .creator-info p {
+  font-weight: lighter;
+  margin-bottom: 0.35rem;
+  font-size: 0.75rem;
+}
+
+.info-pop-up .creator-info-box .creator-info strong {
+  font-size: 0.975rem;
+}
+
+.info-pop-up .users-box {
+  padding: 0 2rem;
+}
+
+.info-pop-up .users-box .set-user-info {
+  margin-bottom: 3rem !important;
+}
+
+.info-pop-up .users-box .total-users {
+  width: 10vw;
+  height: 10vw;
+  background: rgba(0, 132, 255, 0.5);
+  padding: 2rem;
+  color: white;
+  -webkit-transition: all 200ms ease-out;
+  transition: all 200ms ease-out;
+}
+
+.info-pop-up .users-box .total-users:hover {
+  cursor: pointer;
+  background: #ffd000;
+  border: 3px solid white;
+}
+
+.info-pop-up .users-box .total-users .icon {
+  font-size: 2.475rem;
+}
+
+.info-pop-up .users-box .total-users p {
+  font-size: 2.25rem;
+  font-weight: bold;
+  margin-right: 2.5px;
+}
+
+.info-pop-up .users-box .active {
+  background: #00ff80;
+}
+
+.info-pop-up .users-box .privacy {
+  margin-left: 2rem;
+}
+
+.info-pop-up .users-box .privacy p {
+  font-size: 1.35rem;
+  margin-bottom: 2.5px;
+}
+
+.info-pop-up .users-box .privacy h3 {
+  font-size: 1.725rem;
+}
+
+.info-pop-up .users-box .user-box {
+  background: white;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  -webkit-animation: fade-in 500ms forwards ease-out;
+          animation: fade-in 500ms forwards ease-out;
+}
+
+.info-pop-up .users-box .user-box .user-photo-box {
+  margin-right: 0.75rem;
 }
 
 .creator-profile .p-skel {

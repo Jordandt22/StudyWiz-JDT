@@ -88,7 +88,9 @@ function AppAuth(props) {
         ] = `Bearer ${accessToken}`;
 
         // Auth API Call
-        const dbUser = await getUser(fbId);
+        const dbUser = await getUser(fbId, () => {
+          setLoading({ isLoading: false });
+        });
         if (!dbUser) {
           setAlert({
             message: "Sorry, there was a problem signing you in.",

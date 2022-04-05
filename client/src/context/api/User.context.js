@@ -32,8 +32,11 @@ export default (props) => {
   const { USER_URI } = urls;
 
   // Get User
-  const getUser = async (fbId) =>
-    await axios.get(USER_URI + `/${fbId}`).catch(errorHandler);
+  const getUser = async (fbId, errorCb) =>
+    await axios.get(USER_URI + `/${fbId}`).catch((err) => {
+      errorCb();
+      errorHandler(err);
+    });
 
   return (
     <UserAPIContext.Provider

@@ -35,7 +35,7 @@ function UserPhoto(props) {
     >
       {photoURL ? (
         <LazyLoadImage
-          alt={alt ? alt : fbId + "-photo"}
+          alt={alt ? alt : ""}
           src={photoURL}
           className="user-photo"
         />
