@@ -119,6 +119,23 @@
 .info-pop-up {
   padding-bottom: $spacer-md;
 
+  // Loading Spinner
+  .loading-spinner {
+    margin-top: $spacer-md;
+
+    div:after {
+      background: $primary-clr;
+    }
+  }
+
+  // Error
+  .error-box {
+    width: 90%;
+    margin: 0 auto;
+    margin-top: $spacer;
+    border-radius: none;
+  }
+
   // Creator
   .creator-info-box {
     margin: $spacer 0;

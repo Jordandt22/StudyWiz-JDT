@@ -54,7 +54,7 @@ function InfoPopUpContent(props) {
         {/* Users */}
         {showUsers && (
           <>
-            {[...users, ...users, ...users].map((user) => {
+            {users.map((user) => {
               const { fbId: setUserFbId, displayName, photoURL } = user;
 
               return (

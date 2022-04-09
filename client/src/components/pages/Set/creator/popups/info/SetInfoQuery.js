@@ -3,7 +3,14 @@ import { connect } from "react-redux";
 
 // Queries
 import { useGetSetUsers } from "../../../../../../query/queries";
+
+// MUI
+import { Box } from "@mui/material";
+
+// Components
+import LoadingSpinner from "../../../../../layout/loading/LoadingSpinner";
 import InfoPopUpContent from "./InfoPopUpContent";
+import ErrorBox from "../../../../../layout/error/ErrorBox";
 
 function SetInfoQuery(props) {
   const {
@@ -24,9 +31,13 @@ function SetInfoQuery(props) {
 
   // Loading & Error
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <Box className="center">
+        <LoadingSpinner />
+      </Box>
+    );
   } else if (isError) {
-    return <div>{error.message}</div>;
+    return <ErrorBox message={error.message} />;
   }
 
   const { users } = data.data;

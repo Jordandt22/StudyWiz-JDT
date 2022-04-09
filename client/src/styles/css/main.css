@@ -2233,6 +2233,21 @@ html {
   padding-bottom: 4rem;
 }
 
+.info-pop-up .loading-spinner {
+  margin-top: 4rem;
+}
+
+.info-pop-up .loading-spinner div:after {
+  background: #00a3ff;
+}
+
+.info-pop-up .error-box {
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 2rem;
+  border-radius: none;
+}
+
 .info-pop-up .creator-info-box {
   margin: 2rem 0;
   padding: 0 2rem;
