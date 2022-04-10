@@ -59,3 +59,10 @@ export const createSet = async (fbId, set, cb) =>
     })
     .then((data) => cb(data, null))
     .catch((err) => cb(null, err));
+
+// POST - Copy a Set
+export const copySet = async (fbId, setId, cb) =>
+  await axios
+    .post(createURI(fbId) + `/${setId}/copy`)
+    .then((data) => cb(data, null))
+    .catch((err) => cb(null, err));

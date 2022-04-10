@@ -1,4 +1,8 @@
 import React from "react";
+import { connect } from "react-redux";
+
+// React Router
+import { useNavigate } from "react-router-dom";
 
 // MUI
 import { Box, Tooltip } from "@mui/material";
@@ -10,20 +14,67 @@ import {
   IosShare,
 } from "@mui/icons-material";
 
+// API
+import { copySet as copySetAPI } from "../../../../query/api";
+
+// Redux
+import { setAlert, setLoading } from "../../../../redux/global/global.actions";
+import { setSets } from "../../../../redux/sets/sets.actions";
+
 // Contexts
 import { useSet } from "../../../../context/set/Set.context";
 
 function FCSetOptions(props) {
-  const { favorite, isCreator, favoriteSet, APISocket, setId } = props;
+  const {
+    favorite,
+    isCreator,
+    favoriteSet,
+    APISocket,
+    setId,
+    title,
+    user: {
+      auth: { fbId },
+    },
+    setLoading,
+    setAlert,
+    setSets,
+  } = props;
+  const navigate = useNavigate();
   const {
     creator: { openCreatorPopUp },
   } = useSet();
+
+  // Copy Set
+  const copySet = async () => {
+    setLoading({ isLoading: true, loadingText: `Copying ${title}...` });
+    await copySetAPI(fbId, setId, (data, err) => {
+      if (err || !data) {
+        setLoading({ isLoading: false });
+        return setAlert({
+          message: "Sorry, a problem occured while copying this set.",
+          severity: "error",
+          title: "Error",
+        });
+      }
+
+      const {
+        user: { sets },
+      } = data.data;
+      setSets(sets);
+      setLoading({ isLoading: false });
+      navigate("/sets");
+    });
+  };
 
   return (
     <Box className="fc-set-options row">
       {/* Copy Set */}
       <Tooltip title="Copy Set">
-        <button type="button" className="fc-set-opt-btn center">
+        <button
+          type="button"
+          className="fc-set-opt-btn center"
+          onClick={copySet}
+        >
           <ContentCopyRounded className="icon" />
         </button>
       </Tooltip>
@@ -77,4 +128,15 @@ function FCSetOptions(props) {
   );
 }
 
-export default FCSetOptions;
+// Redux
+const ReduxState = (state) => ({
+  user: state.user,
+});
+
+const ReduxActions = (dispatch) => ({
+  setLoading: (loading) => dispatch(setLoading(loading)),
+  setAlert: (alert) => dispatch(setAlert(alert)),
+  setSets: (sets) => dispatch(setSets(sets)),
+});
+
+export default connect(ReduxState, ReduxActions)(FCSetOptions);

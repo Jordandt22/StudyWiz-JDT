@@ -15,7 +15,6 @@ import {
 const defaultOptions = {
   staleTime: 1000 * 60 * 60 * 5,
   keepPreviousData: true,
-  retry: 3,
 };
 
 // Format Options

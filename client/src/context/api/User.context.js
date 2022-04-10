@@ -1,30 +1,41 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext } from "react";
+import { connect } from "react-redux";
 
 // Axios
 import axios from "axios";
 import { urls } from "../../config/urls";
 
+// Redux
+import { setAlert } from "../../redux/global/global.actions";
+
 // User API
 const UserAPIContext = createContext();
 export const useUserAPIContext = () => useContext(UserAPIContext);
 
+// Redux
+const ReduxActions = (dispatch) => ({
+  setAlert: (alert) => dispatch(setAlert(alert)),
+});
+
 // eslint-disable-next-line import/no-anonymous-default-export
-export default (props) => {
-  const [error, setErr] = useState({
-    isError: false,
-    error: { message: "", status: 200 },
-  });
-  const setError = (status, message) =>
-    setErr({ isError: true, error: { message, status } });
-  const resetError = () =>
-    setErr({ isError: false, error: { message: "", status: 200 } });
+export default connect(ReduxActions)((props) => {
+  const { setAlert } = props;
   const errorHandler = (err) => {
     const { status, response } = err;
     if (!response || !status) {
-      setError(500, "A problem occured !");
+      console.log(err);
+      setAlert({
+        message: "Sorry, a problem occured.",
+        severity: "error",
+        title: "Error",
+      });
     } else {
       console.log(err.response, status);
-      // setError(500, "A problem occured !");
+      setAlert({
+        message: `ERROR ${status} - Sorry, a problem occured.`,
+        severity: "error",
+        title: "Error",
+      });
     }
   };
 
@@ -41,9 +52,6 @@ export default (props) => {
   return (
     <UserAPIContext.Provider
       value={{
-        error,
-        setError,
-        resetError,
         api: {
           getUser,
         },
@@ -52,4 +60,4 @@ export default (props) => {
       {props.children}
     </UserAPIContext.Provider>
   );
-};
+});

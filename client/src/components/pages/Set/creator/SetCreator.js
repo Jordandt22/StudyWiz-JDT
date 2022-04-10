@@ -71,6 +71,7 @@ function SetCreator(props) {
         APISocket={APISocket}
         favoriteSet={favoriteSet}
         setId={setId}
+        title={info.title}
       />
 
       {/* Pop Ups */}
