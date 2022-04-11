@@ -13,7 +13,7 @@ module.exports = {
       return errorHandler(res, 400, ERROR_ROUTE, "MUST SEND AN ACCESS TOKEN");
 
     // Verifying Firebase Access Token
-    await verifyAccessToken(
+    verifyAccessToken(
       accessToken.replace("Bearer ", ""),
       res,
       async (decodedToken) => {

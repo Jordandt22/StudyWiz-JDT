@@ -38,7 +38,7 @@ function TermsList(props) {
                 {/* Util Bar (Audio & Favorite) */}
                 <FlashcardUtilBar
                   audioFrom="TM"
-                  text={term + definition}
+                  text={term + " " + definition}
                   userSet={userSet}
                   setId={setId}
                   termId={_id}

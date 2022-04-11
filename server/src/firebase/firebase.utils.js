@@ -2,8 +2,8 @@ const admin = require("./firebase.admin");
 const { errorHandler } = require("../utils/global.utils");
 
 module.exports = {
-  verifyAccessToken: async (accessToken, res, cb) => 
-     await admin
+  verifyAccessToken: (accessToken, res, cb) =>
+    admin
       .auth()
       .verifyIdToken(accessToken)
       .then(cb)
@@ -41,8 +41,7 @@ module.exports = {
               "ERROR OCCURED - VERIFYING AN ACCESS TOKEN"
             );
         }
-      })
-  ,
+      }),
   getFBUser: async (fbId, res, cb) =>
     await admin
       .auth()
