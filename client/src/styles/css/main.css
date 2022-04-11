@@ -2330,6 +2330,57 @@ html {
   margin-right: 0.75rem;
 }
 
+.more-menu .MuiTooltip-tooltip {
+  width: 10vw;
+  background: white;
+  padding: 0;
+  -webkit-box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.15);
+}
+
+.more-menu .MuiTooltip-tooltip .more-menu-opt {
+  color: grey;
+  padding: 0.5rem 0.75rem;
+  font-weight: bold;
+  -webkit-transition: all 100ms ease-out;
+  transition: all 100ms ease-out;
+}
+
+.more-menu .MuiTooltip-tooltip .more-menu-opt:hover {
+  cursor: pointer;
+  background: #ffe600;
+  color: black !important;
+}
+
+.more-menu .MuiTooltip-tooltip .more-menu-opt .icon {
+  margin-right: 7.5px;
+  font-size: 1.2rem;
+}
+
+.more-menu .MuiTooltip-tooltip #Delete-opt {
+  color: red;
+}
+
+.delete-popup strong {
+  color: red;
+}
+
+.delete-popup button {
+  font-family: "Signika Negative", sans-serif;
+  font-weight: bold;
+  color: grey;
+  font-size: 0.975rem;
+}
+
+.delete-popup .delete-btn {
+  color: red;
+}
+
+.delete-popup .delete-btn:hover {
+  background: red;
+  color: white;
+}
+
 .creator-profile .p-skel {
   width: 7.5rem;
   margin-bottom: 0.5rem;

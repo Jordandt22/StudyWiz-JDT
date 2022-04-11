@@ -19,6 +19,7 @@ import SharePopUp from "./popups/SharePopUp";
 import LinkCopiedNotification from "../../../layout/alert/LinkCopiedNotification";
 import TermsCopiedNotification from "../../../layout/alert/TermsCopiedNotification";
 import InfoPopUp from "./popups/InfoPopUp";
+import DeletePopUp from "./popups/DeletePopUp";
 
 function SetCreator(props) {
   const {
@@ -83,6 +84,9 @@ function SetCreator(props) {
 
       {/* Information */}
       <InfoPopUp info={info} creator={creator} setId={setId} />
+
+      {/* Delete */}
+      <DeletePopUp info={info} terms={terms} setId={setId} />
     </Box>
   );
 }

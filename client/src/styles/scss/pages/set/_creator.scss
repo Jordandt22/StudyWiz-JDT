@@ -224,3 +224,56 @@
     }
   }
 }
+
+// More Menu
+.more-menu .MuiTooltip-tooltip {
+  width: 10vw;
+  background: white;
+  padding: 0;
+  box-shadow: 0 0 10px 1px rgba($black-shadow, 0.15);
+
+  .more-menu-opt {
+    color: grey;
+    padding: $spacer-small * 0.5 $spacer-small * 0.75;
+    font-weight: bold;
+    transition: all 100ms ease-out;
+
+    &:hover {
+      cursor: pointer;
+      background: $secondary-clr;
+      color: black !important;
+    }
+
+    .icon {
+      margin-right: 7.5px;
+      font-size: $main-fs * 0.8;
+    }
+  }
+
+  #Delete-opt {
+    color: red;
+  }
+}
+
+// Delete Pop Up
+.delete-popup {
+  strong {
+    color: red;
+  }
+
+  button {
+    font-family: $main-ft;
+    font-weight: bold;
+    color: grey;
+    font-size: $main-fs * 0.65;
+  }
+
+  .delete-btn {
+    color: red;
+
+    &:hover {
+      background: red;
+      color: white;
+    }
+  }
+}

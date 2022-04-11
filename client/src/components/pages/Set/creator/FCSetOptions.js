@@ -10,7 +10,6 @@ import {
   ContentCopyRounded,
   StarBorderOutlined,
   StarRate,
-  MoreHorizRounded,
   IosShare,
 } from "@mui/icons-material";
 
@@ -23,6 +22,9 @@ import { setSets } from "../../../../redux/sets/sets.actions";
 
 // Contexts
 import { useSet } from "../../../../context/set/Set.context";
+
+// Components
+import MoreMenu from "./MoreMenu";
 
 function FCSetOptions(props) {
   const {
@@ -60,8 +62,8 @@ function FCSetOptions(props) {
       const {
         user: { sets },
       } = data.data;
-      setSets(sets);
       setLoading({ isLoading: false });
+      setSets(sets);
       navigate("/sets");
     });
   };
@@ -117,13 +119,7 @@ function FCSetOptions(props) {
       </Tooltip>
 
       {/* More Options (Only for Creator) */}
-      {isCreator && (
-        <Tooltip title="More">
-          <button type="button" className="fc-set-opt-btn center">
-            <MoreHorizRounded className="icon" />
-          </button>
-        </Tooltip>
-      )}
+      {isCreator && <MoreMenu />}
     </Box>
   );
 }

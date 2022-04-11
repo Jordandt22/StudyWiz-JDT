@@ -66,3 +66,10 @@ export const copySet = async (fbId, setId, cb) =>
     .post(createURI(fbId) + `/${setId}/copy`)
     .then((data) => cb(data, null))
     .catch((err) => cb(null, err));
+
+// DELETE - Delete a Set
+export const deleteSet = async (fbId, setId, cb) =>
+  await axios
+    .delete(createURI(fbId) + `/${setId}`)
+    .then((data) => cb(data, null))
+    .catch((err) => cb(null, err));
