@@ -34,6 +34,7 @@ function FCSetOptions(props) {
     APISocket,
     setId,
     title,
+    setForEditForm,
     user: {
       auth: { fbId },
     },
@@ -119,7 +120,7 @@ function FCSetOptions(props) {
       </Tooltip>
 
       {/* More Options (Only for Creator) */}
-      {isCreator && <MoreMenu />}
+      {isCreator && <MoreMenu setId={setId} setForEditForm={setForEditForm} />}
     </Box>
   );
 }

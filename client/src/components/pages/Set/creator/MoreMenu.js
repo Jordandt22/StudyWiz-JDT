@@ -1,24 +1,37 @@
 import React, { useState } from "react";
 
+// React Router
+import { useNavigate } from "react-router-dom";
+
 // MUI
 import { Box, Tooltip, ClickAwayListener } from "@mui/material";
 import { MoreHorizRounded, Edit, Delete } from "@mui/icons-material";
 
 // Contexts
 import { useSet } from "../../../../context/set/Set.context";
+import { useCreateForm } from "../../../../context/create-form/CreateForm.context";
 
-function MoreMenu() {
+function MoreMenu(props) {
+  const { setId, setForEditForm } = props;
   const {
     creator: { openCreatorPopUp },
   } = useSet();
+  const navigate = useNavigate();
   const [menuOpen, setOpen] = useState(false);
   const openMenu = () => setOpen(true);
   const closeMenu = () => setOpen(false);
+  const {
+    edit: { setEditFormSetID, setEditFormValues },
+  } = useCreateForm();
   const moreMenuOptions = [
     {
       label: "Edit",
       icon: <Edit className="icon" />,
-      onClick: () => console.log("Edit"),
+      onClick: () => {
+        setEditFormSetID(setId);
+        setEditFormValues(setForEditForm);
+        navigate(`/edit`);
+      },
     },
     {
       label: "Delete",

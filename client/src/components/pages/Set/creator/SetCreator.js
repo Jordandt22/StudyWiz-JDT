@@ -31,6 +31,10 @@ function SetCreator(props) {
       auth: { fbId },
     },
   } = props;
+  const {
+    title,
+    privacy: { hideCreator },
+  } = info;
   const { APISocket, favoriteSet } = useAPISocket();
   const { data, isLoading, isError, error } = useGetSetCreator(
     `${fbId}_SET_SETID:${setId}_CREATOR`,
@@ -72,7 +76,15 @@ function SetCreator(props) {
         APISocket={APISocket}
         favoriteSet={favoriteSet}
         setId={setId}
-        title={info.title}
+        title={title}
+        setForEditForm={{
+          title: info.title,
+          privacy: {
+            hideCreator,
+            private: info.privacy.private,
+          },
+          terms: terms.map(({ term, definition }) => ({ term, definition })),
+        }}
       />
 
       {/* Pop Ups */}

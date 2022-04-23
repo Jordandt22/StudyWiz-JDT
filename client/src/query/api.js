@@ -52,7 +52,7 @@ export const getSetUsers = async (fbId, setId) =>
   await axios.get(createURI(fbId) + `/${setId}/users`);
 
 // POST - Create a Set
-export const createSet = async (fbId, set, cb) =>
+export const createSet = async (fbId, setId, set, cb) =>
   await axios
     .post(createURI(fbId), {
       ...set,
@@ -71,5 +71,14 @@ export const copySet = async (fbId, setId, cb) =>
 export const deleteSet = async (fbId, setId, cb) =>
   await axios
     .delete(createURI(fbId) + `/${setId}`)
+    .then((data) => cb(data, null))
+    .catch((err) => cb(null, err));
+
+// PATCH - Edit a Set
+export const editSet = async (fbId, setId, set, cb) =>
+  await axios
+    .patch(createURI(fbId) + `/${setId}`, {
+      ...set,
+    })
     .then((data) => cb(data, null))
     .catch((err) => cb(null, err));

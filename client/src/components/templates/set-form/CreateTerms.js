@@ -21,7 +21,7 @@ import { useCreateForm } from "../../../context/create-form/CreateForm.context";
 import CustomInput from "../../layout/forms/CustomInput";
 
 function CreateTerms(props) {
-  const { values, emptyTerm } = props;
+  const { values, emptyTerm, btnText } = props;
   const terms = values.terms;
   const [dragDisabled, setDragDisabled] = useState(true);
   const { clearFormData } = useCreateForm();
@@ -162,7 +162,7 @@ function CreateTerms(props) {
               Cancel
             </button>
             <button type="submit" className="create-btn">
-              Create
+              {btnText}
             </button>
           </Box>
         </Container>

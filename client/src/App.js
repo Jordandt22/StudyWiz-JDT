@@ -19,6 +19,7 @@ import NotFound from "./components/pages/NotFound/NotFound";
 import ComingSoon from "./components/pages/ComingSoon/ComingSoon";
 import Set from "./components/pages/Set/Set";
 import Create from "./components/pages/Create/Create";
+import Edit from "./components/pages/Edit/Edit";
 
 function App() {
   return (
@@ -61,6 +62,11 @@ function App() {
             exact
             path="/create"
             element={<ProtectedRoute Component={<Create />} />}
+          />
+            <Route
+            exact
+            path="/edit"
+            element={<ProtectedRoute Component={<Edit />} />}
           />
           <Route
             exact

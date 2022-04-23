@@ -4,14 +4,14 @@ import React from "react";
 import { Box } from "@mui/material";
 
 function Header(props) {
+  const { title, btnText, } = props;
+
   return (
     <Box className="header between-row">
-      <h3>
-        Create a <strong>New Vocab Set</strong>
-      </h3>
+      {title}
 
       <button type="submit" className="create-btn">
-        Create
+        {btnText}
       </button>
     </Box>
   );
