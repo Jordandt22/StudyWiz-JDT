@@ -20,6 +20,7 @@ import ComingSoon from "./components/pages/ComingSoon/ComingSoon";
 import Set from "./components/pages/Set/Set";
 import Create from "./components/pages/Create/Create";
 import Edit from "./components/pages/Edit/Edit";
+import Flashcards from "./components/pages/Flashcards/Flashcards";
 
 function App() {
   return (
@@ -41,9 +42,15 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Home />} />
 
-          {/* Auth */}
+          {/* Auth & User */}
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/signup" element={<Signup />} />
+          <Route exact path="/settings" element={<ComingSoon />} />
+
+          {/* Extra */}
+          <Route exact path="/about" element={<ComingSoon />} />
+          <Route exact path="/tos" element={<ComingSoon />} />
+          <Route exact path="/privacy" element={<ComingSoon />} />
 
           {/* Community */}
           <Route
@@ -57,13 +64,13 @@ function App() {
             element={<ProtectedRoute Component={<Search />} />}
           />
 
-          {/* User */}
+          {/* Sets */}
           <Route
             exact
             path="/create"
             element={<ProtectedRoute Component={<Create />} />}
           />
-            <Route
+          <Route
             exact
             path="/edit"
             element={<ProtectedRoute Component={<Edit />} />}
@@ -79,6 +86,14 @@ function App() {
             element={<ProtectedRoute Component={<Set />} />}
           />
           <Route exact path="/schedule" element={<ComingSoon />} />
+
+          {/* Study Tools & Games */}
+          <Route
+            exact
+            path="/set/:setId/flashcards"
+            element={<ProtectedRoute Component={<Flashcards />} />}
+          />
+          <Route exact path="/set/:setId/match" element={<ComingSoon />} />
 
           {/* Not Found */}
           <Route path="*" element={<NotFound />} />

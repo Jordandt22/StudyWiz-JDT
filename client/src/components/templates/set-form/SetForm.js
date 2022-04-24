@@ -71,7 +71,6 @@ function SetForm(props) {
             loadingText,
           });
           await APIFunc(fbId, setId, { title, privacy, terms }, (data, err) => {
-            console.log("Hello", data, err);
             const stopSubmitting = () => {
               setLoading({ isLoading: false });
               setSubmitting(false);

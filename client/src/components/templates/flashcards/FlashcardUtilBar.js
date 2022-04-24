@@ -22,7 +22,7 @@ function FlashcardUtilBar(props) {
         className={`audio-btn ${
           speech.audioFrom === audioFrom ? "active" : "not-active"
         }`}
-        onClick={() => textToSpeech(audioFrom, text, "en-US")}
+        onClick={() => textToSpeech(audioFrom, text)}
       >
         <VolumeUp className="icon" />
       </button>

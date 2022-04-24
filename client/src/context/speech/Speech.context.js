@@ -1,5 +1,8 @@
 import React, { createContext, useContext, useState } from "react";
 
+// Franc
+import { franc } from "franc";
+
 // Speech Context
 export const SpeechContext = createContext();
 export const useSpeech = () => useContext(SpeechContext);
@@ -24,9 +27,29 @@ export default (props) => {
   };
 
   // Start Text To Speech
-  const textToSpeech = (audioFrom, text, lang) => {
+  const textToSpeech = async (audioFrom, text) => {
     const synth = window.speechSynthesis;
     if (synth.speaking || synth.pending) return cancelTextToSpeech();
+
+    // Language
+    const detectedLang = franc(text, { minLength: 1 });
+    let lang = "en-US";
+    switch (detectedLang) {
+      case "jpn":
+        lang = "ja-JP";
+        break;
+
+      case "spa":
+        lang = "es-ES";
+        break;
+
+      case "cmn":
+        lang = "zh-CN";
+        break;
+
+      default:
+        break;
+    }
 
     // Set Up Speech
     let speech = new SpeechSynthesisUtterance();
