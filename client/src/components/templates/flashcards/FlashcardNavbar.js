@@ -14,7 +14,7 @@ import { useSet } from "../../../context/set/Set.context";
 import FlashcardTooltip from "./FlashcardTooltip";
 
 function FlashcardNavbar(props) {
-  const { setId, terms, shuffle, fullscreen } = props;
+  const { setId, terms, fullscreen } = props;
   const {
     handleKeyDown,
     terms: {
@@ -67,9 +67,6 @@ function FlashcardNavbar(props) {
 
       {/* Extra Btns */}
       <Box className="row">
-        {/* Shuffle */}
-        {shuffle && <p>Shuffle Button Here</p>}
-
         {/* Keyboard Shortcuts*/}
         <FlashcardTooltip />
 

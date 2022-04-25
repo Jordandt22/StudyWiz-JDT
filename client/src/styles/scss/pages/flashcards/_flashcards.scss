@@ -1,0 +1,104 @@
+// Flashcards Styles
+.flashcards-container {
+  display: flex !important;
+  flex-direction: row;
+}
+
+.flashcards-sidebar {
+  background: rgba(white, 0.25);
+  width: 25%;
+  height: 80vh;
+  box-shadow: 0 0 5px 1px $black-shadow;
+  border-radius: $border-radius-width * 0.5;
+  padding: $spacer-small;
+
+  // Back Link
+  .back-link {
+    text-decoration: none;
+    color: black;
+    transition: all 200ms ease-out;
+
+    .icon {
+      font-size: $main-fs * 0.75;
+      color: $primary-clr;
+    }
+
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+}
+
+// Sidebar content
+.sidebar-content {
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: $spacer;
+  padding: $spacer-small;
+
+  .active {
+    color: $secondary-clr;
+  }
+}
+
+// Title Box
+.title-box {
+  h5 {
+    color: grey;
+    margin-bottom: $spacer-small / 2;
+    font-size: $main-fs * 0.5;
+  }
+
+  h3 {
+    font-size: $main-fs * 0.8;
+    margin-bottom: $spacer;
+    line-height: $spacer-small * 1.5;
+  }
+
+  .fc-progress-bar {
+    display: flex;
+    flex-direction: column-reverse;
+
+    h6,
+    p {
+      color: grey;
+      font-size: $main-fs * 0.25;
+    }
+
+    .bar {
+      height: 1.25vh;
+      margin-top: 0;
+      margin-bottom: $spacer-small;
+    }
+  }
+}
+
+// Shuffle Btn
+.shuffle-btn {
+  outline: none;
+  border: 1px solid lightgrey;
+  background: white;
+  color: $primary-clr;
+  padding: $spacer-small * 0.65 0;
+  font-weight: bold;
+  font-size: $main-fs * 0.65;
+  transition: all 200ms ease-out;
+
+  ion-icon {
+    font-size: $main-fs;
+    margin-right: $spacer-small / 2;
+  }
+
+  &:hover {
+    cursor: pointer;
+    color: $secondary-clr;
+  }
+}
+
+// Main Content
+.flashcards-main-content {
+  width: 65%;
+  margin-left: $spacer-md;
+}
