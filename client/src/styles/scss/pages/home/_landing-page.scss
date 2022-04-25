@@ -1,0 +1,59 @@
+// Landing Page Styles
+// Landing Page
+.landing-page-container {
+  max-width: none !important;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100vw !important;
+  height: 100vh;
+  margin: 0 !important;
+
+  .shadow {
+    padding: $spacer-lg $spacer-md;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(black, 0.75);
+
+    div {
+      margin-bottom: $spacer-md;
+    }
+  }
+
+  h1 {
+    color: white;
+    font-size: $lg-fs;
+  }
+
+  p {
+    max-width: 50ch;
+    color: white;
+    font-size: $main-fs * 0.85;
+    line-height: $spacer;
+    margin-top: $spacer;
+
+    span {
+      color: $primary-clr;
+    }
+  }
+
+  a {
+    border: 2px solid white;
+    color: white;
+    text-decoration: none;
+    padding: $spacer-small * 0.5 $spacer;
+    font-weight: 500;
+    font-size: $main-fs * 0.7;
+    transition: all 200ms ease-out;
+
+    &:hover {
+      background: white;
+      color: black;
+    }
+  }
+}

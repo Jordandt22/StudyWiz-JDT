@@ -1827,6 +1827,65 @@ html {
   margin-top: 0.5rem;
 }
 
+.landing-page-container {
+  max-width: none !important;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100vw !important;
+  height: 100vh;
+  margin: 0 !important;
+}
+
+.landing-page-container .shadow {
+  padding: 8rem 4rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.landing-page-container .shadow div {
+  margin-bottom: 4rem;
+}
+
+.landing-page-container h1 {
+  color: white;
+  font-size: 3.375rem;
+}
+
+.landing-page-container p {
+  max-width: 50ch;
+  color: white;
+  font-size: 1.275rem;
+  line-height: 2rem;
+  margin-top: 2rem;
+}
+
+.landing-page-container p span {
+  color: #00a3ff;
+}
+
+.landing-page-container a {
+  border: 2px solid white;
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 2rem;
+  font-weight: 500;
+  font-size: 1.05rem;
+  -webkit-transition: all 200ms ease-out;
+  transition: all 200ms ease-out;
+}
+
+.landing-page-container a:hover {
+  background: white;
+  color: black;
+}
+
 .community-search-bar {
   width: 100%;
   background: white;
