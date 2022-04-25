@@ -51,6 +51,13 @@
     opacity: 0.5;
   }
 
+  .term,
+  .definition {
+    max-width: 80%;
+    line-height: $spacer * 1.5;
+    text-align: center;
+  }
+
   .term {
     font-size: $md-fs;
   }

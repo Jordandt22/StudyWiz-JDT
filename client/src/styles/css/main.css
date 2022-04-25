@@ -1520,6 +1520,13 @@ html {
   opacity: 0.5;
 }
 
+.current-fc .term,
+.current-fc .definition {
+  max-width: 80%;
+  line-height: 3rem;
+  text-align: center;
+}
+
 .current-fc .term {
   font-size: 2.25rem;
 }
