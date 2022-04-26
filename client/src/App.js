@@ -3,6 +3,9 @@ import React from "react";
 // React Router
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+// MUI
+import { useMediaQuery } from "@mui/material";
+
 // Components
 import Home from "./components/pages/Home/Home";
 import Login from "./components/pages/Login/Login";
@@ -21,8 +24,18 @@ import Set from "./components/pages/Set/Set";
 import Create from "./components/pages/Create/Create";
 import Edit from "./components/pages/Edit/Edit";
 import Flashcards from "./components/pages/Flashcards/Flashcards";
+import SmallDeviceAlert from "./components/layout/alert/SmallDeviceAlert";
 
 function App() {
+  const isSmallDevice = useMediaQuery("(max-width:767px)", { noSsr: true });
+  if (isSmallDevice) {
+    return (
+      <div id="App">
+        <SmallDeviceAlert />
+      </div>
+    );
+  }
+
   return (
     <div id="App">
       <BrowserRouter>

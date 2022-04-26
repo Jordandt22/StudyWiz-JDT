@@ -3296,4 +3296,40 @@ body {
   padding: 8rem 4rem;
   min-height: 100vh;
 }
+
+.small-device-alert {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: #fbfbfb;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.small-device-alert h1 {
+  color: #00a3ff;
+  font-family: "Signika Negative", sans-serif;
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: 2.25rem;
+}
+
+.small-device-alert p {
+  color: grey;
+  text-align: center;
+  max-width: 40ch;
+  line-height: 2rem;
+  margin: 0 auto !important;
+}
+
+.small-device-alert strong {
+  display: block;
+  font-size: 1.5rem;
+  margin: 0 auto !important;
+  margin-top: 4rem !important;
+  text-align: center !important;
+}
 /*# sourceMappingURL=main.css.map */
