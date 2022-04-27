@@ -54,6 +54,13 @@ app.use(speedLimiter);
 app.use(limiter);
 
 // Routes
+
+// Landing Page Route
+app.get("/", (req, res) => {
+  res.send("Proxy Server for StudyWiz is up and running...");
+});
+
+// Proxy Route
 app.use(
   "/",
   // checkProxyAuth,

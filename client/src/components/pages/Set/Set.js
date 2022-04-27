@@ -63,6 +63,8 @@ function Set(props) {
     return <MainSkeleton setId={setId} />;
   } else if (isError) {
     return <ErrorBox message={error.message} />;
+  } else if (data.data.error) {
+    return <ErrorBox message={data.data.error} />;
   }
 
   const { set } = data.data;

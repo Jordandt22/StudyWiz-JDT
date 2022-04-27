@@ -18,7 +18,10 @@ const ReduxActions = (dispatch) => ({
 });
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default connect(ReduxActions)((props) => {
+export default connect(
+  null,
+  ReduxActions
+)((props) => {
   const { setAlert } = props;
   const errorHandler = (err) => {
     const { status, response } = err;

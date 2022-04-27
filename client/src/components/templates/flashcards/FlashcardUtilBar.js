@@ -10,7 +10,7 @@ import { useAPISocket } from "../../../context/api-socket/APISocket.context";
 
 function FlashcardUtilBar(props) {
   const { audioFrom, text, userSet, setId, termId } = props;
-  const favorite = userSet.favoriteTerms.some((term) => term.termId === termId);
+  const favorite = userSet?.favoriteTerms.some((term) => term.termId === termId);
   const { textToSpeech, speech } = useSpeech();
   const { APISocket, favoriteTerm } = useAPISocket();
 

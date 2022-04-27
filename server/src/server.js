@@ -60,6 +60,13 @@ app.use(limiter);
 
 // Routes
 const version = `/v${API_VERSION}/api`;
+
+// Landing Page Route
+app.get("/", (req, res) => {
+  res.send("API Server for StudyWiz is up and running...");
+});
+
+// API Routes
 app.use(version + "/user", require("./routes/api/user.api.route"));
 app.use(
   version + "/sets/user/:fbId",

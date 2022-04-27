@@ -15,6 +15,29 @@ import {
 const defaultOptions = {
   staleTime: 1000 * 60 * 60 * 5,
   keepPreviousData: true,
+  retry: (failureCount, error) => {
+    if (failureCount > 3) return false;
+
+    const { status } = error.response;
+    let retry = true;
+    switch (status) {
+      case 403:
+      case 401:
+      case 404:
+      case 400:
+      case 422:
+      case 429:
+        retry = false;
+        break;
+
+      default:
+        retry = true;
+        break;
+    }
+
+    return retry;
+  },
+  retryDelay: (retryCount) => retryCount * 1500,
 };
 
 // Format Options

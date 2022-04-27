@@ -23,7 +23,7 @@ import DeletePopUp from "./popups/DeletePopUp";
 
 function SetCreator(props) {
   const {
-    userSet: { favorite },
+    userSet,
     setId,
     terms,
     info,
@@ -31,6 +31,7 @@ function SetCreator(props) {
       auth: { fbId },
     },
   } = props;
+  const favorite = userSet?.favorite;
   const {
     title,
     privacy: { hideCreator },
@@ -49,6 +50,8 @@ function SetCreator(props) {
     return <CreatorSkeleton />;
   } else if (isError) {
     return <ErrorBox message={error.message} />;
+  } else if (data.data.error) {
+    return <ErrorBox message={data.data.error} />;
   }
 
   const { creator, isCreator } = data.data;
