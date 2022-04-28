@@ -10,12 +10,18 @@ import { useSpeech } from "../../../context/speech/Speech.context";
 // Components
 import FlashcardUtilBar from "./FlashcardUtilBar";
 
+const TermComponent = (props) => <p className="term">{props.term}</p>;
+const DefinitionComponent = (props) => (
+  <p className="definition">{props.definition}</p>
+);
+
 function Flashcard(props) {
   const { userSet, setId, terms } = props;
   const {
     terms: {
       currentTerm: { pos, showTerm },
       flipCard,
+      termsOnFront,
     },
   } = useSet();
   const { cancelTextToSpeech } = useSpeech();
@@ -41,10 +47,18 @@ function Flashcard(props) {
         }}
       >
         <div className="front-card current-fc center">
-          <p className="term">{term}</p>
+          {termsOnFront ? (
+            <TermComponent term={term} />
+          ) : (
+            <DefinitionComponent definition={definition} />
+          )}
         </div>
         <div className="back-card current-fc center">
-          <p className="definition">{definition}</p>
+          {termsOnFront ? (
+            <DefinitionComponent definition={definition} />
+          ) : (
+            <TermComponent term={term} />
+          )}
         </div>
       </Box>
 

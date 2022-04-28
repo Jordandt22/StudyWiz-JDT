@@ -27,6 +27,7 @@ export default (props) => {
   ];
 
   // Terms
+  const [termsOnFront, setTermsOnFront] = useState(true)
   const [currentTerm, setCurTerm] = useState({
     pos: 0,
     showTerm: true,
@@ -136,6 +137,8 @@ export default (props) => {
           prevTerm,
           nextTerm,
           flipCard,
+          termsOnFront, 
+          setTermsOnFront
         },
         keyboard: {
           keyboardOpen,

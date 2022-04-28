@@ -1558,6 +1558,28 @@ html {
   margin: 0 1rem;
 }
 
+.fc-nav-bar .swap-btn {
+  outline: none;
+  border: none;
+  background: transparent;
+  margin-right: 5px;
+  -webkit-transition: all 200ms ease-out;
+  transition: all 200ms ease-out;
+}
+
+.fc-nav-bar .swap-btn .icon {
+  color: grey;
+  font-size: 1.35rem !important;
+}
+
+.fc-nav-bar .swap-btn:hover {
+  cursor: pointer;
+}
+
+.fc-nav-bar .swap-btn:hover .icon {
+  color: #ffe600 !important;
+}
+
 .fc-tooltip-btn {
   outline: none;
   background: transparent;

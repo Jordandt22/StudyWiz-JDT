@@ -89,6 +89,27 @@
   p {
     margin: 0 $spacer-small;
   }
+
+  .swap-btn {
+    outline: none;
+    border: none;
+    background: transparent;
+    margin-right: 5px;
+    transition: all 200ms ease-out;
+
+    .icon {
+      color: grey;
+      font-size: $main-fs * 0.9 !important;
+    }
+
+    &:hover {
+      cursor: pointer;
+
+      .icon {
+        color: $secondary-clr !important;
+      }
+    }
+  }
 }
 
 // Tool Tip

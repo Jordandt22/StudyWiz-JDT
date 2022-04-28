@@ -6,6 +6,7 @@ import { NavLink } from "react-router-dom";
 // MUI
 import { Box } from "@mui/material";
 import { ArrowBack, ArrowForward, Fullscreen } from "@mui/icons-material";
+import { SwapOutlined } from "@ant-design/icons";
 
 // Contexts
 import { useSet } from "../../../context/set/Set.context";
@@ -21,6 +22,7 @@ function FlashcardNavbar(props) {
       currentTerm: { pos },
       prevTerm,
       nextTerm,
+      setTermsOnFront,
     },
   } = useSet();
   const amountOfTerms = terms.length;
@@ -67,7 +69,16 @@ function FlashcardNavbar(props) {
 
       {/* Extra Btns */}
       <Box className="row">
-        {/* Keyboard Shortcuts*/}
+        {/* Switch Flashcard Sides */}
+        <button
+          type="button"
+          className="swap-btn"
+          onClick={() => setTermsOnFront((prevState) => !prevState)}
+        >
+          <SwapOutlined className="icon" />
+        </button>
+
+        {/* Keyboard Shortcuts */}
         <FlashcardTooltip />
 
         {/* Fullscreen */}
