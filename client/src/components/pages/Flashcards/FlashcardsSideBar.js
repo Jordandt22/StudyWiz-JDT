@@ -13,7 +13,7 @@ import ProgressBar from "../../templates/flashcards/ProgressBar";
 function FlashcardsSideBar(props) {
   const {
     shuffle,
-    setShuffle,
+    shuffleTerms,
     set: { _id, title, terms },
   } = props;
 
@@ -33,7 +33,7 @@ function FlashcardsSideBar(props) {
         <button
           type="button"
           className={`shuffle-btn center ${shuffle ? "active" : "not-active"}`}
-          onClick={() => setShuffle((prevShuffle) => !prevShuffle)}
+          onClick={shuffleTerms}
         >
           <ion-icon name="shuffle-outline"></ion-icon>
           Shuffle

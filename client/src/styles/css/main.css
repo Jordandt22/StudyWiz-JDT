@@ -326,6 +326,10 @@ html {
   margin: 0 1rem;
 }
 
+.normal > .back-card p {
+  opacity: 0;
+}
+
 .flipper {
   position: relative;
   -webkit-perspective: 600px;
@@ -3300,6 +3304,14 @@ html {
 .flashcards-main-content {
   width: 65%;
   margin-left: 4rem;
+}
+
+.flashcards-skel .flashcards-sidebar {
+  height: 80vh;
+}
+
+.flashcards-skel .current-fc {
+  height: 60vh;
 }
 
 html {

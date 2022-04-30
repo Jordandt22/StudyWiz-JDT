@@ -23,6 +23,8 @@ import { useSet } from "../../../context/set/Set.context";
 import FlashcardsSideBar from "./FlashcardsSideBar";
 import Flashcard from "../../templates/flashcards/Flashcard";
 import FlashcardNavbar from "../../templates/flashcards/FlashcardNavbar";
+import ErrorBox from "../../layout/error/ErrorBox";
+import FlashcardsSkeleton from "./FlashcardsSkeleton";
 
 function Flashcards(props) {
   const {
@@ -36,7 +38,9 @@ function Flashcards(props) {
     terms: { resetCurTerm },
   } = useSet();
   const { setId } = useParams();
-  const [shuffle, setShuffle] = useState(false);
+  const [shuffle, setShuffle] = useState(null);
+  const shuffleTerms = (terms) =>
+    setShuffle((prevShuffle) => (!prevShuffle ? _.shuffle(terms) : null));
 
   // Resetting Current Term
   useEffect(() => {
@@ -65,18 +69,22 @@ function Flashcards(props) {
 
   // Loading & Error
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <FlashcardsSkeleton />;
   } else if (isError) {
-    return <p>{error.message}</p>;
+    return <ErrorBox message={error.message} />;
   }
 
   const { set } = data.data;
-  const terms = shuffle ? _.shuffle(set.terms) : set.terms;
+  const terms = shuffle ? shuffle : set.terms;
   const userSet = sets.filter((set) => set.setId === setId)[0];
   return (
     <Container className="page-container flashcards-container">
       {/* Flashcards Sidebar */}
-      <FlashcardsSideBar shuffle={shuffle} setShuffle={setShuffle} set={set} />
+      <FlashcardsSideBar
+        shuffle={shuffle}
+        shuffleTerms={() => shuffleTerms(set.terms)}
+        set={set}
+      />
 
       <main className="flashcards-main-content">
         {/* Flashcards */}

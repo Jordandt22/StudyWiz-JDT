@@ -1,6 +1,10 @@
 // Animations
 
 // Card Flip
+.normal > .back-card p {
+  opacity: 0;
+}
+
 .flipper {
   position: relative;
   perspective: 600px;
